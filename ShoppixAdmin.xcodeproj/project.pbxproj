@@ -1,0 +1,798 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D28FCE42EB194C000B2C240 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2D28FCE32EB194BA00B2C240 /* Secrets.xcconfig */; };
+		2D4015BD2EA9A49900B5735B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2D4015BC2EA9A49900B5735B /* FirebaseAnalytics */; };
+		2D4015BF2EA9A4A100B5735B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2D4015BE2EA9A4A100B5735B /* FirebaseAuth */; };
+		2D40161F2EA9C7CE00B5735B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2D40161E2EA9C7CE00B5735B /* FirebaseFirestore */; };
+		4605E92A1EA018C62B339FF2 /* libPods-ShoppixAdmin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3DB35E750BE65904F46AF4 /* libPods-ShoppixAdmin.a */; };
+		C95316640E18835E8996A23E /* libPods-ShoppixAdmin-ShoppixAdminUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8166DE40AC3C20655E6E3E1 /* libPods-ShoppixAdmin-ShoppixAdminUITests.a */; };
+		CFF6CFA50DEF45AF1E320572 /* libPods-ShoppixAdminTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5720F843948F38B97521CB85 /* libPods-ShoppixAdminTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2D4015382EA9A02900B5735B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D4015162EA9A02800B5735B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D40151D2EA9A02800B5735B;
+			remoteInfo = ShoppixAdmin;
+		};
+		2D4015422EA9A02900B5735B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D4015162EA9A02800B5735B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D40151D2EA9A02800B5735B;
+			remoteInfo = ShoppixAdmin;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		08466BFFD3C9EA87DBE62261 /* Pods-ShoppixAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixAdmin.debug.xcconfig"; path = "Target Support Files/Pods-ShoppixAdmin/Pods-ShoppixAdmin.debug.xcconfig"; sourceTree = "<group>"; };
+		2D28FCE32EB194BA00B2C240 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		2D40151E2EA9A02800B5735B /* ShoppixAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppixAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D4015372EA9A02900B5735B /* ShoppixAdminTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoppixAdminTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D4015412EA9A02900B5735B /* ShoppixAdminUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoppixAdminUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		35D17A5F189F324782251AF4 /* Pods-ShoppixAdminTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixAdminTests.release.xcconfig"; path = "Target Support Files/Pods-ShoppixAdminTests/Pods-ShoppixAdminTests.release.xcconfig"; sourceTree = "<group>"; };
+		3F73F94C554F0613CDC5B94C /* Pods-ShoppixAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixAdmin.release.xcconfig"; path = "Target Support Files/Pods-ShoppixAdmin/Pods-ShoppixAdmin.release.xcconfig"; sourceTree = "<group>"; };
+		5720F843948F38B97521CB85 /* libPods-ShoppixAdminTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShoppixAdminTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		72CAE572B9052D813263F9E3 /* Pods-ShoppixAdminTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixAdminTests.debug.xcconfig"; path = "Target Support Files/Pods-ShoppixAdminTests/Pods-ShoppixAdminTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B4D6987CAB605BD529B148C2 /* Pods-ShoppixAdmin-ShoppixAdminUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixAdmin-ShoppixAdminUITests.release.xcconfig"; path = "Target Support Files/Pods-ShoppixAdmin-ShoppixAdminUITests/Pods-ShoppixAdmin-ShoppixAdminUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B8166DE40AC3C20655E6E3E1 /* libPods-ShoppixAdmin-ShoppixAdminUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShoppixAdmin-ShoppixAdminUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA3DB35E750BE65904F46AF4 /* libPods-ShoppixAdmin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShoppixAdmin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB3BA1DF651C43D25F482C5A /* Pods-ShoppixAdmin-ShoppixAdminUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixAdmin-ShoppixAdminUITests.debug.xcconfig"; path = "Target Support Files/Pods-ShoppixAdmin-ShoppixAdminUITests/Pods-ShoppixAdmin-ShoppixAdminUITests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2D28FC352EB0C49100B2C240 /* Exceptions for "ShoppixAdmin" folder in "ShoppixAdmin" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2D40151D2EA9A02800B5735B /* ShoppixAdmin */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2D4015202EA9A02800B5735B /* ShoppixAdmin */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2D28FC352EB0C49100B2C240 /* Exceptions for "ShoppixAdmin" folder in "ShoppixAdmin" target */,
+			);
+			path = ShoppixAdmin;
+			sourceTree = "<group>";
+		};
+		2D40153A2EA9A02900B5735B /* ShoppixAdminTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ShoppixAdminTests;
+			sourceTree = "<group>";
+		};
+		2D4015442EA9A02900B5735B /* ShoppixAdminUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ShoppixAdminUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2D40151B2EA9A02800B5735B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D4015BD2EA9A49900B5735B /* FirebaseAnalytics in Frameworks */,
+				2D4015BF2EA9A4A100B5735B /* FirebaseAuth in Frameworks */,
+				2D40161F2EA9C7CE00B5735B /* FirebaseFirestore in Frameworks */,
+				4605E92A1EA018C62B339FF2 /* libPods-ShoppixAdmin.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D4015342EA9A02900B5735B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFF6CFA50DEF45AF1E320572 /* libPods-ShoppixAdminTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D40153E2EA9A02900B5735B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C95316640E18835E8996A23E /* libPods-ShoppixAdmin-ShoppixAdminUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		123D6F2F3F4A3DE807C5FD8C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				08466BFFD3C9EA87DBE62261 /* Pods-ShoppixAdmin.debug.xcconfig */,
+				3F73F94C554F0613CDC5B94C /* Pods-ShoppixAdmin.release.xcconfig */,
+				DB3BA1DF651C43D25F482C5A /* Pods-ShoppixAdmin-ShoppixAdminUITests.debug.xcconfig */,
+				B4D6987CAB605BD529B148C2 /* Pods-ShoppixAdmin-ShoppixAdminUITests.release.xcconfig */,
+				72CAE572B9052D813263F9E3 /* Pods-ShoppixAdminTests.debug.xcconfig */,
+				35D17A5F189F324782251AF4 /* Pods-ShoppixAdminTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2D4015152EA9A02800B5735B = {
+			isa = PBXGroup;
+			children = (
+				2D4015202EA9A02800B5735B /* ShoppixAdmin */,
+				2D40153A2EA9A02900B5735B /* ShoppixAdminTests */,
+				2D4015442EA9A02900B5735B /* ShoppixAdminUITests */,
+				2D40151F2EA9A02800B5735B /* Products */,
+				123D6F2F3F4A3DE807C5FD8C /* Pods */,
+				481DF84C57FFDC32ADCAA5D6 /* Frameworks */,
+				2D28FCE32EB194BA00B2C240 /* Secrets.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		2D40151F2EA9A02800B5735B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2D40151E2EA9A02800B5735B /* ShoppixAdmin.app */,
+				2D4015372EA9A02900B5735B /* ShoppixAdminTests.xctest */,
+				2D4015412EA9A02900B5735B /* ShoppixAdminUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		481DF84C57FFDC32ADCAA5D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA3DB35E750BE65904F46AF4 /* libPods-ShoppixAdmin.a */,
+				B8166DE40AC3C20655E6E3E1 /* libPods-ShoppixAdmin-ShoppixAdminUITests.a */,
+				5720F843948F38B97521CB85 /* libPods-ShoppixAdminTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2D40151D2EA9A02800B5735B /* ShoppixAdmin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D40154A2EA9A02900B5735B /* Build configuration list for PBXNativeTarget "ShoppixAdmin" */;
+			buildPhases = (
+				CC1B8386143B42A2C96D54C9 /* [CP] Check Pods Manifest.lock */,
+				2D40151A2EA9A02800B5735B /* Sources */,
+				2D40151B2EA9A02800B5735B /* Frameworks */,
+				2D40151C2EA9A02800B5735B /* Resources */,
+				46056BFB824BFB35CBB813A2 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2D4015202EA9A02800B5735B /* ShoppixAdmin */,
+			);
+			name = ShoppixAdmin;
+			packageProductDependencies = (
+				2D4015BC2EA9A49900B5735B /* FirebaseAnalytics */,
+				2D4015BE2EA9A4A100B5735B /* FirebaseAuth */,
+				2D40161E2EA9C7CE00B5735B /* FirebaseFirestore */,
+			);
+			productName = ShoppixAdmin;
+			productReference = 2D40151E2EA9A02800B5735B /* ShoppixAdmin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2D4015362EA9A02900B5735B /* ShoppixAdminTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D40154F2EA9A02900B5735B /* Build configuration list for PBXNativeTarget "ShoppixAdminTests" */;
+			buildPhases = (
+				9CBA94B2A7E98A888BD626DF /* [CP] Check Pods Manifest.lock */,
+				2D4015332EA9A02900B5735B /* Sources */,
+				2D4015342EA9A02900B5735B /* Frameworks */,
+				2D4015352EA9A02900B5735B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D4015392EA9A02900B5735B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2D40153A2EA9A02900B5735B /* ShoppixAdminTests */,
+			);
+			name = ShoppixAdminTests;
+			productName = ShoppixAdminTests;
+			productReference = 2D4015372EA9A02900B5735B /* ShoppixAdminTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2D4015402EA9A02900B5735B /* ShoppixAdminUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D4015522EA9A02900B5735B /* Build configuration list for PBXNativeTarget "ShoppixAdminUITests" */;
+			buildPhases = (
+				ABB9434F9FA059B353CA4220 /* [CP] Check Pods Manifest.lock */,
+				2D40153D2EA9A02900B5735B /* Sources */,
+				2D40153E2EA9A02900B5735B /* Frameworks */,
+				2D40153F2EA9A02900B5735B /* Resources */,
+				56D08AEAA3D6177F199116E4 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D4015432EA9A02900B5735B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2D4015442EA9A02900B5735B /* ShoppixAdminUITests */,
+			);
+			name = ShoppixAdminUITests;
+			productName = ShoppixAdminUITests;
+			productReference = 2D4015412EA9A02900B5735B /* ShoppixAdminUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2D4015162EA9A02800B5735B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					2D40151D2EA9A02800B5735B = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+					2D4015362EA9A02900B5735B = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = 2D40151D2EA9A02800B5735B;
+					};
+					2D4015402EA9A02900B5735B = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = 2D40151D2EA9A02800B5735B;
+					};
+				};
+			};
+			buildConfigurationList = 2D4015192EA9A02800B5735B /* Build configuration list for PBXProject "ShoppixAdmin" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2D4015152EA9A02800B5735B;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2D4015BA2EA9A46C00B5735B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2D40151F2EA9A02800B5735B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2D40151D2EA9A02800B5735B /* ShoppixAdmin */,
+				2D4015362EA9A02900B5735B /* ShoppixAdminTests */,
+				2D4015402EA9A02900B5735B /* ShoppixAdminUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2D40151C2EA9A02800B5735B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D28FCE42EB194C000B2C240 /* Secrets.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D4015352EA9A02900B5735B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D40153F2EA9A02900B5735B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46056BFB824BFB35CBB813A2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShoppixAdmin/Pods-ShoppixAdmin-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShoppixAdmin/Pods-ShoppixAdmin-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShoppixAdmin/Pods-ShoppixAdmin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56D08AEAA3D6177F199116E4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShoppixAdmin-ShoppixAdminUITests/Pods-ShoppixAdmin-ShoppixAdminUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShoppixAdmin-ShoppixAdminUITests/Pods-ShoppixAdmin-ShoppixAdminUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShoppixAdmin-ShoppixAdminUITests/Pods-ShoppixAdmin-ShoppixAdminUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CBA94B2A7E98A888BD626DF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShoppixAdminTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ABB9434F9FA059B353CA4220 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShoppixAdmin-ShoppixAdminUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC1B8386143B42A2C96D54C9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShoppixAdmin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2D40151A2EA9A02800B5735B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D4015332EA9A02900B5735B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D40153D2EA9A02900B5735B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2D4015392EA9A02900B5735B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D40151D2EA9A02800B5735B /* ShoppixAdmin */;
+			targetProxy = 2D4015382EA9A02900B5735B /* PBXContainerItemProxy */;
+		};
+		2D4015432EA9A02900B5735B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D40151D2EA9A02800B5735B /* ShoppixAdmin */;
+			targetProxy = 2D4015422EA9A02900B5735B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2D40154B2EA9A02900B5735B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08466BFFD3C9EA87DBE62261 /* Pods-ShoppixAdmin.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShoppixAdmin/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lab.ShoppixAdmin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2D40154C2EA9A02900B5735B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F73F94C554F0613CDC5B94C /* Pods-ShoppixAdmin.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShoppixAdmin/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lab.ShoppixAdmin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2D40154D2EA9A02900B5735B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D28FCE32EB194BA00B2C240 /* Secrets.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = ShoppixAdmin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2D40154E2EA9A02900B5735B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D28FCE32EB194BA00B2C240 /* Secrets.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = ShoppixAdmin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2D4015502EA9A02900B5735B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72CAE572B9052D813263F9E3 /* Pods-ShoppixAdminTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lab.ShoppixAdminTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShoppixAdmin.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ShoppixAdmin";
+			};
+			name = Debug;
+		};
+		2D4015512EA9A02900B5735B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35D17A5F189F324782251AF4 /* Pods-ShoppixAdminTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lab.ShoppixAdminTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShoppixAdmin.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ShoppixAdmin";
+			};
+			name = Release;
+		};
+		2D4015532EA9A02900B5735B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB3BA1DF651C43D25F482C5A /* Pods-ShoppixAdmin-ShoppixAdminUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lab.ShoppixAdminUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ShoppixAdmin;
+			};
+			name = Debug;
+		};
+		2D4015542EA9A02900B5735B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4D6987CAB605BD529B148C2 /* Pods-ShoppixAdmin-ShoppixAdminUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = lab.ShoppixAdminUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ShoppixAdmin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D4015192EA9A02800B5735B /* Build configuration list for PBXProject "ShoppixAdmin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D40154D2EA9A02900B5735B /* Debug */,
+				2D40154E2EA9A02900B5735B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D40154A2EA9A02900B5735B /* Build configuration list for PBXNativeTarget "ShoppixAdmin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D40154B2EA9A02900B5735B /* Debug */,
+				2D40154C2EA9A02900B5735B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D40154F2EA9A02900B5735B /* Build configuration list for PBXNativeTarget "ShoppixAdminTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D4015502EA9A02900B5735B /* Debug */,
+				2D4015512EA9A02900B5735B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D4015522EA9A02900B5735B /* Build configuration list for PBXNativeTarget "ShoppixAdminUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D4015532EA9A02900B5735B /* Debug */,
+				2D4015542EA9A02900B5735B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2D4015BA2EA9A46C00B5735B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2D4015BC2EA9A49900B5735B /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D4015BA2EA9A46C00B5735B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		2D4015BE2EA9A4A100B5735B /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D4015BA2EA9A46C00B5735B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		2D40161E2EA9C7CE00B5735B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D4015BA2EA9A46C00B5735B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 2D4015162EA9A02800B5735B /* Project object */;
+}

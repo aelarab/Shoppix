@@ -1,0 +1,6 @@
+module Pods_ShoppixAdmin {
+  umbrella header "Pods-ShoppixAdmin-umbrella.h"
+
+  export *
+  module * { export * }
+}

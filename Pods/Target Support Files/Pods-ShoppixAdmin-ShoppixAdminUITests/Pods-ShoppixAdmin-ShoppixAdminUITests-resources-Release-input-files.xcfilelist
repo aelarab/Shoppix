@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-ShoppixAdmin-ShoppixAdminUITests/Pods-ShoppixAdmin-ShoppixAdminUITests-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.bundle

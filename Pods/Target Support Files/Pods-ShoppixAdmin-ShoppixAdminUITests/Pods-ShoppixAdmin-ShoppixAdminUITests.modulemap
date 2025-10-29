@@ -1,0 +1,6 @@
+module Pods_ShoppixAdmin_ShoppixAdminUITests {
+  umbrella header "Pods-ShoppixAdmin-ShoppixAdminUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
