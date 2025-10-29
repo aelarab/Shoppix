@@ -62,7 +62,7 @@ class ProductCell: UICollectionViewCell {
         productPrice.textColor = UIColor.black
         
         // Edit button
-        styleButton(editBtn, systemName: "pencil")
+        styleButton(editBtn, systemName: "gearshape")
         // Delete button
         styleButton(deleteBtn, systemName: "trash")
     }
@@ -70,7 +70,7 @@ class ProductCell: UICollectionViewCell {
     private func styleButton(_ button: UIButton, systemName: String) {
         let config = UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)
         button.setImage(UIImage(systemName: systemName, withConfiguration: config), for: .normal)
-        button.tintColor = UIColor.systemBlue
+        button.tintColor = UIColor.black
         button.backgroundColor = systemName == "trash" ? UIColor.clear : UIColor.clear
         button.layer.cornerRadius = button.frame.height / 2
         button.layer.masksToBounds = true
