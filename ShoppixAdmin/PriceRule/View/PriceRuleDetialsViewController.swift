@@ -6,6 +6,9 @@
 //
 
 import UIKit
+protocol PriceRuleDetialsDelegate: AnyObject {
+    func didAddNewPriceRule(newRule: PriceRule)
+}
 
 class PriceRuleDetialsViewController: UIViewController {
     
@@ -15,7 +18,7 @@ class PriceRuleDetialsViewController: UIViewController {
     @IBOutlet weak var segmenteControle: UISegmentedControl!
     @IBOutlet weak var beginnigDate: UIDatePicker!
     @IBOutlet weak var endingDate: UIDatePicker!
-
+    weak var delegate: PriceRuleDetialsDelegate?
     var networkIndicator : UIActivityIndicatorView!
     var priceRuleViewModel: PriceRuleViewModel!
     var selectedRule: PriceRule!
@@ -25,7 +28,6 @@ class PriceRuleDetialsViewController: UIViewController {
         super.viewDidLoad()
         prepareEditingPanel()
         loadIndicator()
-        
     }
     
     func loadIndicator(){
@@ -146,6 +148,7 @@ class PriceRuleDetialsViewController: UIViewController {
             priceRuleViewModel.addPriceRule(priceRule: selectedRule) { [weak self] rule in
                 self?.selectedRule = rule
                 self?.networkIndicator.stopAnimating()
+                self?.delegate?.didAddNewPriceRule(newRule: rule)
                 self?.navigationController?.popViewController(animated: true)
             }
         }
@@ -153,6 +156,7 @@ class PriceRuleDetialsViewController: UIViewController {
             priceRuleViewModel.updatePriceRule(priceRule: selectedRule) { [weak self] rule in
                 self?.selectedRule = rule
                 self?.networkIndicator.stopAnimating()
+                self?.delegate?.didAddNewPriceRule(newRule: rule)
                 self?.navigationController?.popViewController(animated: true)
             }
         }

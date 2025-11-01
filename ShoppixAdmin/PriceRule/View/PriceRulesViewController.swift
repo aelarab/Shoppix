@@ -7,26 +7,31 @@
 
 import UIKit
 
-class PriceRulesViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource {
+class PriceRulesViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource , PriceRuleDetialsDelegate {
     var rulesList:[PriceRule] = []
-    var priceRuleViewModel = PriceRuleViewModel(network: Api())
+    var priceRuleViewModel = PriceRuleViewModel()
     var networkIndicator = UIActivityIndicatorView()
     var editOrAdd = ""
+    private var locallyAddedRules: [PriceRule] = []
     private var emptyStateImageView: UIImageView?
     
     @IBOutlet weak var PriceRuleTable: UITableView!
-    
     @IBAction func addPriceRule(_ sender: Any) {
         editOrAdd = "add"
         let priceRuleVC = self.storyboard?.instantiateViewController(withIdentifier: "PriceRuleDetialsViewController") as! PriceRuleDetialsViewController
-        priceRuleVC.priceRuleViewModel = priceRuleViewModel
+        priceRuleVC.priceRuleViewModel = PriceRuleViewModel()
         priceRuleVC.selectedRule = PriceRule(allocationMethod: "across" , customerSelection: "all" ,targetSelection: "all", targetType: "line_item" )
         priceRuleVC.editOrAdd = editOrAdd
+        priceRuleVC.delegate = self
         self.navigationController?.pushViewController(priceRuleVC, animated: true)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        getPriceRules()
+        super.viewWillAppear(animated)
+        priceRuleViewModel.getAllPriceRules()
+     
     }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         PriceRuleTable.delegate = self
@@ -34,7 +39,34 @@ class PriceRulesViewController: UIViewController ,UITableViewDelegate, UITableVi
         setupNibCell()
         loadIndicator()
         setupEmptyStateImage()
+        priceRuleViewModel.bindPriceRulesViewModelToController = {[weak self] in
+            DispatchQueue.main.async {
+                  guard let self = self else { return }
+                  var fetchedRules = self.priceRuleViewModel.allPriceRules
+                  for localRule in self.locallyAddedRules {
+                      if !fetchedRules.contains(where: { $0.id == localRule.id }) {
+                          fetchedRules.insert(localRule, at: 0)
+                      }
+                  }
+
+                  self.rulesList = fetchedRules
+                  self.PriceRuleTable.reloadData()
+                  self.networkIndicator.stopAnimating()
+                  self.updateEmptyStateImageVisibility()
+              }
+        }
     }
+    func didAddNewPriceRule(newRule: PriceRule) {
+        locallyAddedRules.append(newRule)
+        rulesList.insert(newRule, at: 0)
+        PriceRuleTable.reloadData()
+        updateEmptyStateImageVisibility()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            self.priceRuleViewModel.getAllPriceRules()
+        }
+    }
+
     func setupEmptyStateImage() {
         let imageView = UIImageView(image: UIImage(named: "coupon"))
         imageView.contentMode = .scaleAspectFit
@@ -64,14 +96,6 @@ class PriceRulesViewController: UIViewController ,UITableViewDelegate, UITableVi
         networkIndicator.startAnimating()
     }
     
-    func getPriceRules(){
-        priceRuleViewModel.getAllPriceRules {[weak self] allRules in
-            self?.rulesList = allRules
-            self?.networkIndicator.stopAnimating()
-            self?.PriceRuleTable.reloadData()
-            self?.updateEmptyStateImageVisibility()
-        }
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rulesList.count
@@ -134,10 +158,10 @@ class PriceRulesViewController: UIViewController ,UITableViewDelegate, UITableVi
         priceRuleVC.priceRuleViewModel = priceRuleViewModel
         priceRuleVC.selectedRule = rulesList[index]
         priceRuleVC.editOrAdd = editOrAdd
-        
+        priceRuleVC.delegate = self 
         self.navigationController?.pushViewController(priceRuleVC, animated: true)
         
     }
-    
-    
+
 }
+

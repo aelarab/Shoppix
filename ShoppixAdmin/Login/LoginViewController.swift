@@ -8,7 +8,6 @@
 import UIKit
 import FirebaseAuth
 class LoginViewController: UIViewController {
-    // UI Elements
     private let emailTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email"
@@ -50,8 +49,6 @@ class LoginViewController: UIViewController {
         return btn
     }()
     
-   
-    
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Logo2")
@@ -67,11 +64,8 @@ class LoginViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
       
     }
-        
 
-    
     private func setupUI() {
-        // Logo at the top
         view.addSubview(logoImageView)
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
@@ -79,7 +73,7 @@ class LoginViewController: UIViewController {
             logoImageView.heightAnchor.constraint(equalToConstant: 120),
             logoImageView.widthAnchor.constraint(equalToConstant: 120)
         ])
-        // Add text fields and their underline borders
+        
         let emailContainer = UIView()
         emailContainer.translatesAutoresizingMaskIntoConstraints = false
         emailContainer.addSubview(emailTextField)
@@ -116,12 +110,10 @@ class LoginViewController: UIViewController {
             passwordUnderline.heightAnchor.constraint(equalToConstant: 2),
             passwordUnderline.bottomAnchor.constraint(equalTo: passwordContainer.bottomAnchor)
         ])
-        // VStack for the two fields
         let fieldsStack = UIStackView(arrangedSubviews: [emailContainer, passwordContainer])
         fieldsStack.axis = .vertical
         fieldsStack.spacing = 12
         fieldsStack.translatesAutoresizingMaskIntoConstraints = false
-        // Main vertical stack
         let stackView = UIStackView(arrangedSubviews: [fieldsStack, loginButton])
         stackView.axis = .vertical
         stackView.spacing = 22

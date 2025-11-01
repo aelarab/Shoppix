@@ -8,17 +8,15 @@
 import Foundation
 class PriceRuleViewModel{
     
-    var network:ApiProtocol
+    var bindPriceRulesViewModelToController : (() -> Void)?
+    var allPriceRules : [PriceRule] = []
     
-    init(network: ApiProtocol) {
-        self.network = network
-    }
-    
-    func getAllPriceRules(completionHandler: @escaping ([PriceRule]) -> Void){
+    func getAllPriceRules(){
         
-        Api.get(endPoint: EndPoints.couponPriceRule) {(data: PriceRulesResponse?, error) in
-            guard let responsData = data else{ return}
-            completionHandler(responsData.price_rules )
+        Api.get(endPoint: EndPoints.couponPriceRule) { [weak self] (data : PriceRulesResponse? , error ) in
+            guard let rules = data?.price_rules else{ return}
+            self?.allPriceRules = rules
+            self?.bindPriceRulesViewModelToController?()
         }
     }
     
