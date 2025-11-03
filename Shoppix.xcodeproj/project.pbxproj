@@ -101,12 +101,10 @@
 		4F786FD22EB8DB4A00FD9157 /* Shoppix */ = {
 			isa = PBXGroup;
 			children = (
-				4F786FD32EB8DB4A00FD9157 /* AppDelegate.swift */,
-				4F786FD52EB8DB4A00FD9157 /* SceneDelegate.swift */,
+				4F78700D2EB8ECB100FD9157 /* Features */,
+				4F78700B2EB8EC5E00FD9157 /* Resources */,
+				4F7870092EB8EBE600FD9157 /* Application */,
 				4F786FD72EB8DB4A00FD9157 /* ViewController.swift */,
-				4F786FD92EB8DB4A00FD9157 /* Main.storyboard */,
-				4F786FDF2EB8DB4F00FD9157 /* Assets.xcassets */,
-				4F786FE12EB8DB4F00FD9157 /* LaunchScreen.storyboard */,
 				4F786FE42EB8DB4F00FD9157 /* Info.plist */,
 				4F786FDC2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld */,
 			);
@@ -128,6 +126,48 @@
 				4F786FF92EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift */,
 			);
 			path = ShoppixUITests;
+			sourceTree = "<group>";
+		};
+		4F7870092EB8EBE600FD9157 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				4F78700A2EB8EC0400FD9157 /* Delegates */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		4F78700A2EB8EC0400FD9157 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				4F786FD32EB8DB4A00FD9157 /* AppDelegate.swift */,
+				4F786FD52EB8DB4A00FD9157 /* SceneDelegate.swift */,
+				4F786FD92EB8DB4A00FD9157 /* Main.storyboard */,
+				4F786FE12EB8DB4F00FD9157 /* LaunchScreen.storyboard */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		4F78700B2EB8EC5E00FD9157 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F78700C2EB8EC7F00FD9157 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4F78700C2EB8EC7F00FD9157 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4F786FDF2EB8DB4F00FD9157 /* Assets.xcassets */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		4F78700D2EB8ECB100FD9157 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Features;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,6 +489,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -477,6 +518,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
