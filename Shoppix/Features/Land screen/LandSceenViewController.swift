@@ -28,14 +28,14 @@ class LandSceenViewController: UIViewController {
         }
         let totalDuration = 0.2 * charIndex
         DispatchQueue.main.asyncAfter(deadline: .now() + totalDuration) {
-            //    self.goToNextScreen()
+                self.goToNextScreen()
             }
     }
-//    func goToNextScreen() {
-//       // let homeTabBar = HomeTabBarViewController()
-//        let guestOr = GauestOrUserViewController(nibName: "GauestOrUserViewController", bundle: nil)
-//        navigationController?.pushViewController(guestOr, animated: true)
-//        }
+    func goToNextScreen() {
+       // let homeTabBar = HomeTabBarViewController()
+        let guestOr = GauestOrUserViewController(nibName: "GauestOrUserViewController", bundle: nil)
+        navigationController?.pushViewController(guestOr, animated: true)
+        }
 //    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 //        super.traitCollectionDidChange(previousTraitCollection)
 //

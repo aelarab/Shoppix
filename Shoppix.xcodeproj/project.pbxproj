@@ -19,6 +19,8 @@
 		4F786FFA2EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FF92EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift */; };
 		4F7870162EB8F8AC00FD9157 /* LandSceenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7870142EB8F8AC00FD9157 /* LandSceenViewController.swift */; };
 		4F7870172EB8F8AC00FD9157 /* LandSceenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F7870152EB8F8AC00FD9157 /* LandSceenViewController.xib */; };
+		4F78701B2EB8FC0A00FD9157 /* GauestOrUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7870192EB8FC0A00FD9157 /* GauestOrUserViewController.swift */; };
+		4F78701C2EB8FC0A00FD9157 /* GauestOrUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F78701A2EB8FC0A00FD9157 /* GauestOrUserViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		4F786FF92EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppixUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4F7870142EB8F8AC00FD9157 /* LandSceenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandSceenViewController.swift; sourceTree = "<group>"; };
 		4F7870152EB8F8AC00FD9157 /* LandSceenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandSceenViewController.xib; sourceTree = "<group>"; };
+		4F7870192EB8FC0A00FD9157 /* GauestOrUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GauestOrUserViewController.swift; sourceTree = "<group>"; };
+		4F78701A2EB8FC0A00FD9157 /* GauestOrUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GauestOrUserViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,7 @@
 		4F78700D2EB8ECB100FD9157 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				4F7870182EB8FC0A00FD9157 /* GuestOrUserViewController */,
 				4F7870132EB8F8AC00FD9157 /* Land screen */,
 			);
 			path = Features;
@@ -182,6 +187,15 @@
 				4F7870152EB8F8AC00FD9157 /* LandSceenViewController.xib */,
 			);
 			path = "Land screen";
+			sourceTree = "<group>";
+		};
+		4F7870182EB8FC0A00FD9157 /* GuestOrUserViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4F7870192EB8FC0A00FD9157 /* GauestOrUserViewController.swift */,
+				4F78701A2EB8FC0A00FD9157 /* GauestOrUserViewController.xib */,
+			);
+			path = GuestOrUserViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +305,7 @@
 				4F7870172EB8F8AC00FD9157 /* LandSceenViewController.xib in Resources */,
 				4F786FE32EB8DB4F00FD9157 /* LaunchScreen.storyboard in Resources */,
 				4F786FE02EB8DB4F00FD9157 /* Assets.xcassets in Resources */,
+				4F78701C2EB8FC0A00FD9157 /* GauestOrUserViewController.xib in Resources */,
 				4F786FDB2EB8DB4A00FD9157 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F78701B2EB8FC0A00FD9157 /* GauestOrUserViewController.swift in Sources */,
 				4F786FD82EB8DB4A00FD9157 /* ViewController.swift in Sources */,
 				4F786FD42EB8DB4A00FD9157 /* AppDelegate.swift in Sources */,
 				4F786FD62EB8DB4A00FD9157 /* SceneDelegate.swift in Sources */,
