@@ -13,8 +13,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: windowScene)
+        let firstVC = LandSceenViewController(nibName: "LandSceenViewController", bundle: nil)
+        let navController = UINavigationController(rootViewController: firstVC)
+        window.rootViewController = navController
+            window.makeKeyAndVisible()
+        self.window = window
+       
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

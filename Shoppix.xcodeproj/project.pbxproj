@@ -17,6 +17,8 @@
 		4F786FEE2EB8DB4F00FD9157 /* ShoppixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FED2EB8DB4F00FD9157 /* ShoppixTests.swift */; };
 		4F786FF82EB8DB5000FD9157 /* ShoppixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FF72EB8DB5000FD9157 /* ShoppixUITests.swift */; };
 		4F786FFA2EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FF92EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift */; };
+		4F7870162EB8F8AC00FD9157 /* LandSceenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7870142EB8F8AC00FD9157 /* LandSceenViewController.swift */; };
+		4F7870172EB8F8AC00FD9157 /* LandSceenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F7870152EB8F8AC00FD9157 /* LandSceenViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		4F786FF32EB8DB4F00FD9157 /* ShoppixUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoppixUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F786FF72EB8DB5000FD9157 /* ShoppixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppixUITests.swift; sourceTree = "<group>"; };
 		4F786FF92EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppixUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4F7870142EB8F8AC00FD9157 /* LandSceenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandSceenViewController.swift; sourceTree = "<group>"; };
+		4F7870152EB8F8AC00FD9157 /* LandSceenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandSceenViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,8 +170,18 @@
 		4F78700D2EB8ECB100FD9157 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				4F7870132EB8F8AC00FD9157 /* Land screen */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		4F7870132EB8F8AC00FD9157 /* Land screen */ = {
+			isa = PBXGroup;
+			children = (
+				4F7870142EB8F8AC00FD9157 /* LandSceenViewController.swift */,
+				4F7870152EB8F8AC00FD9157 /* LandSceenViewController.xib */,
+			);
+			path = "Land screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7870172EB8F8AC00FD9157 /* LandSceenViewController.xib in Resources */,
 				4F786FE32EB8DB4F00FD9157 /* LaunchScreen.storyboard in Resources */,
 				4F786FE02EB8DB4F00FD9157 /* Assets.xcassets in Resources */,
 				4F786FDB2EB8DB4A00FD9157 /* Main.storyboard in Resources */,
@@ -305,6 +320,7 @@
 				4F786FD42EB8DB4A00FD9157 /* AppDelegate.swift in Sources */,
 				4F786FD62EB8DB4A00FD9157 /* SceneDelegate.swift in Sources */,
 				4F786FDE2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld in Sources */,
+				4F7870162EB8F8AC00FD9157 /* LandSceenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
