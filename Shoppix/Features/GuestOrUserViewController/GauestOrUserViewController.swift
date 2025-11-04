@@ -34,14 +34,14 @@ class GauestOrUserViewController: UIViewController {
     }
     
     @IBAction func userActionPressed(_ sender: UIButton) {
-//        let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
-//        navigationController?.pushViewController(loginVC, animated: true)
+        let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+        navigationController?.pushViewController(loginVC, animated: true)
     }
     
     @IBAction func guestActionPressed(_ sender: Any) {
-//        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
-//        navigationController?.pushViewController(homeVC, animated: true)
-//        homeVC.navigationItem.backBarButtonItem?.tintColor = UIColor(named: "mainColor")
+        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
+        navigationController?.pushViewController(homeVC, animated: true)
+        homeVC.navigationItem.backBarButtonItem?.tintColor = UIColor(named: "mainColor")
     }
     
     
