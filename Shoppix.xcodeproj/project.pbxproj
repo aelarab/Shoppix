@@ -17,6 +17,18 @@
 		4F786FEE2EB8DB4F00FD9157 /* ShoppixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FED2EB8DB4F00FD9157 /* ShoppixTests.swift */; };
 		4F786FF82EB8DB5000FD9157 /* ShoppixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FF72EB8DB5000FD9157 /* ShoppixUITests.swift */; };
 		4F786FFA2EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FF92EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift */; };
+		4F7870162EB8F8AC00FD9157 /* LandSceenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7870142EB8F8AC00FD9157 /* LandSceenViewController.swift */; };
+		4F7870172EB8F8AC00FD9157 /* LandSceenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F7870152EB8F8AC00FD9157 /* LandSceenViewController.xib */; };
+		4F78701B2EB8FC0A00FD9157 /* GauestOrUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7870192EB8FC0A00FD9157 /* GauestOrUserViewController.swift */; };
+		4F78701C2EB8FC0A00FD9157 /* GauestOrUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F78701A2EB8FC0A00FD9157 /* GauestOrUserViewController.xib */; };
+		4F7870202EB903CE00FD9157 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78701F2EB903CE00FD9157 /* HomeTabBarViewController.swift */; };
+		4F7870292EB9041300FD9157 /* SmartCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7870232EB9041300FD9157 /* SmartCollectionModel.swift */; };
+		4F78702A2EB9041300FD9157 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F7870252EB9041300FD9157 /* HomeViewController.xib */; };
+		4F78702B2EB9041300FD9157 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7870262EB9041300FD9157 /* HomeViewController.swift */; };
+		4F78702C2EB9041300FD9157 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7870282EB9041300FD9157 /* HomeViewModel.swift */; };
+		4F78702F2EB9056700FD9157 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4F78702E2EB9056700FD9157 /* SDWebImage */; };
+		4F7870332EB9061D00FD9157 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F7870312EB9061D00FD9157 /* ProductCollectionViewCell.xib */; };
+		4F7870342EB9061D00FD9157 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7870322EB9061D00FD9157 /* ProductCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +63,17 @@
 		4F786FF32EB8DB4F00FD9157 /* ShoppixUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoppixUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F786FF72EB8DB5000FD9157 /* ShoppixUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppixUITests.swift; sourceTree = "<group>"; };
 		4F786FF92EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppixUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4F7870142EB8F8AC00FD9157 /* LandSceenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandSceenViewController.swift; sourceTree = "<group>"; };
+		4F7870152EB8F8AC00FD9157 /* LandSceenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandSceenViewController.xib; sourceTree = "<group>"; };
+		4F7870192EB8FC0A00FD9157 /* GauestOrUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GauestOrUserViewController.swift; sourceTree = "<group>"; };
+		4F78701A2EB8FC0A00FD9157 /* GauestOrUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GauestOrUserViewController.xib; sourceTree = "<group>"; };
+		4F78701F2EB903CE00FD9157 /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
+		4F7870232EB9041300FD9157 /* SmartCollectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartCollectionModel.swift; sourceTree = "<group>"; };
+		4F7870252EB9041300FD9157 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		4F7870262EB9041300FD9157 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4F7870282EB9041300FD9157 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		4F7870312EB9061D00FD9157 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
+		4F7870322EB9061D00FD9157 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F78702F2EB9056700FD9157 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,8 +190,83 @@
 		4F78700D2EB8ECB100FD9157 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				4F7870212EB9041300FD9157 /* HomeVC */,
+				4F78701E2EB903CE00FD9157 /* tabBar */,
+				4F7870182EB8FC0A00FD9157 /* GuestOrUserViewController */,
+				4F7870132EB8F8AC00FD9157 /* Land screen */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		4F7870132EB8F8AC00FD9157 /* Land screen */ = {
+			isa = PBXGroup;
+			children = (
+				4F7870142EB8F8AC00FD9157 /* LandSceenViewController.swift */,
+				4F7870152EB8F8AC00FD9157 /* LandSceenViewController.xib */,
+			);
+			path = "Land screen";
+			sourceTree = "<group>";
+		};
+		4F7870182EB8FC0A00FD9157 /* GuestOrUserViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4F7870192EB8FC0A00FD9157 /* GauestOrUserViewController.swift */,
+				4F78701A2EB8FC0A00FD9157 /* GauestOrUserViewController.xib */,
+			);
+			path = GuestOrUserViewController;
+			sourceTree = "<group>";
+		};
+		4F78701E2EB903CE00FD9157 /* tabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4F78701F2EB903CE00FD9157 /* HomeTabBarViewController.swift */,
+			);
+			path = tabBar;
+			sourceTree = "<group>";
+		};
+		4F7870212EB9041300FD9157 /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				4F7870222EB9041300FD9157 /* Model */,
+				4F7870242EB9041300FD9157 /* view */,
+				4F7870272EB9041300FD9157 /* View Model */,
+			);
+			path = HomeVC;
+			sourceTree = "<group>";
+		};
+		4F7870222EB9041300FD9157 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F7870232EB9041300FD9157 /* SmartCollectionModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4F7870242EB9041300FD9157 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				4F7870252EB9041300FD9157 /* HomeViewController.xib */,
+				4F7870262EB9041300FD9157 /* HomeViewController.swift */,
+				4F7870302EB9061D00FD9157 /* cells */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		4F7870272EB9041300FD9157 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F7870282EB9041300FD9157 /* HomeViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		4F7870302EB9061D00FD9157 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				4F7870312EB9061D00FD9157 /* ProductCollectionViewCell.xib */,
+				4F7870322EB9061D00FD9157 /* ProductCollectionViewCell.swift */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +285,9 @@
 			dependencies = (
 			);
 			name = Shoppix;
+			packageProductDependencies = (
+				4F78702E2EB9056700FD9157 /* SDWebImage */,
+			);
 			productName = Shoppix;
 			productReference = 4F786FD02EB8DB4A00FD9157 /* Shoppix.app */;
 			productType = "com.apple.product-type.application";
@@ -258,6 +360,9 @@
 				Base,
 			);
 			mainGroup = 4F786FC72EB8DB4A00FD9157;
+			packageReferences = (
+				4F78702D2EB9056700FD9157 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 4F786FD12EB8DB4A00FD9157 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -274,9 +379,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7870172EB8F8AC00FD9157 /* LandSceenViewController.xib in Resources */,
 				4F786FE32EB8DB4F00FD9157 /* LaunchScreen.storyboard in Resources */,
 				4F786FE02EB8DB4F00FD9157 /* Assets.xcassets in Resources */,
+				4F7870332EB9061D00FD9157 /* ProductCollectionViewCell.xib in Resources */,
+				4F78701C2EB8FC0A00FD9157 /* GauestOrUserViewController.xib in Resources */,
 				4F786FDB2EB8DB4A00FD9157 /* Main.storyboard in Resources */,
+				4F78702A2EB9041300FD9157 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,10 +410,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7870202EB903CE00FD9157 /* HomeTabBarViewController.swift in Sources */,
+				4F7870292EB9041300FD9157 /* SmartCollectionModel.swift in Sources */,
+				4F7870342EB9061D00FD9157 /* ProductCollectionViewCell.swift in Sources */,
+				4F78701B2EB8FC0A00FD9157 /* GauestOrUserViewController.swift in Sources */,
+				4F78702C2EB9041300FD9157 /* HomeViewModel.swift in Sources */,
 				4F786FD82EB8DB4A00FD9157 /* ViewController.swift in Sources */,
 				4F786FD42EB8DB4A00FD9157 /* AppDelegate.swift in Sources */,
+				4F78702B2EB9041300FD9157 /* HomeViewController.swift in Sources */,
 				4F786FD62EB8DB4A00FD9157 /* SceneDelegate.swift in Sources */,
 				4F786FDE2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld in Sources */,
+				4F7870162EB8F8AC00FD9157 /* LandSceenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +786,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4F78702D2EB9056700FD9157 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = exactVersion;
+				version = 5.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4F78702E2EB9056700FD9157 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F78702D2EB9056700FD9157 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		4F786FDC2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld */ = {

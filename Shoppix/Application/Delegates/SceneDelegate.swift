@@ -13,8 +13,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: windowScene)
+           let navController: UINavigationController
+        if let _ = UserDefaults.standard.string(forKey: "userId") {
+                 let tabBarVC = HomeTabBarViewController()
+                   window.rootViewController = tabBarVC
+            } else {
+                let firstVC = LandSceenViewController(nibName: "LandSceenViewController", bundle: nil)
+                navController = UINavigationController(rootViewController: firstVC)
+                window.rootViewController = navController
+            }
+             
+               window.makeKeyAndVisible()
+        self.window = window
+      
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
