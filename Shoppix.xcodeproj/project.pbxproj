@@ -154,6 +154,7 @@
 		AA5456BC2EBBB3E4000409D6 /* ChoosePaymentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePaymentViewController.xib; sourceTree = "<group>"; };
 		AA5456C32EBBB42E000409D6 /* PlaceOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceOrderViewController.swift; sourceTree = "<group>"; };
 		AA5456C42EBBB42E000409D6 /* PlaceOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceOrderViewController.xib; sourceTree = "<group>"; };
+		AA5456C92EBBB46E000409D6 /* SHOPPIX.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = SHOPPIX.entitlements; sourceTree = "<group>"; };
 		AA5DEFFC2EBAE61700E72FB2 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA5DEFFD2EBAE61700E72FB2 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
 		AA5DF0012EBAE85300E72FB2 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
@@ -799,6 +800,7 @@
 				AAE5B8502EBAD59100789A4A /* Main.storyboard */,
 				AAE5B8512EBAD59100789A4A /* SceneDelegate.swift */,
 				AAE5B8522EBAD59100789A4A /* SHOPPIX.xcdatamodeld */,
+				AA5456C92EBBB46E000409D6 /* SHOPPIX.entitlements */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
