@@ -38,20 +38,26 @@ class ShoppingCartViewController: UIViewController {
     }
     
     func fetchCartItems() {
-        guard let userId = UserDefaults.standard.string(forKey: "userId") else { return }
+        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+            cartItems = []
+            itemsTableView.reloadData()
+            totalPriceLabel.text = "Total: $0.00"
+            return
+        }
         
         let request = NSFetchRequest<NSManagedObject>(entityName: "CartProduct")
         request.predicate = NSPredicate(format: "userId == %@", userId)
         
         do {
             cartItems = try context.fetch(request)
-            print("🛒 Loaded \(cartItems.count) cart items.")
             itemsTableView.reloadData()
             updateTotalPrice()
+            print(" Fetched \(cartItems.count) cart items for user: \(userId)")
         } catch {
-            print("❌ Failed to fetch cart items: \(error.localizedDescription)")
+            print(" Failed to fetch cart items: \(error.localizedDescription)")
         }
     }
+
     func updateTotalPrice() {
         var total: Double = 0.0
         
