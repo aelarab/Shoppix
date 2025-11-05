@@ -491,11 +491,19 @@
 		AA5456BD2EBBB3E4000409D6 /* ChoosePaymentVC */ = {
 			isa = PBXGroup;
 			children = (
+				AA5456C22EBBB409000409D6 /* View */,
 				AA5456BA2EBBB3E4000409D6 /* Cells */,
+			);
+			path = ChoosePaymentVC;
+			sourceTree = "<group>";
+		};
+		AA5456C22EBBB409000409D6 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				AA5456BB2EBBB3E4000409D6 /* ChoosePaymentViewController.swift */,
 				AA5456BC2EBBB3E4000409D6 /* ChoosePaymentViewController.xib */,
 			);
-			path = ChoosePaymentVC;
+			path = View;
 			sourceTree = "<group>";
 		};
 		AA5DEFFE2EBAE61700E72FB2 /* cells */ = {
