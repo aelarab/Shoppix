@@ -13,16 +13,31 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var welcomeUsernameLabel: UILabel!
     
+       //MARK: - Properties
+    
+    private let viewModel = ProfileViewModel()
+    
        //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupnavBar()
-        
+        loadUserName()
     }
 
        //MARK: - Behaviour
-    
+    func loadUserName() {
+        viewModel.getUserFullName { [weak self] fullName in
+            DispatchQueue.main.async {
+                if let name = fullName {
+                    self?.welcomeUsernameLabel.text = "Welcome \(name)"
+                } else {
+                    self?.welcomeUsernameLabel.text = "Welcome, Guest"
+                }
+            }
+        }
+    }
+        
     func setupnavBar(){
         navigationItem.title = "Me"
 
@@ -67,6 +82,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func moreWishlistButtonTapped(_ sender: UIButton) {
-        print("more wishlist tapped")
+        let favoritesVC = FavoriteViewController(nibName: "FavoriteViewController", bundle: nil)
+        navigationController?.pushViewController(favoritesVC, animated: true)
     }
 }

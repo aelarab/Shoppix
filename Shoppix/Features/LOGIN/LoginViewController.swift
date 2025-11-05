@@ -110,8 +110,18 @@ class LoginViewController: UIViewController {
                 UserDefaults.standard.set(user.uid, forKey: "userId")
                 UserDefaults.standard.set(user.email, forKey: "email")
                 print("id and email updated successfully and user logged in. ")
-                let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
-                self.navigationController?.setViewControllers([homeVC], animated: true)
+                if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+                   let window = sceneDelegate.window {
+                    
+                    let tabBarVC = HomeTabBarViewController()
+                    window.rootViewController = tabBarVC
+                    window.makeKeyAndVisible()
+                    
+                    UIView.transition(with: window,
+                                      duration: 0.3,
+                                      options: .transitionFlipFromRight,
+                                      animations: nil)
+                }
                
             }  else {
                 self.showAlert(title: "📧 Verify Email", message: "Please verify your email before logging in.")

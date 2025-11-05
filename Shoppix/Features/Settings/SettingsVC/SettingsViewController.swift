@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SettingsViewController: UIViewController {
        //MARK: - Outlets
@@ -100,6 +101,13 @@ setupUI()
     
     
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
-        print("Logout button tapped")
+        self.clearUserDefaults()
+        try? Auth.auth().signOut()
+        let landVC = LandSceenViewController(nibName: "LandSceenViewController", bundle: nil)
+            let nav = UINavigationController(rootViewController: landVC)
+        if let sceneDelegate = UIApplication.shared.connectedScenes
+               .first?.delegate as? SceneDelegate {
+               sceneDelegate.window?.rootViewController = nav
+           }
     }
 }

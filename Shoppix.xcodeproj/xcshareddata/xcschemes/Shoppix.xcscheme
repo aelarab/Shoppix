@@ -72,6 +72,13 @@
             ReferencedContainer = "container:Shoppix.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "SHOPIFY_ACCESS_TOKEN"
+            value = "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"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

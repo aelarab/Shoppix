@@ -154,14 +154,7 @@ class ProductDetailsViewController: UIViewController {
 
     @IBAction func addToBagButtonPressed(_ sender: UIButton) {
         //// iam  using log out here
-                self.clearUserDefaults()
-                try? Auth.auth().signOut()
-                let landVC = LandSceenViewController(nibName: "LandSceenViewController", bundle: nil)
-                    let nav = UINavigationController(rootViewController: landVC)
-                if let sceneDelegate = UIApplication.shared.connectedScenes
-                       .first?.delegate as? SceneDelegate {
-                       sceneDelegate.window?.rootViewController = nav
-                   }
+
     }
 }
 extension ProductDetailsViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{

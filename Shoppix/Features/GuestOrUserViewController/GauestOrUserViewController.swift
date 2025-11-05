@@ -39,9 +39,18 @@ class GauestOrUserViewController: UIViewController {
     }
     
     @IBAction func guestActionPressed(_ sender: Any) {
-        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
-        navigationController?.pushViewController(homeVC, animated: true)
-        homeVC.navigationItem.backBarButtonItem?.tintColor = UIColor(named: "mainColor")
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate,
+              let window = sceneDelegate.window {
+               
+               let tabBarVC = HomeTabBarViewController()
+               window.rootViewController = tabBarVC
+               window.makeKeyAndVisible()
+               
+               UIView.transition(with: window,
+                                 duration: 0.3,
+                                 options: .transitionFlipFromRight,
+                                 animations: nil)
+           }
     }
     
     
