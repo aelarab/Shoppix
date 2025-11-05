@@ -31,6 +31,10 @@
 		AA5456A92EBBB33E000409D6 /* ShoppingCartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5456A32EBBB33E000409D6 /* ShoppingCartTableViewCell.xib */; };
 		AA5456AA2EBBB33E000409D6 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5456A52EBBB33E000409D6 /* ShoppingCartViewController.swift */; };
 		AA5456AB2EBBB33E000409D6 /* ShoppingCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5456A62EBBB33E000409D6 /* ShoppingCartViewController.xib */; };
+		AA5456B32EBBB38D000409D6 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5456AD2EBBB38D000409D6 /* AddressTableViewCell.swift */; };
+		AA5456B42EBBB38D000409D6 /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5456AE2EBBB38D000409D6 /* AddressTableViewCell.xib */; };
+		AA5456B52EBBB38D000409D6 /* ChooseAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5456B02EBBB38D000409D6 /* ChooseAddressViewController.swift */; };
+		AA5456B62EBBB38D000409D6 /* ChooseAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5456B12EBBB38D000409D6 /* ChooseAddressViewController.xib */; };
 		AA5DEFFF2EBAE61800E72FB2 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DEFFC2EBAE61700E72FB2 /* ProductCollectionViewCell.swift */; };
 		AA5DF0002EBAE61800E72FB2 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5DEFFD2EBAE61700E72FB2 /* ProductCollectionViewCell.xib */; };
 		AA5DF0072EBAE85300E72FB2 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DF0012EBAE85300E72FB2 /* OrdersTableViewCell.swift */; };
@@ -134,6 +138,10 @@
 		AA5456A32EBBB33E000409D6 /* ShoppingCartTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartTableViewCell.xib; sourceTree = "<group>"; };
 		AA5456A52EBBB33E000409D6 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		AA5456A62EBBB33E000409D6 /* ShoppingCartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartViewController.xib; sourceTree = "<group>"; };
+		AA5456AD2EBBB38D000409D6 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
+		AA5456AE2EBBB38D000409D6 /* AddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressTableViewCell.xib; sourceTree = "<group>"; };
+		AA5456B02EBBB38D000409D6 /* ChooseAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseAddressViewController.swift; sourceTree = "<group>"; };
+		AA5456B12EBBB38D000409D6 /* ChooseAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseAddressViewController.xib; sourceTree = "<group>"; };
 		AA5DEFFC2EBAE61700E72FB2 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA5DEFFD2EBAE61700E72FB2 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
 		AA5DF0012EBAE85300E72FB2 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
@@ -402,6 +410,7 @@
 		AA5456A12EBBB327000409D6 /* ShoppingCart */ = {
 			isa = PBXGroup;
 			children = (
+				AA5456B22EBBB38D000409D6 /* ChooseAddressVC */,
 				AA5456A72EBBB33E000409D6 /* ShoppingCartVC */,
 			);
 			path = ShoppingCart;
@@ -432,6 +441,25 @@
 				AA5456A62EBBB33E000409D6 /* ShoppingCartViewController.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		AA5456AF2EBBB38D000409D6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AA5456AD2EBBB38D000409D6 /* AddressTableViewCell.swift */,
+				AA5456AE2EBBB38D000409D6 /* AddressTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		AA5456B22EBBB38D000409D6 /* ChooseAddressVC */ = {
+			isa = PBXGroup;
+			children = (
+				AA5456AF2EBBB38D000409D6 /* Cells */,
+				AA5456B02EBBB38D000409D6 /* ChooseAddressViewController.swift */,
+				AA5456B12EBBB38D000409D6 /* ChooseAddressViewController.xib */,
+			);
+			path = ChooseAddressVC;
 			sourceTree = "<group>";
 		};
 		AA5DEFFE2EBAE61700E72FB2 /* cells */ = {
@@ -869,6 +897,8 @@
 				AAE5B8572EBAD59100789A4A /* LaunchScreen.storyboard in Resources */,
 				AAE5B7AD2EBA4B2D00789A4A /* FavoriteViewController.xib in Resources */,
 				AA5456A02EBBB309000409D6 /* countries.json in Resources */,
+				AA5456B62EBBB38D000409D6 /* ChooseAddressViewController.xib in Resources */,
+				AA5456B42EBBB38D000409D6 /* AddressTableViewCell.xib in Resources */,
 				AAE5B7BB2EBA4B2D00789A4A /* ProductsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1000,6 +1030,7 @@
 				AAE5B7B72EBA4B2D00789A4A /* SignUpViewController.swift in Sources */,
 				4F7870202EB903CE00FD9157 /* HomeTabBarViewController.swift in Sources */,
 				AAE5B85A2EBAD59100789A4A /* SHOPPIX.xcdatamodeld in Sources */,
+				AA5456B32EBBB38D000409D6 /* AddressTableViewCell.swift in Sources */,
 				AAE5B7842EBA4B1000789A4A /* CheckInternet.swift in Sources */,
 				4F7870292EB9041300FD9157 /* SmartCollectionModel.swift in Sources */,
 				AAE5B7DE2EBA4C3500789A4A /* SettingsViewModel.swift in Sources */,
@@ -1034,6 +1065,7 @@
 				AA5456A82EBBB33E000409D6 /* ShoppingCartTableViewCell.swift in Sources */,
 				AAE5B7BF2EBA4B2D00789A4A /* ReviewsViewController.swift in Sources */,
 				AAE5B7E12EBA4C3500789A4A /* AddressViewController.swift in Sources */,
+				AA5456B52EBBB38D000409D6 /* ChooseAddressViewController.swift in Sources */,
 				4F786FDE2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld in Sources */,
 				AAE5B7B02EBA4B2D00789A4A /* ProductImageCollectionViewCell.swift in Sources */,
 				4F7870162EB8F8AC00FD9157 /* LandSceenViewController.swift in Sources */,
