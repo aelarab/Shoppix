@@ -42,6 +42,8 @@
 		AA5456C62EBBB42E000409D6 /* PlaceOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5456C32EBBB42E000409D6 /* PlaceOrderViewController.swift */; };
 		AA5456C72EBBB42E000409D6 /* PlaceOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5456C42EBBB42E000409D6 /* PlaceOrderViewController.xib */; };
 		AA5456CB2EBBC416000409D6 /* CouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5456CA2EBBC416000409D6 /* CouponModel.swift */; };
+		AA5456CE2EBBF905000409D6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5456CD2EBBF905000409D6 /* ProfileViewModel.swift */; };
+		AA5456D22EBBF92C000409D6 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5456D12EBBF92C000409D6 /* FireBaseService.swift */; };
 		AA5DEFFF2EBAE61800E72FB2 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DEFFC2EBAE61700E72FB2 /* ProductCollectionViewCell.swift */; };
 		AA5DF0002EBAE61800E72FB2 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5DEFFD2EBAE61700E72FB2 /* ProductCollectionViewCell.xib */; };
 		AA5DF0072EBAE85300E72FB2 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DF0012EBAE85300E72FB2 /* OrdersTableViewCell.swift */; };
@@ -157,6 +159,8 @@
 		AA5456C42EBBB42E000409D6 /* PlaceOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceOrderViewController.xib; sourceTree = "<group>"; };
 		AA5456C92EBBB46E000409D6 /* SHOPPIX.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = SHOPPIX.entitlements; sourceTree = "<group>"; };
 		AA5456CA2EBBC416000409D6 /* CouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponModel.swift; sourceTree = "<group>"; };
+		AA5456CD2EBBF905000409D6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		AA5456D12EBBF92C000409D6 /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
 		AA5DEFFC2EBAE61700E72FB2 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA5DEFFD2EBAE61700E72FB2 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
 		AA5DF0012EBAE85300E72FB2 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
@@ -532,6 +536,30 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		AA5456CC2EBBF8F3000409D6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AA5456CD2EBBF905000409D6 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AA5456CF2EBBF916000409D6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA5456D02EBBF91C000409D6 /* Services */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AA5456D02EBBF91C000409D6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AA5456D12EBBF92C000409D6 /* FireBaseService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		AA5DEFFE2EBAE61700E72FB2 /* cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +582,8 @@
 		AA5DF0062EBAE85300E72FB2 /* ProfileVC */ = {
 			isa = PBXGroup;
 			children = (
+				AA5456CF2EBBF916000409D6 /* Model */,
+				AA5456CC2EBBF8F3000409D6 /* ViewModel */,
 				AA54569E2EBBB028000409D6 /* View */,
 				AA5DF0032EBAE85300E72FB2 /* Cells */,
 			);
@@ -1129,6 +1159,7 @@
 				4F78702B2EB9041300FD9157 /* HomeViewController.swift in Sources */,
 				AA5456BE2EBBB3E4000409D6 /* PaymentsTableViewCell.swift in Sources */,
 				AA5DF0092EBAE85300E72FB2 /* ProfileViewController.swift in Sources */,
+				AA5456D22EBBF92C000409D6 /* FireBaseService.swift in Sources */,
 				AAE5B7E62EBA4C3500789A4A /* AddNewAddressViewController.swift in Sources */,
 				AAE5B7E32EBA4C3500789A4A /* AddressService.swift in Sources */,
 				AAE5B7DC2EBA4C3500789A4A /* AboutUsViewController.swift in Sources */,
@@ -1142,6 +1173,7 @@
 				AA5456A82EBBB33E000409D6 /* ShoppingCartTableViewCell.swift in Sources */,
 				AAE5B7BF2EBA4B2D00789A4A /* ReviewsViewController.swift in Sources */,
 				AAE5B7E12EBA4C3500789A4A /* AddressViewController.swift in Sources */,
+				AA5456CE2EBBF905000409D6 /* ProfileViewModel.swift in Sources */,
 				AA5456B52EBBB38D000409D6 /* ChooseAddressViewController.swift in Sources */,
 				AA5456C62EBBB42E000409D6 /* PlaceOrderViewController.swift in Sources */,
 				4F786FDE2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld in Sources */,
