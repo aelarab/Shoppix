@@ -65,13 +65,15 @@ class HomeViewController: UIViewController {
         super.viewWillDisappear(animated)
         couponTimer?.invalidate()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startCouponAutoScroll()
+    }
+
 
 
        //MARK: - Behaviour
-//     private func copyCouponCode() {
-//        UIPasteboard.general.string = coupon
-//        showCopiedAlert()
-//    }
     
     func startCouponAutoScroll() {
         couponTimer?.invalidate() // stop any old timers
@@ -96,20 +98,7 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(favoriteVC, animated: true)
     }
 
-//    private func showCopiedAlert() {
-//        let alert = UIAlertController(title: "Copied!", message: "Coupon code \(coupon) copied to clipboard.", preferredStyle: .alert)
-//        present(alert, animated: true)
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//            alert.dismiss(animated: true)
-//        }
-//    }
 
-    
-    
-//    @IBAction func couponTapped(_ sender: UIButton) {
-//        copyCouponCode()
-//    }
     
 }
 extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
@@ -193,6 +182,11 @@ extension HomeViewController: SendProuctDelegete {
         self.coupons = coupons
         DispatchQueue.main.async {
             self.couponsPageControl.numberOfPages = coupons.count
+            self.couponsPageControl.currentPage = 0
+
+            self.couponsPageControl.pageIndicatorTintColor = .lightGray
+            self.couponsPageControl.currentPageIndicatorTintColor = UIColor(named: "mainColor") ?? .systemBlue
+
             self.couponsCollectionView.reloadData()
         }
     }
