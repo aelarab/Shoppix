@@ -8,13 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		195C6F91E9529D28B1BC5663 /* Pods_Shoppix_ShoppixUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005D4891E0944A85156F519D /* Pods_Shoppix_ShoppixUITests.framework */; };
-		4F786FD42EB8DB4A00FD9157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FD32EB8DB4A00FD9157 /* AppDelegate.swift */; };
-		4F786FD62EB8DB4A00FD9157 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FD52EB8DB4A00FD9157 /* SceneDelegate.swift */; };
 		4F786FD82EB8DB4A00FD9157 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FD72EB8DB4A00FD9157 /* ViewController.swift */; };
-		4F786FDB2EB8DB4A00FD9157 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F786FD92EB8DB4A00FD9157 /* Main.storyboard */; };
 		4F786FDE2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FDC2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld */; };
 		4F786FE02EB8DB4F00FD9157 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F786FDF2EB8DB4F00FD9157 /* Assets.xcassets */; };
-		4F786FE32EB8DB4F00FD9157 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F786FE12EB8DB4F00FD9157 /* LaunchScreen.storyboard */; };
 		4F786FEE2EB8DB4F00FD9157 /* ShoppixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FED2EB8DB4F00FD9157 /* ShoppixTests.swift */; };
 		4F786FF82EB8DB5000FD9157 /* ShoppixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FF72EB8DB5000FD9157 /* ShoppixUITests.swift */; };
 		4F786FFA2EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FF92EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift */; };
@@ -57,7 +53,6 @@
 		AAE5B7BE2EBA4B2D00789A4A /* ReviewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE5B7A72EBA4B2D00789A4A /* ReviewCellTableViewCell.xib */; };
 		AAE5B7BF2EBA4B2D00789A4A /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7A92EBA4B2D00789A4A /* ReviewsViewController.swift */; };
 		AAE5B7C02EBA4B2D00789A4A /* ReviewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE5B7AA2EBA4B2D00789A4A /* ReviewsViewController.xib */; };
-		AAE5B7C32EBA4B4C00789A4A /* SHOPPIX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7C12EBA4B4C00789A4A /* SHOPPIX.xcdatamodeld */; };
 		AAE5B7DC2EBA4C3500789A4A /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7C52EBA4C3500789A4A /* AboutUsViewController.swift */; };
 		AAE5B7DD2EBA4C3500789A4A /* AboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE5B7C62EBA4C3500789A4A /* AboutUsViewController.xib */; };
 		AAE5B7DE2EBA4C3500789A4A /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7C82EBA4C3500789A4A /* SettingsViewModel.swift */; };
@@ -73,6 +68,11 @@
 		AAE5B7E82EBA4C3500789A4A /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7D92EBA4C3500789A4A /* ContactUsViewController.swift */; };
 		AAE5B7E92EBA4C3500789A4A /* ContactUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE5B7DA2EBA4C3500789A4A /* ContactUsViewController.xib */; };
 		AAE5B8342EBA5B0000789A4A /* NotificationCenter+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B8332EBA5B0000789A4A /* NotificationCenter+Settings.swift */; };
+		AAE5B8562EBAD59100789A4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B84C2EBAD59100789A4A /* AppDelegate.swift */; };
+		AAE5B8572EBAD59100789A4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE5B84E2EBAD59100789A4A /* LaunchScreen.storyboard */; };
+		AAE5B8582EBAD59100789A4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE5B8502EBAD59100789A4A /* Main.storyboard */; };
+		AAE5B8592EBAD59100789A4A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B8512EBAD59100789A4A /* SceneDelegate.swift */; };
+		AAE5B85A2EBAD59100789A4A /* SHOPPIX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B8522EBAD59100789A4A /* SHOPPIX.xcdatamodeld */; };
 		E4C1556F440124CFA0056113 /* Pods_Shoppix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF3465F465E66EF377D06DC /* Pods_Shoppix.framework */; };
 /* End PBXBuildFile section */
 
@@ -100,13 +100,9 @@
 		2ACF8D006B2F99C084F238F4 /* Pods-Shoppix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix.release.xcconfig"; path = "Target Support Files/Pods-Shoppix/Pods-Shoppix.release.xcconfig"; sourceTree = "<group>"; };
 		3EF3465F465E66EF377D06DC /* Pods_Shoppix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoppix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F786FD02EB8DB4A00FD9157 /* Shoppix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoppix.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F786FD32EB8DB4A00FD9157 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4F786FD52EB8DB4A00FD9157 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4F786FD72EB8DB4A00FD9157 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4F786FDA2EB8DB4A00FD9157 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F786FDD2EB8DB4A00FD9157 /* Shoppix.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shoppix.xcdatamodel; sourceTree = "<group>"; };
 		4F786FDF2EB8DB4F00FD9157 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4F786FE22EB8DB4F00FD9157 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F786FE42EB8DB4F00FD9157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F786FE92EB8DB4F00FD9157 /* ShoppixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoppixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F786FED2EB8DB4F00FD9157 /* ShoppixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppixTests.swift; sourceTree = "<group>"; };
@@ -153,7 +149,6 @@
 		AAE5B7A72EBA4B2D00789A4A /* ReviewCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewCellTableViewCell.xib; sourceTree = "<group>"; };
 		AAE5B7A92EBA4B2D00789A4A /* ReviewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		AAE5B7AA2EBA4B2D00789A4A /* ReviewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewsViewController.xib; sourceTree = "<group>"; };
-		AAE5B7C22EBA4B4C00789A4A /* SHOPPIX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SHOPPIX.xcdatamodel; sourceTree = "<group>"; };
 		AAE5B7C52EBA4C3500789A4A /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		AAE5B7C62EBA4C3500789A4A /* AboutUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsViewController.xib; sourceTree = "<group>"; };
 		AAE5B7C82EBA4C3500789A4A /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -169,6 +164,11 @@
 		AAE5B7D92EBA4C3500789A4A /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		AAE5B7DA2EBA4C3500789A4A /* ContactUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUsViewController.xib; sourceTree = "<group>"; };
 		AAE5B8332EBA5B0000789A4A /* NotificationCenter+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Settings.swift"; sourceTree = "<group>"; };
+		AAE5B84C2EBAD59100789A4A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AAE5B84D2EBAD59100789A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AAE5B84F2EBAD59100789A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AAE5B8512EBAD59100789A4A /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		AAE5B8552EBAD59100789A4A /* SHOPPIX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SHOPPIX.xcdatamodel; sourceTree = "<group>"; };
 		DBAF5EE63C55CA837146DFC5 /* Pods-Shoppix-ShoppixUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix-ShoppixUITests.debug.xcconfig"; path = "Target Support Files/Pods-Shoppix-ShoppixUITests/Pods-Shoppix-ShoppixUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -238,7 +238,7 @@
 			children = (
 				4F78700D2EB8ECB100FD9157 /* Features */,
 				4F78700B2EB8EC5E00FD9157 /* Resources */,
-				4F7870092EB8EBE600FD9157 /* Application */,
+				AAE5B8542EBAD59100789A4A /* Application */,
 				4F786FD72EB8DB4A00FD9157 /* ViewController.swift */,
 				4F786FE42EB8DB4F00FD9157 /* Info.plist */,
 				4F786FDC2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld */,
@@ -261,26 +261,6 @@
 				4F786FF92EB8DB5000FD9157 /* ShoppixUITestsLaunchTests.swift */,
 			);
 			path = ShoppixUITests;
-			sourceTree = "<group>";
-		};
-		4F7870092EB8EBE600FD9157 /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				4F78700A2EB8EC0400FD9157 /* Delegates */,
-			);
-			path = Application;
-			sourceTree = "<group>";
-		};
-		4F78700A2EB8EC0400FD9157 /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				AAE5B7C12EBA4B4C00789A4A /* SHOPPIX.xcdatamodeld */,
-				4F786FD32EB8DB4A00FD9157 /* AppDelegate.swift */,
-				4F786FD52EB8DB4A00FD9157 /* SceneDelegate.swift */,
-				4F786FD92EB8DB4A00FD9157 /* Main.storyboard */,
-				4F786FE12EB8DB4F00FD9157 /* LaunchScreen.storyboard */,
-			);
-			path = Delegates;
 			sourceTree = "<group>";
 		};
 		4F78700B2EB8EC5E00FD9157 /* Resources */ = {
@@ -643,6 +623,27 @@
 			path = NotificationCenterExtentions;
 			sourceTree = "<group>";
 		};
+		AAE5B8532EBAD59100789A4A /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5B84C2EBAD59100789A4A /* AppDelegate.swift */,
+				AAE5B84E2EBAD59100789A4A /* LaunchScreen.storyboard */,
+				AAE5B8502EBAD59100789A4A /* Main.storyboard */,
+				AAE5B8512EBAD59100789A4A /* SceneDelegate.swift */,
+				AAE5B8522EBAD59100789A4A /* SHOPPIX.xcdatamodeld */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		AAE5B8542EBAD59100789A4A /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5B8532EBAD59100789A4A /* Delegates */,
+			);
+			name = Application;
+			path = ../../../../../../../Users/nafeaelkassas/Downloads/Application;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -763,21 +764,21 @@
 				AAE5B7BE2EBA4B2D00789A4A /* ReviewCellTableViewCell.xib in Resources */,
 				AAE5B7C02EBA4B2D00789A4A /* ReviewsViewController.xib in Resources */,
 				4F7870172EB8F8AC00FD9157 /* LandSceenViewController.xib in Resources */,
+				AAE5B8582EBAD59100789A4A /* Main.storyboard in Resources */,
 				AAE5B7E92EBA4C3500789A4A /* ContactUsViewController.xib in Resources */,
 				AAE5B7E72EBA4C3500789A4A /* AddNewAddressViewController.xib in Resources */,
 				AAE5B7B82EBA4B2D00789A4A /* SignUpViewController.xib in Resources */,
 				AAE5B7B62EBA4B2D00789A4A /* ForgetBassViewController.xib in Resources */,
 				AAE5B7882EBA4B1000789A4A /* GoogleService-Info.plist in Resources */,
-				4F786FE32EB8DB4F00FD9157 /* LaunchScreen.storyboard in Resources */,
 				AAE5B7B12EBA4B2D00789A4A /* ProductImageCollectionViewCell.xib in Resources */,
 				AAE5B7E02EBA4C3500789A4A /* SettingsViewController.xib in Resources */,
 				4F786FE02EB8DB4F00FD9157 /* Assets.xcassets in Resources */,
 				4F7870332EB9061D00FD9157 /* ProductCollectionViewCell.xib in Resources */,
 				4F78701C2EB8FC0A00FD9157 /* GauestOrUserViewController.xib in Resources */,
-				4F786FDB2EB8DB4A00FD9157 /* Main.storyboard in Resources */,
 				AAE5B7E22EBA4C3500789A4A /* AddressViewController.xib in Resources */,
 				4F78702A2EB9041300FD9157 /* HomeViewController.xib in Resources */,
 				AAE5B7B32EBA4B2D00789A4A /* ProductDetailsViewController.xib in Resources */,
+				AAE5B8572EBAD59100789A4A /* LaunchScreen.storyboard in Resources */,
 				AAE5B7AD2EBA4B2D00789A4A /* FavoriteViewController.xib in Resources */,
 				AAE5B7BB2EBA4B2D00789A4A /* ProductsViewController.xib in Resources */,
 			);
@@ -909,8 +910,8 @@
 			files = (
 				AAE5B7B72EBA4B2D00789A4A /* SignUpViewController.swift in Sources */,
 				4F7870202EB903CE00FD9157 /* HomeTabBarViewController.swift in Sources */,
+				AAE5B85A2EBAD59100789A4A /* SHOPPIX.xcdatamodeld in Sources */,
 				AAE5B7842EBA4B1000789A4A /* CheckInternet.swift in Sources */,
-				AAE5B7C32EBA4B4C00789A4A /* SHOPPIX.xcdatamodeld in Sources */,
 				4F7870292EB9041300FD9157 /* SmartCollectionModel.swift in Sources */,
 				AAE5B7DE2EBA4C3500789A4A /* SettingsViewModel.swift in Sources */,
 				AAE5B7B42EBA4B2D00789A4A /* ProductDetailViewModel.swift in Sources */,
@@ -921,19 +922,18 @@
 				AAE5B7B22EBA4B2D00789A4A /* ProductDetailsViewController.swift in Sources */,
 				4F78702C2EB9041300FD9157 /* HomeViewModel.swift in Sources */,
 				AAE5B7AC2EBA4B2D00789A4A /* FavoriteViewController.swift in Sources */,
+				AAE5B8562EBAD59100789A4A /* AppDelegate.swift in Sources */,
 				AAE5B7E82EBA4C3500789A4A /* ContactUsViewController.swift in Sources */,
 				4F786FD82EB8DB4A00FD9157 /* ViewController.swift in Sources */,
 				AAE5B7B52EBA4B2D00789A4A /* ForgetBassViewController.swift in Sources */,
 				AAE5B7852EBA4B1000789A4A /* Session.swift in Sources */,
 				AAE5B8342EBA5B0000789A4A /* NotificationCenter+Settings.swift in Sources */,
-				4F786FD42EB8DB4A00FD9157 /* AppDelegate.swift in Sources */,
 				AAE5B7862EBA4B1000789A4A /* Extension.swift in Sources */,
 				4F78702B2EB9041300FD9157 /* HomeViewController.swift in Sources */,
 				AAE5B7E62EBA4C3500789A4A /* AddNewAddressViewController.swift in Sources */,
 				AAE5B7E32EBA4C3500789A4A /* AddressService.swift in Sources */,
 				AAE5B7DC2EBA4C3500789A4A /* AboutUsViewController.swift in Sources */,
 				AAE5B7DF2EBA4C3500789A4A /* SettingsViewController.swift in Sources */,
-				4F786FD62EB8DB4A00FD9157 /* SceneDelegate.swift in Sources */,
 				AAE5B7AE2EBA4B2D00789A4A /* LoginViewController.swift in Sources */,
 				AAE5B7BA2EBA4B2D00789A4A /* ProductsViewController.swift in Sources */,
 				AAE5B7B92EBA4B2D00789A4A /* ProductModel.swift in Sources */,
@@ -944,6 +944,7 @@
 				4F786FDE2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld in Sources */,
 				AAE5B7B02EBA4B2D00789A4A /* ProductImageCollectionViewCell.swift in Sources */,
 				4F7870162EB8F8AC00FD9157 /* LandSceenViewController.swift in Sources */,
+				AAE5B8592EBAD59100789A4A /* SceneDelegate.swift in Sources */,
 				AAE5B7BC2EBA4B2D00789A4A /* ProductViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -981,20 +982,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4F786FD92EB8DB4A00FD9157 /* Main.storyboard */ = {
+		AAE5B84E2EBAD59100789A4A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4F786FDA2EB8DB4A00FD9157 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		4F786FE12EB8DB4F00FD9157 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4F786FE22EB8DB4F00FD9157 /* Base */,
+				AAE5B84D2EBAD59100789A4A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		AAE5B8502EBAD59100789A4A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAE5B84F2EBAD59100789A4A /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1347,13 +1348,14 @@
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
-		AAE5B7C12EBA4B4C00789A4A /* SHOPPIX.xcdatamodeld */ = {
+		AAE5B8522EBAD59100789A4A /* SHOPPIX.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				AAE5B7C22EBA4B4C00789A4A /* SHOPPIX.xcdatamodel */,
+				AAE5B8552EBAD59100789A4A /* SHOPPIX.xcdatamodel */,
 			);
-			currentVersion = AAE5B7C22EBA4B4C00789A4A /* SHOPPIX.xcdatamodel */;
-			path = SHOPPIX.xcdatamodeld;
+			currentVersion = AAE5B8552EBAD59100789A4A /* SHOPPIX.xcdatamodel */;
+			name = SHOPPIX.xcdatamodeld;
+			path = /Users/nafeaelkassas/Downloads/Application/Delegates/SHOPPIX.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
