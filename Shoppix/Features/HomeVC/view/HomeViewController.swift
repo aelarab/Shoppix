@@ -12,6 +12,9 @@ class HomeViewController: UIViewController {
        //MARK: - Properties
     var homeViewModel : HomeViewModel?
     var coupons = [Coupon]()
+    var couponTimer: Timer?
+    var currentCouponIndex = 0
+
     
    //MARK: - Outlets
     var vendorsList = [SmartCollection]()
@@ -28,6 +31,8 @@ class HomeViewController: UIViewController {
         homeViewModel = HomeViewModel(delegete: self)
         homeViewModel?.getDataFromServer()
         homeViewModel?.getCoupons()
+        startCouponAutoScroll()
+        navigationItem.hidesBackButton = true
         categoriesSearchBar.delegate = self
 
         categoriesCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
@@ -48,14 +53,39 @@ class HomeViewController: UIViewController {
         navigationItem.leftBarButtonItems = [searchButton]
        // navigationItem.rightBarButtonItem = favoriteButton
         
+        if let layout = couponsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 0
+        }
+        couponsCollectionView.isPagingEnabled = true
+        
         
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        couponTimer?.invalidate()
+    }
+
 
        //MARK: - Behaviour
 //     private func copyCouponCode() {
 //        UIPasteboard.general.string = coupon
 //        showCopiedAlert()
 //    }
+    
+    func startCouponAutoScroll() {
+        couponTimer?.invalidate() // stop any old timers
+        couponTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            if self.coupons.isEmpty { return }
+            
+            self.currentCouponIndex = (self.currentCouponIndex + 1) % self.coupons.count
+            let indexPath = IndexPath(item: self.currentCouponIndex, section: 0)
+            self.couponsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            self.couponsPageControl.currentPage = self.currentCouponIndex
+        }
+    }
+
     @objc private func didTapSearch() {
         searchHidden.toggle()
        
@@ -117,17 +147,37 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: categoriesCollectionView.frame.width / 2 - 10, height: categoriesCollectionView.frame.height / 2 - 60)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == couponsCollectionView {
+            return CGSize(width: couponsCollectionView.frame.width,
+                          height: couponsCollectionView.frame.height)
+        } else {
+            return CGSize(width: categoriesCollectionView.frame.width / 2 - 10,
+                          height: categoriesCollectionView.frame.height / 2 - 60)
+        }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard checkInternetConnection() else {return}
-        Session.vendorName = filterdList[indexPath.row].title
-        let vc = ProductsViewController(nibName: "ProductsViewController", bundle: nil)
-        vc.selectedVendor = Session.vendorName
-        print("vendor name :\(Session.vendorName)")
-        self.navigationController?.pushViewController(vc, animated: true)
+        if collectionView == couponsCollectionView {
+            let selectedCoupon = coupons[indexPath.item]
+            UIPasteboard.general.string = selectedCoupon.couponName
+
+            let alert = UIAlertController(title: "Copied!", message: "Coupon \(selectedCoupon.couponName) copied.", preferredStyle: .alert)
+            present(alert, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                alert.dismiss(animated: true)
+            }
+        } else if collectionView == categoriesCollectionView {
+            guard checkInternetConnection() else { return }
+            Session.vendorName = filterdList[indexPath.row].title
+            let vc = ProductsViewController(nibName: "ProductsViewController", bundle: nil)
+            vc.selectedVendor = Session.vendorName
+            print("vendor name :\(Session.vendorName)")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
+
 }
 extension HomeViewController: SendProuctDelegete {
     func sendData(smartCollectionModel: SmartCollectionModel?) {
@@ -164,4 +214,19 @@ extension HomeViewController :UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
+}
+extension HomeViewController {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard scrollView == couponsCollectionView else { return }
+        let page = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        couponsPageControl.currentPage = page
+        currentCouponIndex = page
+    }
+
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        guard scrollView == couponsCollectionView else { return }
+        let page = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        couponsPageControl.currentPage = page
+    }
+
 }
