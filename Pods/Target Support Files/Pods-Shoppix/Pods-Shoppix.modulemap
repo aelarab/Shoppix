@@ -1,0 +1,6 @@
+framework module Pods_Shoppix {
+  umbrella header "Pods-Shoppix-umbrella.h"
+
+  export *
+  module * { export * }
+}
