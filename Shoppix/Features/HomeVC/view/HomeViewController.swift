@@ -10,30 +10,32 @@ import SDWebImage
 
 class HomeViewController: UIViewController {
        //MARK: - Properties
-    let coupon: String = "COUPONTest25percent"
     var homeViewModel : HomeViewModel?
+    var coupons = [Coupon]()
+    
    //MARK: - Outlets
     var vendorsList = [SmartCollection]()
     var filterdList = [SmartCollection]()
     @IBOutlet weak var categoriesSearchBar: UISearchBar!
-    
-    @IBOutlet weak var headerContainerView: UIView!
-    
-    @IBOutlet weak var couponImageView: UIImageView!
-    
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
+    @IBOutlet weak var couponsCollectionView: UICollectionView!
+    @IBOutlet weak var couponsPageControl: UIPageControl!
+    
     var searchHidden:Bool = true
        //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         homeViewModel = HomeViewModel(delegete: self)
         homeViewModel?.getDataFromServer()
+        homeViewModel?.getCoupons()
         categoriesSearchBar.delegate = self
-        headerContainerView.layer.cornerRadius = headerContainerView.frame.width / 10
+
         categoriesCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductCollectionViewCell")
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.delegate = self
-        
+        couponsCollectionView.register(UINib(nibName: "ProductImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProductImageCollectionViewCell")
+        couponsCollectionView.delegate = self
+        couponsCollectionView.dataSource = self
         let searchButton = UIBarButtonItem(
                 barButtonSystemItem: .search,
                 target: self,
@@ -50,10 +52,10 @@ class HomeViewController: UIViewController {
     }
 
        //MARK: - Behaviour
-     private func copyCouponCode() {
-        UIPasteboard.general.string = coupon
-        showCopiedAlert()
-    }
+//     private func copyCouponCode() {
+//        UIPasteboard.general.string = coupon
+//        showCopiedAlert()
+//    }
     @objc private func didTapSearch() {
         searchHidden.toggle()
        
@@ -64,42 +66,54 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(favoriteVC, animated: true)
     }
 
-    private func showCopiedAlert() {
-        let alert = UIAlertController(title: "Copied!", message: "Coupon code \(coupon) copied to clipboard.", preferredStyle: .alert)
-        present(alert, animated: true)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            alert.dismiss(animated: true)
-        }
-    }
+//    private func showCopiedAlert() {
+//        let alert = UIAlertController(title: "Copied!", message: "Coupon code \(coupon) copied to clipboard.", preferredStyle: .alert)
+//        present(alert, animated: true)
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+//            alert.dismiss(animated: true)
+//        }
+//    }
 
     
     
-    @IBAction func couponTapped(_ sender: UIButton) {
-        copyCouponCode()
-    }
+//    @IBAction func couponTapped(_ sender: UIButton) {
+//        copyCouponCode()
+//    }
     
 }
 extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filterdList.count
+        if collectionView == categoriesCollectionView {
+                    return filterdList.count
+                } else {
+                    return coupons.count
+                }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as? ProductCollectionViewCell  else {
-           return UICollectionViewCell()
-        }
-        cell.image.sd_setImage(
-            with: URL(string:  filterdList[indexPath.row].image?.src ?? "Shoppix"),
-            placeholderImage: UIImage(named: "Shoppix")
-        )
-        cell.Name.text = filterdList[indexPath.row].title
-        cell.Name.textAlignment = .center
-        cell.Name.font = UIFont(name: "MarkerFelt-Thin", size: 22.0)
-        cell.deleteButtonOutlet.isHidden = true
-        cell.priceLabel.isHidden = true
-       
-        return cell
+        if collectionView == categoriesCollectionView {
+            
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as? ProductCollectionViewCell  else {
+                return UICollectionViewCell()
+            }
+            cell.image.sd_setImage(
+                with: URL(string:  filterdList[indexPath.row].image?.src ?? "Shoppix"),
+                placeholderImage: UIImage(named: "Shoppix")
+            )
+            cell.Name.text = filterdList[indexPath.row].title
+            cell.Name.textAlignment = .center
+            cell.Name.font = UIFont(name: "MarkerFelt-Thin", size: 22.0)
+            cell.deleteButtonOutlet.isHidden = true
+            cell.priceLabel.isHidden = true
+            
+            return cell } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductImageCollectionViewCell", for: indexPath) as? ProductImageCollectionViewCell
+                let coupon = coupons[indexPath.item]
+                cell?.producDetailtImage.image = coupon.couponImage
+                return cell!
+            }
         
     }
     
@@ -123,6 +137,16 @@ extension HomeViewController: SendProuctDelegete {
             self.categoriesCollectionView.reloadData()
         }
     }
+    
+    
+    func didFetchCoupons(_ coupons: [Coupon]) {
+        self.coupons = coupons
+        DispatchQueue.main.async {
+            self.couponsPageControl.numberOfPages = coupons.count
+            self.couponsCollectionView.reloadData()
+        }
+    }
+
     
     
 }

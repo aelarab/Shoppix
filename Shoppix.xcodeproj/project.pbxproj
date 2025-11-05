@@ -41,6 +41,7 @@
 		AA5456C12EBBB3E4000409D6 /* ChoosePaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5456BC2EBBB3E4000409D6 /* ChoosePaymentViewController.xib */; };
 		AA5456C62EBBB42E000409D6 /* PlaceOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5456C32EBBB42E000409D6 /* PlaceOrderViewController.swift */; };
 		AA5456C72EBBB42E000409D6 /* PlaceOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5456C42EBBB42E000409D6 /* PlaceOrderViewController.xib */; };
+		AA5456CB2EBBC416000409D6 /* CouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5456CA2EBBC416000409D6 /* CouponModel.swift */; };
 		AA5DEFFF2EBAE61800E72FB2 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DEFFC2EBAE61700E72FB2 /* ProductCollectionViewCell.swift */; };
 		AA5DF0002EBAE61800E72FB2 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5DEFFD2EBAE61700E72FB2 /* ProductCollectionViewCell.xib */; };
 		AA5DF0072EBAE85300E72FB2 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DF0012EBAE85300E72FB2 /* OrdersTableViewCell.swift */; };
@@ -155,6 +156,7 @@
 		AA5456C32EBBB42E000409D6 /* PlaceOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceOrderViewController.swift; sourceTree = "<group>"; };
 		AA5456C42EBBB42E000409D6 /* PlaceOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceOrderViewController.xib; sourceTree = "<group>"; };
 		AA5456C92EBBB46E000409D6 /* SHOPPIX.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = SHOPPIX.entitlements; sourceTree = "<group>"; };
+		AA5456CA2EBBC416000409D6 /* CouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponModel.swift; sourceTree = "<group>"; };
 		AA5DEFFC2EBAE61700E72FB2 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA5DEFFD2EBAE61700E72FB2 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
 		AA5DF0012EBAE85300E72FB2 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				4F7870232EB9041300FD9157 /* SmartCollectionModel.swift */,
+				AA5456CA2EBBC416000409D6 /* CouponModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1115,6 +1118,7 @@
 				4F78702C2EB9041300FD9157 /* HomeViewModel.swift in Sources */,
 				AAE5B7AC2EBA4B2D00789A4A /* FavoriteViewController.swift in Sources */,
 				AAE5B8562EBAD59100789A4A /* AppDelegate.swift in Sources */,
+				AA5456CB2EBBC416000409D6 /* CouponModel.swift in Sources */,
 				AAE5B7E82EBA4C3500789A4A /* ContactUsViewController.swift in Sources */,
 				4F786FD82EB8DB4A00FD9157 /* ViewController.swift in Sources */,
 				AAE5B7B52EBA4B2D00789A4A /* ForgetBassViewController.swift in Sources */,
