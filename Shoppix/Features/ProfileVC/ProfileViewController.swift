@@ -51,8 +51,8 @@ class ProfileViewController: UIViewController {
     
     @objc func cartTapped(){
         print("cart tapped")
-//        let cartVC = ShoppingCartViewController(nibName: "ShoppingCartViewController", bundle: nil)
-//        navigationController?.pushViewController(cartVC, animated: true)
+        let cartVC = ShoppingCartViewController(nibName: "ShoppingCartViewController", bundle: nil)
+        navigationController?.pushViewController(cartVC, animated: true)
     }
     
     @objc func settingsTapped(){
