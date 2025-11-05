@@ -82,6 +82,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func moreWishlistButtonTapped(_ sender: UIButton) {
-        print("more wishlist tapped")
+        let favoritesVC = FavoriteViewController(nibName: "FavoriteViewController", bundle: nil)
+        navigationController?.pushViewController(favoritesVC, animated: true)
     }
 }
