@@ -153,7 +153,11 @@ class ProductDetailsViewController: UIViewController {
     }
 
     @IBAction func addToBagButtonPressed(_ sender: UIButton) {
-        //// iam  using log out here
+        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+                showLoginAlert()
+                return
+            }
+        print("Add to bag tapped")
 
     }
 }

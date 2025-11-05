@@ -43,11 +43,20 @@ setupUI()
     }
     
        //MARK: - Behaviour
+    func setupAddressLabel(){
+        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+            addressLabel.text = "Login To Access"
+                return
+            }
+        addressLabel.text = "Ismaila"
+    }
     
     private func setupUI() {
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         tabBarController?.tabBar.isHidden = true
         currencyLabel.text = viewModel.currentCurrency
+        setupAddressLabel()
+        
     }
     private func setupGestures() {
         addressStackView.isUserInteractionEnabled = true
@@ -70,9 +79,24 @@ setupUI()
             self?.currencyLabel.text = newCurrency
         }
     }
+    private func showLoginAlert() {
+        let alert = UIAlertController(title: "Login Required", message: "Please sign in to add items to your favorites.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Login", style: .default, handler: { _ in
+            let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+            self.navigationController?.setViewControllers([loginVC], animated: true)
+              }))
+              self.present(alert, animated: true)
+    }
+    
+
 
        //MARK: - Actions
     @objc private func addressTapped() {
+        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+            showLoginAlert()
+            return
+        }
         let addressVC = AddressViewController(nibName: "AddressViewController", bundle: nil)
         navigationController?.pushViewController(addressVC, animated: true)
     }
@@ -101,6 +125,10 @@ setupUI()
     
     
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
+        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+            showLoginAlert()
+            return
+        }
         self.clearUserDefaults()
         try? Auth.auth().signOut()
         let landVC = LandSceenViewController(nibName: "LandSceenViewController", bundle: nil)
