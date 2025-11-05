@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		195C6F91E9529D28B1BC5663 /* Pods_Shoppix_ShoppixUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005D4891E0944A85156F519D /* Pods_Shoppix_ShoppixUITests.framework */; };
 		4F786FD82EB8DB4A00FD9157 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FD72EB8DB4A00FD9157 /* ViewController.swift */; };
 		4F786FDE2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FDC2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld */; };
 		4F786FE02EB8DB4F00FD9157 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F786FDF2EB8DB4F00FD9157 /* Assets.xcassets */; };
@@ -24,9 +23,15 @@
 		4F78702B2EB9041300FD9157 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7870262EB9041300FD9157 /* HomeViewController.swift */; };
 		4F78702C2EB9041300FD9157 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7870282EB9041300FD9157 /* HomeViewModel.swift */; };
 		4F78702F2EB9056700FD9157 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4F78702E2EB9056700FD9157 /* SDWebImage */; };
-		7617E9CE80B1FAE695EE90A1 /* Pods_ShoppixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87308A91FC92F1DD3ABDBB10 /* Pods_ShoppixTests.framework */; };
+		68B38070594FEEFD4FA02201 /* Pods_Shoppix_ShoppixUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332912C87E90C7DF052B9118 /* Pods_Shoppix_ShoppixUITests.framework */; };
+		821C4394C82B7631462DDA1A /* Pods_ShoppixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B682D27E7B00921FA9ADF68 /* Pods_ShoppixTests.framework */; };
+		A760A74981999E76A328479D /* Pods_Shoppix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603011A66045CE00BD905AA5 /* Pods_Shoppix.framework */; };
 		AA5DEFFF2EBAE61800E72FB2 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DEFFC2EBAE61700E72FB2 /* ProductCollectionViewCell.swift */; };
 		AA5DF0002EBAE61800E72FB2 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5DEFFD2EBAE61700E72FB2 /* ProductCollectionViewCell.xib */; };
+		AA5DF0072EBAE85300E72FB2 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DF0012EBAE85300E72FB2 /* OrdersTableViewCell.swift */; };
+		AA5DF0082EBAE85300E72FB2 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5DF0022EBAE85300E72FB2 /* OrdersTableViewCell.xib */; };
+		AA5DF0092EBAE85300E72FB2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DF0042EBAE85300E72FB2 /* ProfileViewController.swift */; };
+		AA5DF00A2EBAE85300E72FB2 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5DF0052EBAE85300E72FB2 /* ProfileViewController.xib */; };
 		AAE5B7842EBA4B1000789A4A /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B77F2EBA4B1000789A4A /* CheckInternet.swift */; };
 		AAE5B7852EBA4B1000789A4A /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7802EBA4B1000789A4A /* Session.swift */; };
 		AAE5B7862EBA4B1000789A4A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7812EBA4B1000789A4A /* Extension.swift */; };
@@ -73,7 +78,6 @@
 		AAE5B8582EBAD59100789A4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAE5B8502EBAD59100789A4A /* Main.storyboard */; };
 		AAE5B8592EBAD59100789A4A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B8512EBAD59100789A4A /* SceneDelegate.swift */; };
 		AAE5B85A2EBAD59100789A4A /* SHOPPIX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B8522EBAD59100789A4A /* SHOPPIX.xcdatamodeld */; };
-		E4C1556F440124CFA0056113 /* Pods_Shoppix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF3465F465E66EF377D06DC /* Pods_Shoppix.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,11 +98,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		005D4891E0944A85156F519D /* Pods_Shoppix_ShoppixUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoppix_ShoppixUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1BE58D7EC19240192B3F6259 /* Pods-Shoppix-ShoppixUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix-ShoppixUITests.release.xcconfig"; path = "Target Support Files/Pods-Shoppix-ShoppixUITests/Pods-Shoppix-ShoppixUITests.release.xcconfig"; sourceTree = "<group>"; };
-		211E5362D8628DCB5C7C880E /* Pods-ShoppixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixTests.debug.xcconfig"; path = "Target Support Files/Pods-ShoppixTests/Pods-ShoppixTests.debug.xcconfig"; sourceTree = "<group>"; };
-		2ACF8D006B2F99C084F238F4 /* Pods-Shoppix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix.release.xcconfig"; path = "Target Support Files/Pods-Shoppix/Pods-Shoppix.release.xcconfig"; sourceTree = "<group>"; };
-		3EF3465F465E66EF377D06DC /* Pods_Shoppix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoppix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		332912C87E90C7DF052B9118 /* Pods_Shoppix_ShoppixUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoppix_ShoppixUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B682D27E7B00921FA9ADF68 /* Pods_ShoppixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoppixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		486DD44B48AAF3E5F508C050 /* Pods-Shoppix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix.debug.xcconfig"; path = "Target Support Files/Pods-Shoppix/Pods-Shoppix.debug.xcconfig"; sourceTree = "<group>"; };
 		4F786FD02EB8DB4A00FD9157 /* Shoppix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoppix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F786FD72EB8DB4A00FD9157 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4F786FDD2EB8DB4A00FD9157 /* Shoppix.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shoppix.xcdatamodel; sourceTree = "<group>"; };
@@ -118,11 +120,16 @@
 		4F7870252EB9041300FD9157 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		4F7870262EB9041300FD9157 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4F7870282EB9041300FD9157 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		6C2C37E8D6198D3F5719391A /* Pods-Shoppix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix.debug.xcconfig"; path = "Target Support Files/Pods-Shoppix/Pods-Shoppix.debug.xcconfig"; sourceTree = "<group>"; };
-		87308A91FC92F1DD3ABDBB10 /* Pods_ShoppixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoppixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		901070FBF10472DF2DD54DC2 /* Pods-ShoppixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixTests.release.xcconfig"; path = "Target Support Files/Pods-ShoppixTests/Pods-ShoppixTests.release.xcconfig"; sourceTree = "<group>"; };
+		5B6166D110BC142C296F5C4E /* Pods-Shoppix-ShoppixUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix-ShoppixUITests.release.xcconfig"; path = "Target Support Files/Pods-Shoppix-ShoppixUITests/Pods-Shoppix-ShoppixUITests.release.xcconfig"; sourceTree = "<group>"; };
+		603011A66045CE00BD905AA5 /* Pods_Shoppix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoppix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		735FFA15C40C13A7FC5BE0F9 /* Pods-Shoppix-ShoppixUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix-ShoppixUITests.debug.xcconfig"; path = "Target Support Files/Pods-Shoppix-ShoppixUITests/Pods-Shoppix-ShoppixUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		94482A64B27E68AC5846ECF1 /* Pods-ShoppixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixTests.debug.xcconfig"; path = "Target Support Files/Pods-ShoppixTests/Pods-ShoppixTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AA5DEFFC2EBAE61700E72FB2 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA5DEFFD2EBAE61700E72FB2 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
+		AA5DF0012EBAE85300E72FB2 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
+		AA5DF0022EBAE85300E72FB2 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
+		AA5DF0042EBAE85300E72FB2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
+		AA5DF0052EBAE85300E72FB2 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		AAE5B77F2EBA4B1000789A4A /* CheckInternet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
 		AAE5B7802EBA4B1000789A4A /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		AAE5B7812EBA4B1000789A4A /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -169,7 +176,8 @@
 		AAE5B84F2EBAD59100789A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AAE5B8512EBAD59100789A4A /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AAE5B8552EBAD59100789A4A /* SHOPPIX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SHOPPIX.xcdatamodel; sourceTree = "<group>"; };
-		DBAF5EE63C55CA837146DFC5 /* Pods-Shoppix-ShoppixUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix-ShoppixUITests.debug.xcconfig"; path = "Target Support Files/Pods-Shoppix-ShoppixUITests/Pods-Shoppix-ShoppixUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B98BB0DFFDC1DDEDD70A6DD3 /* Pods-ShoppixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixTests.release.xcconfig"; path = "Target Support Files/Pods-ShoppixTests/Pods-ShoppixTests.release.xcconfig"; sourceTree = "<group>"; };
+		D303CDE8D44F09B22B4A9DFC /* Pods-Shoppix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix.release.xcconfig"; path = "Target Support Files/Pods-Shoppix/Pods-Shoppix.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F78702F2EB9056700FD9157 /* SDWebImage in Frameworks */,
-				E4C1556F440124CFA0056113 /* Pods_Shoppix.framework in Frameworks */,
+				A760A74981999E76A328479D /* Pods_Shoppix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7617E9CE80B1FAE695EE90A1 /* Pods_ShoppixTests.framework in Frameworks */,
+				821C4394C82B7631462DDA1A /* Pods_ShoppixTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,23 +202,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				195C6F91E9529D28B1BC5663 /* Pods_Shoppix_ShoppixUITests.framework in Frameworks */,
+				68B38070594FEEFD4FA02201 /* Pods_Shoppix_ShoppixUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4F2B29498B076EEDAAE24B57 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3EF3465F465E66EF377D06DC /* Pods_Shoppix.framework */,
-				005D4891E0944A85156F519D /* Pods_Shoppix_ShoppixUITests.framework */,
-				87308A91FC92F1DD3ABDBB10 /* Pods_ShoppixTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		4F786FC72EB8DB4A00FD9157 = {
 			isa = PBXGroup;
 			children = (
@@ -219,7 +217,7 @@
 				4F786FF62EB8DB5000FD9157 /* ShoppixUITests */,
 				4F786FD12EB8DB4A00FD9157 /* Products */,
 				7B8FC4BEEB06F72A67C471F6 /* Pods */,
-				4F2B29498B076EEDAAE24B57 /* Frameworks */,
+				AE0000981773265EF17F52E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -288,6 +286,7 @@
 		4F78700D2EB8ECB100FD9157 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				AA5DF0062EBAE85300E72FB2 /* ProfileVC */,
 				AAE5B7C42EBA4C2100789A4A /* Settings */,
 				AAE5B78B2EBA4B2D00789A4A /* Favorite VC */,
 				AAE5B79A2EBA4B2D00789A4A /* Forget password */,
@@ -369,14 +368,23 @@
 		7B8FC4BEEB06F72A67C471F6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6C2C37E8D6198D3F5719391A /* Pods-Shoppix.debug.xcconfig */,
-				2ACF8D006B2F99C084F238F4 /* Pods-Shoppix.release.xcconfig */,
-				DBAF5EE63C55CA837146DFC5 /* Pods-Shoppix-ShoppixUITests.debug.xcconfig */,
-				1BE58D7EC19240192B3F6259 /* Pods-Shoppix-ShoppixUITests.release.xcconfig */,
-				211E5362D8628DCB5C7C880E /* Pods-ShoppixTests.debug.xcconfig */,
-				901070FBF10472DF2DD54DC2 /* Pods-ShoppixTests.release.xcconfig */,
+				486DD44B48AAF3E5F508C050 /* Pods-Shoppix.debug.xcconfig */,
+				D303CDE8D44F09B22B4A9DFC /* Pods-Shoppix.release.xcconfig */,
+				735FFA15C40C13A7FC5BE0F9 /* Pods-Shoppix-ShoppixUITests.debug.xcconfig */,
+				5B6166D110BC142C296F5C4E /* Pods-Shoppix-ShoppixUITests.release.xcconfig */,
+				94482A64B27E68AC5846ECF1 /* Pods-ShoppixTests.debug.xcconfig */,
+				B98BB0DFFDC1DDEDD70A6DD3 /* Pods-ShoppixTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		AA54569E2EBBB028000409D6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AA5DF0042EBAE85300E72FB2 /* ProfileViewController.swift */,
+				AA5DF0052EBAE85300E72FB2 /* ProfileViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		AA5DEFFE2EBAE61700E72FB2 /* cells */ = {
@@ -387,6 +395,24 @@
 			);
 			name = cells;
 			path = ../../../../../../../../../../Users/nafeaelkassas/Downloads/cells;
+			sourceTree = "<group>";
+		};
+		AA5DF0032EBAE85300E72FB2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AA5DF0012EBAE85300E72FB2 /* OrdersTableViewCell.swift */,
+				AA5DF0022EBAE85300E72FB2 /* OrdersTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		AA5DF0062EBAE85300E72FB2 /* ProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				AA54569E2EBBB028000409D6 /* View */,
+				AA5DF0032EBAE85300E72FB2 /* Cells */,
+			);
+			path = ProfileVC;
 			sourceTree = "<group>";
 		};
 		AAE5B78B2EBA4B2D00789A4A /* Favorite VC */ = {
@@ -645,6 +671,16 @@
 			path = ../../../../../../../Users/nafeaelkassas/Downloads/Application;
 			sourceTree = "<group>";
 		};
+		AE0000981773265EF17F52E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				603011A66045CE00BD905AA5 /* Pods_Shoppix.framework */,
+				332912C87E90C7DF052B9118 /* Pods_Shoppix_ShoppixUITests.framework */,
+				3B682D27E7B00921FA9ADF68 /* Pods_ShoppixTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -652,11 +688,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F786FFD2EB8DB5000FD9157 /* Build configuration list for PBXNativeTarget "Shoppix" */;
 			buildPhases = (
-				29903D496BAC5E92711140E6 /* [CP] Check Pods Manifest.lock */,
+				29F1EAA5778E85AB020AA304 /* [CP] Check Pods Manifest.lock */,
 				4F786FCC2EB8DB4A00FD9157 /* Sources */,
 				4F786FCD2EB8DB4A00FD9157 /* Frameworks */,
 				4F786FCE2EB8DB4A00FD9157 /* Resources */,
-				163C4175828F0DBBAD247093 /* [CP] Embed Pods Frameworks */,
+				03B060EB7DE290F496C2C88B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -674,7 +710,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F7870002EB8DB5000FD9157 /* Build configuration list for PBXNativeTarget "ShoppixTests" */;
 			buildPhases = (
-				D863BD202CBB2F97C643F2F5 /* [CP] Check Pods Manifest.lock */,
+				8AB1707FA41B0B0833B31D72 /* [CP] Check Pods Manifest.lock */,
 				4F786FE52EB8DB4F00FD9157 /* Sources */,
 				4F786FE62EB8DB4F00FD9157 /* Frameworks */,
 				4F786FE72EB8DB4F00FD9157 /* Resources */,
@@ -693,11 +729,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F7870032EB8DB5000FD9157 /* Build configuration list for PBXNativeTarget "ShoppixUITests" */;
 			buildPhases = (
-				3D998976ED6C5BFED6AF51E0 /* [CP] Check Pods Manifest.lock */,
+				98BBB7F7642E4181D6AEF96F /* [CP] Check Pods Manifest.lock */,
 				4F786FEF2EB8DB4F00FD9157 /* Sources */,
 				4F786FF02EB8DB4F00FD9157 /* Frameworks */,
 				4F786FF12EB8DB4F00FD9157 /* Resources */,
-				226F493202A01E1309E6BDE1 /* [CP] Embed Pods Frameworks */,
+				D02ACA83865184B6A1EB1279 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -765,6 +801,7 @@
 				AAE5B7BE2EBA4B2D00789A4A /* ReviewCellTableViewCell.xib in Resources */,
 				AAE5B7C02EBA4B2D00789A4A /* ReviewsViewController.xib in Resources */,
 				4F7870172EB8F8AC00FD9157 /* LandSceenViewController.xib in Resources */,
+				AA5DF0082EBAE85300E72FB2 /* OrdersTableViewCell.xib in Resources */,
 				AAE5B8582EBAD59100789A4A /* Main.storyboard in Resources */,
 				AAE5B7E92EBA4C3500789A4A /* ContactUsViewController.xib in Resources */,
 				AAE5B7E72EBA4C3500789A4A /* AddNewAddressViewController.xib in Resources */,
@@ -777,6 +814,7 @@
 				AA5DF0002EBAE61800E72FB2 /* ProductCollectionViewCell.xib in Resources */,
 				4F78701C2EB8FC0A00FD9157 /* GauestOrUserViewController.xib in Resources */,
 				AAE5B7E22EBA4C3500789A4A /* AddressViewController.xib in Resources */,
+				AA5DF00A2EBAE85300E72FB2 /* ProfileViewController.xib in Resources */,
 				4F78702A2EB9041300FD9157 /* HomeViewController.xib in Resources */,
 				AAE5B7B32EBA4B2D00789A4A /* ProductDetailsViewController.xib in Resources */,
 				AAE5B8572EBAD59100789A4A /* LaunchScreen.storyboard in Resources */,
@@ -802,7 +840,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		163C4175828F0DBBAD247093 /* [CP] Embed Pods Frameworks */ = {
+		03B060EB7DE290F496C2C88B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -819,24 +857,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shoppix/Pods-Shoppix-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		226F493202A01E1309E6BDE1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shoppix-ShoppixUITests/Pods-Shoppix-ShoppixUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shoppix-ShoppixUITests/Pods-Shoppix-ShoppixUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shoppix-ShoppixUITests/Pods-Shoppix-ShoppixUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		29903D496BAC5E92711140E6 /* [CP] Check Pods Manifest.lock */ = {
+		29F1EAA5778E85AB020AA304 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -858,7 +879,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3D998976ED6C5BFED6AF51E0 /* [CP] Check Pods Manifest.lock */ = {
+		8AB1707FA41B0B0833B31D72 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShoppixTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98BBB7F7642E4181D6AEF96F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -880,26 +923,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D863BD202CBB2F97C643F2F5 /* [CP] Check Pods Manifest.lock */ = {
+		D02ACA83865184B6A1EB1279 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shoppix-ShoppixUITests/Pods-Shoppix-ShoppixUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ShoppixTests-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-Shoppix-ShoppixUITests/Pods-Shoppix-ShoppixUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shoppix-ShoppixUITests/Pods-Shoppix-ShoppixUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -931,12 +969,14 @@
 				AAE5B8342EBA5B0000789A4A /* NotificationCenter+Settings.swift in Sources */,
 				AAE5B7862EBA4B1000789A4A /* Extension.swift in Sources */,
 				4F78702B2EB9041300FD9157 /* HomeViewController.swift in Sources */,
+				AA5DF0092EBAE85300E72FB2 /* ProfileViewController.swift in Sources */,
 				AAE5B7E62EBA4C3500789A4A /* AddNewAddressViewController.swift in Sources */,
 				AAE5B7E32EBA4C3500789A4A /* AddressService.swift in Sources */,
 				AAE5B7DC2EBA4C3500789A4A /* AboutUsViewController.swift in Sources */,
 				AAE5B7DF2EBA4C3500789A4A /* SettingsViewController.swift in Sources */,
 				AAE5B7AE2EBA4B2D00789A4A /* LoginViewController.swift in Sources */,
 				AAE5B7BA2EBA4B2D00789A4A /* ProductsViewController.swift in Sources */,
+				AA5DF0072EBAE85300E72FB2 /* OrdersTableViewCell.swift in Sources */,
 				AAE5B7B92EBA4B2D00789A4A /* ProductModel.swift in Sources */,
 				AAE5B7872EBA4B1000789A4A /* NetworkManager.swift in Sources */,
 				AAE5B7E52EBA4C3500789A4A /* AddNewAddressViewModel.swift in Sources */,
@@ -1120,7 +1160,7 @@
 		};
 		4F786FFE2EB8DB5000FD9157 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C2C37E8D6198D3F5719391A /* Pods-Shoppix.debug.xcconfig */;
+			baseConfigurationReference = 486DD44B48AAF3E5F508C050 /* Pods-Shoppix.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1150,7 +1190,7 @@
 		};
 		4F786FFF2EB8DB5000FD9157 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2ACF8D006B2F99C084F238F4 /* Pods-Shoppix.release.xcconfig */;
+			baseConfigurationReference = D303CDE8D44F09B22B4A9DFC /* Pods-Shoppix.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1180,7 +1220,7 @@
 		};
 		4F7870012EB8DB5000FD9157 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 211E5362D8628DCB5C7C880E /* Pods-ShoppixTests.debug.xcconfig */;
+			baseConfigurationReference = 94482A64B27E68AC5846ECF1 /* Pods-ShoppixTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1206,7 +1246,7 @@
 		};
 		4F7870022EB8DB5000FD9157 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 901070FBF10472DF2DD54DC2 /* Pods-ShoppixTests.release.xcconfig */;
+			baseConfigurationReference = B98BB0DFFDC1DDEDD70A6DD3 /* Pods-ShoppixTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1232,7 +1272,7 @@
 		};
 		4F7870042EB8DB5000FD9157 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DBAF5EE63C55CA837146DFC5 /* Pods-Shoppix-ShoppixUITests.debug.xcconfig */;
+			baseConfigurationReference = 735FFA15C40C13A7FC5BE0F9 /* Pods-Shoppix-ShoppixUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1256,7 +1296,7 @@
 		};
 		4F7870052EB8DB5000FD9157 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1BE58D7EC19240192B3F6259 /* Pods-Shoppix-ShoppixUITests.release.xcconfig */;
+			baseConfigurationReference = 5B6166D110BC142C296F5C4E /* Pods-Shoppix-ShoppixUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

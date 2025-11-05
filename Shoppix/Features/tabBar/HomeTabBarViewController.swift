@@ -34,13 +34,13 @@ class HomeTabBarViewController: UITabBarController {
 //
 //
 //
-//        let meVC = MeViewController(nibName: "MeViewController", bundle: nil)
-//           meVC.tabBarItem = UITabBarItem(
-//               title: "Me",
-//               image: UIImage(systemName: "person"),
-//               selectedImage: UIImage(systemName: "person.fill")
-//           )
-//           let meNav = UINavigationController(rootViewController: meVC)
+        let meVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+           meVC.tabBarItem = UITabBarItem(
+               title: "Me",
+               image: UIImage(systemName: "person"),
+               selectedImage: UIImage(systemName: "person.fill")
+           )
+           let meNav = UINavigationController(rootViewController: meVC)
         
         
         UITabBar.appearance().tintColor = UIColor(named: "MainColor")
@@ -49,7 +49,7 @@ class HomeTabBarViewController: UITabBarController {
 //
 //        UITabBar.appearance().tintColor = UIColor(named: "MainColor")
 //        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "MainColor")
-        self.viewControllers = [homeNav]
+        self.viewControllers = [homeNav, meNav]
     }
 
 }
