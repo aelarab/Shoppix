@@ -96,8 +96,8 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         cell.Name.text = filterdList[indexPath.row].title
         cell.Name.textAlignment = .center
         cell.Name.font = UIFont(name: "MarkerFelt-Thin", size: 22.0)
-        cell.favoriteButtonOutlet.isHidden = true
         cell.deleteButtonOutlet.isHidden = true
+        cell.priceLabel.isHidden = true
        
         return cell
         

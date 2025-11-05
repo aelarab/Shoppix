@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 protocol NetworkManagerDelegete {
     static func getData<T:Codable>(url: String, headers: [String: String]?,complationHandler: @escaping (T?,Error?)->Void)
 }
@@ -19,6 +20,21 @@ class NetworkManager:NetworkManagerDelegete{
                        request.addValue(value, forHTTPHeaderField: key)
                    }
                }
+       
+       guard CheckInternet().Connection() else {
+                  DispatchQueue.main.async {
+                      if let topController = UIApplication.shared.keyWindow?.rootViewController {
+                          let alert = UIAlertController(
+                              title: "⚠️ No Internet Connection",
+                              message: "Please check your connection and try again.",
+                              preferredStyle: .alert
+                          )
+                          alert.addAction(UIAlertAction(title: "OK", style: .default))
+                          topController.present(alert, animated: true)
+                      }
+                  }
+                  return
+              }
        
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {

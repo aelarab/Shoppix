@@ -80,14 +80,18 @@ extension FavoriteViewController:UICollectionViewDelegate,UICollectionViewDataSo
         )
         )
         cell.Name.textAlignment = .center
-        cell.favoriteButtonOutlet.isHidden = true
         
         cell.onDeleteTapped = { [weak self] in
             guard let self = self else {return}
             self.confirmDelete(favorite: self.favoriteList[indexPath.row], index: indexPath)
         }
        
-        
+        if favoriteList[indexPath.row].variant != nil {
+                    cell.priceLabel.text = "\(favoriteList[indexPath.row].variant!) EGP"
+                } else {
+                    cell.priceLabel.text =  "Not Avalible"
+                }
+                cell.priceLabel.textAlignment = .center
         
         
         return cell
@@ -114,7 +118,7 @@ extension FavoriteViewController:UICollectionViewDelegate,UICollectionViewDataSo
         present(alert, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: favoriteCollectionView.frame.width / 2 - 10, height: favoriteCollectionView.frame.height / 3 - 20)
+        return CGSize(width: favoriteCollectionView.frame.width / 2 - 10, height: favoriteCollectionView.frame.height / 3 )
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard checkInternetConnection() else {return}

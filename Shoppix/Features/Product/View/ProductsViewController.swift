@@ -158,9 +158,14 @@ extension ProductsViewController:UICollectionViewDelegate,UICollectionViewDataSo
             )
       
         cell.Name.textAlignment = .center
-        cell.favoriteButtonOutlet.isHidden = true
         cell.deleteButtonOutlet.isHidden = true
-
+        if filterList[indexPath.row].variants.first?.price != nil {
+                    cell.priceLabel.text = "\(filterList[indexPath.row].variants.first!.price ) EGP"
+                } else {
+                    cell.priceLabel.text =  "Not Avalible"
+                }
+               
+                cell.priceLabel.textAlignment = .center
           
         return cell
     }
