@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductCollectionViewCell" id="gTV-IL-0wX" customClass="ProductCollectionViewCell" customModule="SHOPPIX" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="255" height="194"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="255" height="194"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAf-aJ-tFI">
+                        <rect key="frame" x="0.0" y="0.0" width="255" height="194"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="veO-L9-HQ9">
+                                <rect key="frame" x="0.0" y="0.0" width="255" height="194"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoes" translatesAutoresizingMaskIntoConstraints="NO" id="FX6-ga-jrU">
+                                        <rect key="frame" x="0.0" y="0.0" width="255" height="126"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Running" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oSH-x0-aPT">
+                                        <rect key="frame" x="0.0" y="126" width="255" height="48.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fr4-vL-8gV">
+                                        <rect key="frame" x="0.0" y="174.5" width="255" height="19.5"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="19"/>
+                                        <color key="textColor" name="mainColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="FX6-ga-jrU" firstAttribute="height" secondItem="veO-L9-HQ9" secondAttribute="height" multiplier="0.65" id="QKG-C5-Mec"/>
+                                    <constraint firstItem="fr4-vL-8gV" firstAttribute="height" secondItem="veO-L9-HQ9" secondAttribute="height" multiplier="0.1" id="lkl-78-tmD"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ek3-XH-Nnw">
+                                <rect key="frame" x="197" y="2" width="56" height="46"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="trash ">
+                                    <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="deleteButtonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="928-FV-fjE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="veO-L9-HQ9" secondAttribute="trailing" id="9d0-lZ-jDx"/>
+                            <constraint firstItem="veO-L9-HQ9" firstAttribute="top" secondItem="qAf-aJ-tFI" secondAttribute="top" id="FPC-Ch-4uQ"/>
+                            <constraint firstAttribute="trailing" secondItem="ek3-XH-Nnw" secondAttribute="trailing" constant="2" id="Wma-k5-NDW"/>
+                            <constraint firstItem="veO-L9-HQ9" firstAttribute="leading" secondItem="qAf-aJ-tFI" secondAttribute="leading" id="Y3D-i3-u3l"/>
+                            <constraint firstAttribute="bottom" secondItem="veO-L9-HQ9" secondAttribute="bottom" id="afI-uP-IpR"/>
+                            <constraint firstItem="ek3-XH-Nnw" firstAttribute="top" secondItem="qAf-aJ-tFI" secondAttribute="top" constant="2" id="nS2-71-mQb"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="qAf-aJ-tFI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9BK-QG-nuw"/>
+                <constraint firstItem="qAf-aJ-tFI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="gxG-vM-pJd"/>
+                <constraint firstAttribute="bottom" secondItem="qAf-aJ-tFI" secondAttribute="bottom" id="nSs-dp-gcR"/>
+                <constraint firstAttribute="trailing" secondItem="qAf-aJ-tFI" secondAttribute="trailing" id="oaV-DH-xi8"/>
+            </constraints>
+            <size key="customSize" width="255" height="194"/>
+            <connections>
+                <outlet property="Name" destination="oSH-x0-aPT" id="p6h-Pv-wfV"/>
+                <outlet property="deleteButtonOutlet" destination="ek3-XH-Nnw" id="8IC-ae-oId"/>
+                <outlet property="image" destination="FX6-ga-jrU" id="mUP-6M-NzI"/>
+                <outlet property="priceLabel" destination="fr4-vL-8gV" id="GW9-Tk-rUs"/>
+                <outlet property="productStack" destination="veO-L9-HQ9" id="dSo-mZ-ubF"/>
+            </connections>
+            <point key="canvasLocation" x="286.23188405797106" y="126.5625"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="shoes" width="360" height="360"/>
+        <image name="trash " width="32" height="32"/>
+        <namedColor name="mainColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
