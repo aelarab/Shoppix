@@ -164,7 +164,6 @@ class ProductDetailsViewController: UIViewController {
         do {
             let results = try context.fetch(request)
             if !results.isEmpty {
-                print("🛒 Product already in cart.")
                 showSimpleAlert(title: "Already Added", message: "This item is already in your cart.")
                 return
             }
@@ -178,13 +177,14 @@ class ProductDetailsViewController: UIViewController {
         cartItem.setValue(product.variants.first?.price ?? "0.0", forKey: "price")
         cartItem.setValue(product.images.first?.src, forKey: "image")
         cartItem.setValue(userId, forKey: "userId")
+        cartItem.setValue(Int64(1), forKey: "quantity") 
         
         do {
             try context.save()
-            print(" Product added to cart successfully.")
+            print("✅ Product added to cart successfully. Quantity: 1")
             showSimpleAlert(title: "Added to Cart", message: "\(product.title) has been added to your cart.")
         } catch {
-            print(" Error saving cart product: \(error.localizedDescription)")
+            print("❌ Error saving cart product: \(error.localizedDescription)")
         }
     }
 
