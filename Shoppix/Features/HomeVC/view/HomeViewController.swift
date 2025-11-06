@@ -177,7 +177,7 @@ extension HomeViewController: SendProuctDelegete {
         vendorsList = smartCollectionModel?.smart_collections ?? [SmartCollection(id: 1, title: "no data", handle: "no", image: SmartImage(src: ""))]
         filterdList = vendorsList
         DispatchQueue.main.async {
-            andicator.stopAnimating()
+            self.andicator.stopAnimating()
             self.categoriesCollectionView.reloadData()
         }
     }

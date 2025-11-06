@@ -163,36 +163,51 @@ class ProductDetailsViewController: UIViewController {
         
         do {
             let results = try context.fetch(request)
-            if !results.isEmpty {
-                showSimpleAlert(title: "Already Added", message: "This item is already in your cart.")
-                return
+            
+            if let existingItem = results.first {
+
+                let currentQuantity = existingItem.value(forKey: "quantity") as? Int64 ?? 0
+                existingItem.setValue(currentQuantity + 1, forKey: "quantity")
+                
+                try context.save()
+                print(" Increased quantity to \(currentQuantity + 1)")
+                
+                showSimpleAlert(
+                    title: "Quantity Updated",
+                    message: "Increased quantity of \(product.title) to \(currentQuantity + 1)."
+                )
+                
+            } else {
+                let cartItem = NSEntityDescription.insertNewObject(forEntityName: "CartProduct", into: context)
+                cartItem.setValue(Int64(Session.productId), forKey: "id")
+                cartItem.setValue(product.title, forKey: "title")
+                cartItem.setValue(product.variants.first?.price ?? "0.0", forKey: "price")
+                cartItem.setValue(product.images.first?.src, forKey: "image")
+                cartItem.setValue(userId, forKey: "userId")
+                cartItem.setValue(Int64(1), forKey: "quantity")
+                
+                try context.save()
+                print(" Product added to cart successfully. Quantity: 1")
+                
+                showSimpleAlert(
+                    title: "Added to Cart",
+                    message: "\(product.title) has been added to your cart."
+                )
             }
         } catch {
-            print(" Fetch failed: \(error.localizedDescription)")
-        }
-        
-        let cartItem = NSEntityDescription.insertNewObject(forEntityName: "CartProduct", into: context)
-        cartItem.setValue(Int64(Session.productId), forKey: "id")
-        cartItem.setValue(product.title, forKey: "title")
-        cartItem.setValue(product.variants.first?.price ?? "0.0", forKey: "price")
-        cartItem.setValue(product.images.first?.src, forKey: "image")
-        cartItem.setValue(userId, forKey: "userId")
-        cartItem.setValue(Int64(1), forKey: "quantity") 
-        
-        do {
-            try context.save()
-            print("✅ Product added to cart successfully. Quantity: 1")
-            showSimpleAlert(title: "Added to Cart", message: "\(product.title) has been added to your cart.")
-        } catch {
-            print("❌ Error saving cart product: \(error.localizedDescription)")
+            print(" Error saving or fetching cart product: \(error.localizedDescription)")
         }
     }
 
+
     func showSimpleAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
+        }
     }
+
 
     @IBAction func addToBagButtonPressed(_ sender: UIButton) {
         guard let userId = UserDefaults.standard.string(forKey: "userId") else {

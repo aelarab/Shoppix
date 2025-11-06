@@ -96,6 +96,11 @@
 		AAE5B85A2EBAD59100789A4A /* SHOPPIX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B8522EBAD59100789A4A /* SHOPPIX.xcdatamodeld */; };
 		AAE78A302EBC06D5004CE710 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE78A2F2EBC06D5004CE710 /* ProfileViewModel.swift */; };
 		AAE78A362EBC07D6004CE710 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE78A352EBC07D6004CE710 /* FireBaseService.swift */; };
+		AAE78A3F2EBC2EB9004CE710 /* ShopifyCustomerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE78A3D2EBC2EB9004CE710 /* ShopifyCustomerRequest.swift */; };
+		AAFB64622EBCE10A004BC3C8 /* ShoppingCartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB64612EBCE10A004BC3C8 /* ShoppingCartService.swift */; };
+		AAFB64652EBCE19C004BC3C8 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = AAFB64642EBCE19C004BC3C8 /* RxCocoa */; };
+		AAFB64672EBCE19C004BC3C8 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AAFB64662EBCE19C004BC3C8 /* RxSwift */; };
+		AAFB64692EBCE1D7004BC3C8 /* DraftOrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB64682EBCE1D7004BC3C8 /* DraftOrderResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +218,9 @@
 		AAE5B8552EBAD59100789A4A /* SHOPPIX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SHOPPIX.xcdatamodel; sourceTree = "<group>"; };
 		AAE78A2F2EBC06D5004CE710 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		AAE78A352EBC07D6004CE710 /* FireBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
+		AAE78A3D2EBC2EB9004CE710 /* ShopifyCustomerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopifyCustomerRequest.swift; sourceTree = "<group>"; };
+		AAFB64612EBCE10A004BC3C8 /* ShoppingCartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartService.swift; sourceTree = "<group>"; };
+		AAFB64682EBCE1D7004BC3C8 /* DraftOrderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftOrderResponse.swift; sourceTree = "<group>"; };
 		B98BB0DFFDC1DDEDD70A6DD3 /* Pods-ShoppixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixTests.release.xcconfig"; path = "Target Support Files/Pods-ShoppixTests/Pods-ShoppixTests.release.xcconfig"; sourceTree = "<group>"; };
 		D303CDE8D44F09B22B4A9DFC /* Pods-Shoppix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix.release.xcconfig"; path = "Target Support Files/Pods-Shoppix/Pods-Shoppix.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -222,7 +230,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAFB64652EBCE19C004BC3C8 /* RxCocoa in Frameworks */,
 				4F78702F2EB9056700FD9157 /* SDWebImage in Frameworks */,
+				AAFB64672EBCE19C004BC3C8 /* RxSwift in Frameworks */,
 				A760A74981999E76A328479D /* Pods_Shoppix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,6 +460,7 @@
 		AA5456A72EBBB33E000409D6 /* ShoppingCartVC */ = {
 			isa = PBXGroup;
 			children = (
+				AAFB645F2EBCE0EE004BC3C8 /* Model */,
 				AA5456AC2EBBB343000409D6 /* View */,
 				AA5456A42EBBB33E000409D6 /* Cells */,
 			);
@@ -656,6 +667,7 @@
 		AAE5B79D2EBA4B2D00789A4A /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				AAE78A3E2EBC2EB9004CE710 /* model */,
 				AAE5B79B2EBA4B2D00789A4A /* SignUpViewController.swift */,
 				AAE5B79C2EBA4B2D00789A4A /* SignUpViewController.xib */,
 			);
@@ -847,6 +859,31 @@
 			path = ../../../../../../../Users/nafeaelkassas/Downloads/Application;
 			sourceTree = "<group>";
 		};
+		AAE78A3E2EBC2EB9004CE710 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				AAE78A3D2EBC2EB9004CE710 /* ShopifyCustomerRequest.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		AAFB645F2EBCE0EE004BC3C8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AAFB64602EBCE0F4004BC3C8 /* ShoppingCartService */,
+				AAFB64682EBCE1D7004BC3C8 /* DraftOrderResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AAFB64602EBCE0F4004BC3C8 /* ShoppingCartService */ = {
+			isa = PBXGroup;
+			children = (
+				AAFB64612EBCE10A004BC3C8 /* ShoppingCartService.swift */,
+			);
+			path = ShoppingCartService;
+			sourceTree = "<group>";
+		};
 		AE0000981773265EF17F52E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -877,6 +914,8 @@
 			name = Shoppix;
 			packageProductDependencies = (
 				4F78702E2EB9056700FD9157 /* SDWebImage */,
+				AAFB64642EBCE19C004BC3C8 /* RxCocoa */,
+				AAFB64662EBCE19C004BC3C8 /* RxSwift */,
 			);
 			productName = Shoppix;
 			productReference = 4F786FD02EB8DB4A00FD9157 /* Shoppix.app */;
@@ -955,6 +994,7 @@
 			mainGroup = 4F786FC72EB8DB4A00FD9157;
 			packageReferences = (
 				4F78702D2EB9056700FD9157 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				AAFB64632EBCE19C004BC3C8 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 4F786FD12EB8DB4A00FD9157 /* Products */;
 			projectDirPath = "";
@@ -1156,16 +1196,19 @@
 				AA5DEFFF2EBAE61800E72FB2 /* ProductCollectionViewCell.swift in Sources */,
 				AAE5B8342EBA5B0000789A4A /* NotificationCenter+Settings.swift in Sources */,
 				AAE5B7862EBA4B1000789A4A /* Extension.swift in Sources */,
+				AAFB64692EBCE1D7004BC3C8 /* DraftOrderResponse.swift in Sources */,
 				4F78702B2EB9041300FD9157 /* HomeViewController.swift in Sources */,
 				AA5456BE2EBBB3E4000409D6 /* PaymentsTableViewCell.swift in Sources */,
 				AA5DF0092EBAE85300E72FB2 /* ProfileViewController.swift in Sources */,
 				AAE78A362EBC07D6004CE710 /* FireBaseService.swift in Sources */,
 				AAE5B7E62EBA4C3500789A4A /* AddNewAddressViewController.swift in Sources */,
 				AAE5B7E32EBA4C3500789A4A /* AddressService.swift in Sources */,
+				AAFB64622EBCE10A004BC3C8 /* ShoppingCartService.swift in Sources */,
 				AAE5B7DC2EBA4C3500789A4A /* AboutUsViewController.swift in Sources */,
 				AAE5B7DF2EBA4C3500789A4A /* SettingsViewController.swift in Sources */,
 				AAE5B7AE2EBA4B2D00789A4A /* LoginViewController.swift in Sources */,
 				AAE5B7BA2EBA4B2D00789A4A /* ProductsViewController.swift in Sources */,
+				AAE78A3F2EBC2EB9004CE710 /* ShopifyCustomerRequest.swift in Sources */,
 				AA5DF0072EBAE85300E72FB2 /* OrdersTableViewCell.swift in Sources */,
 				AAE5B7B92EBA4B2D00789A4A /* ProductModel.swift in Sources */,
 				AAE5B7872EBA4B1000789A4A /* NetworkManager.swift in Sources */,
@@ -1562,6 +1605,14 @@
 				version = 5.12.0;
 			};
 		};
+		AAFB64632EBCE19C004BC3C8 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.9.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1569,6 +1620,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4F78702D2EB9056700FD9157 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		AAFB64642EBCE19C004BC3C8 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAFB64632EBCE19C004BC3C8 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		AAFB64662EBCE19C004BC3C8 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAFB64632EBCE19C004BC3C8 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 

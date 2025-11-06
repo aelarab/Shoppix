@@ -22,31 +22,24 @@ class ShoppingCartTableViewCell: UITableViewCell {
        //MARK: - Outlets
     
     @IBOutlet weak var containerView: UIView!
-    
     @IBOutlet weak var itemImageView: UIImageView!
-    
     @IBOutlet weak var brandNameLabel: UILabel!
-    
     @IBOutlet weak var itemNameLabel: UILabel!
-    
     @IBOutlet weak var priceContainerView: UIView!
-    
     @IBOutlet weak var priceLabel: UILabel!
-    
     @IBOutlet weak var numberOfItemsLabel: UILabel!
     
     
-    
+       //MARK: - LifeStyle
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
         updatePriceLabel()
-
     }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         priceContainerView.layer.cornerRadius = priceContainerView.frame.height / 2
-
     }
     
        //MARK: - Behaviour
