@@ -29,5 +29,70 @@ class ShoppixTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
+    func testLoadVendors(){
+        let expectaion = expectation(description: "waiting for Vendor remote data")
+        NetworkManager.getData(url: "https://iosr1g1.myshopify.com/admin/api/2025-07/smart_collections.json", headers: [
+            "X-Shopify-Access-Token":"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",
+            "Content-Type":"application/json"
+           
+        ]) { [weak self]  (smartCollectionModel:SmartCollectionModel?, error) in
+            expectaion.fulfill()
+            if error == nil {
+                guard let smartCollection = smartCollectionModel else {
+                    XCTFail("❌ smartCollectionModel is nil")
+                    return
+                }
+                XCTAssert(smartCollection.smart_collections.count >  0)
+            } else {
+                XCTFail()
+            }
+        }
+      
+        waitForExpectations(timeout: 15)
+    }
+    
+    func testLoadproducts(){
+        let expectaion = expectation(description: "waiting for products remote data")
+        let vendor = "ADIDAS"
+        NetworkManager.getData(url: "https://iosr1g1.myshopify.com/admin/api/2025-07/smart_collections.json?vendor=\(vendor)", headers: [
+            "X-Shopify-Access-Token":"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",
+            "Content-Type":"application/json"
+           
+        ]) { [weak self]  (productModel:ProductModel?, error) in
+            expectaion.fulfill()
+            if error == nil {
+                guard let productModel = productModel else {
+                    XCTFail("❌ productModel is nil")
+                    return
+                }
+                XCTAssert(productModel.products.count >  0)
+            } else {
+                XCTFail()
+            }
+        }
+      
+        waitForExpectations(timeout: 15)
+    }
+    func testLoadproductDetails(){
+        let expectaion = expectation(description: "waiting for product details remote data")
+        let productId = 7936265158719
+        NetworkManager.getData(url: "https://iosr1g1.myshopify.com/admin/api/2025-07/products/\(productId).json", headers: [
+            "X-Shopify-Access-Token":"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",
+            "Content-Type":"application/json"
+           
+        ]) { [weak self]  (detailsRespone:SingleProductModel?, error) in
+            expectaion.fulfill()
+            if error == nil {
+                guard let detailsRespone = detailsRespone else {
+                    XCTFail("❌ detailsRespone is nil")
+                    return
+                }
+                XCTAssertNotNil(detailsRespone.product, "❌ Product is nil")
+            } else {
+                XCTFail()
+            }
+        }
+      
+        waitForExpectations(timeout: 15)
+    }
 }
