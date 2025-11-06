@@ -115,6 +115,19 @@ class SignUpViewController: UIViewController {
                                                       message: "A verification link has been sent to \(email). Please check your inbox.",
                                                       preferredStyle: .alert)
                         self.present(alert, animated: true)
+                            NetworkManager().createShopifyCustomer(firstName: firstName, lastName: lastName, email: email) { shopifyId in
+                                DispatchQueue.main.async {
+                                    self.andicator.stopAnimating()
+                                }
+                               
+                                if let shopifyId = shopifyId {
+                                    db.collection("users").document(uid).updateData(["shopifyCustomerId": shopifyId])
+                                    print("✅ Shopify user created with ID: \(shopifyId)")
+                                } else {
+                                    
+                                print("❌ Failed to create Shopify customer")
+                                }
+                            }
                      //   print("User signed up successfully")
                         self.andicator.stopAnimating()
                         try? Auth.auth().signOut()

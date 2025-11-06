@@ -14,7 +14,8 @@ class HomeViewController: UIViewController {
     var coupons = [Coupon]()
     var couponTimer: Timer?
     var currentCouponIndex = 0
-
+    @IBOutlet weak var andicator: UIActivityIndicatorView!
+    
     
    //MARK: - Outlets
     var vendorsList = [SmartCollection]()
@@ -28,6 +29,7 @@ class HomeViewController: UIViewController {
        //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        andicator.startAnimating()
         homeViewModel = HomeViewModel(delegete: self)
         homeViewModel?.getDataFromServer()
         homeViewModel?.getCoupons()
@@ -175,6 +177,7 @@ extension HomeViewController: SendProuctDelegete {
         vendorsList = smartCollectionModel?.smart_collections ?? [SmartCollection(id: 1, title: "no data", handle: "no", image: SmartImage(src: ""))]
         filterdList = vendorsList
         DispatchQueue.main.async {
+            andicator.stopAnimating()
             self.categoriesCollectionView.reloadData()
         }
     }

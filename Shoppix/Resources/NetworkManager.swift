@@ -61,6 +61,45 @@ class NetworkManager:NetworkManagerDelegete{
             }.resume()
         
     }
+    func createShopifyCustomer(firstName: String, lastName: String, email: String, completion: @escaping (Int?) -> Void) {
+        let shopifyToken = ProcessInfo.processInfo.environment["SHOPIFY_ACCESS_TOKEN"] ?? ""
+        guard let url = URL(string: "https://iosr1g1.myshopify.com/admin/api/2025-07/customers.json") else {
+            completion(nil)
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue(shopifyToken, forHTTPHeaderField: "X-Shopify-Access-Token")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let body = ShopifyCustomerRequest(customer: CustomerData(first_name: firstName,
+                                                                 last_name: lastName,
+                                                                 email: email,
+                                                                 verified_email: true))
+
+        do {
+            request.httpBody = try JSONEncoder().encode(body)
+        } catch {
+            completion(nil)
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                completion(nil)
+                return
+            }
+
+            do {
+                let decoded = try JSONDecoder().decode(ShopifyCustomerResponse.self, from: data)
+                completion(decoded.customer.id)
+            } catch {
+                print("Decode error:", error)
+                completion(nil)
+            }
+        }.resume()
+    }
     
     
 }

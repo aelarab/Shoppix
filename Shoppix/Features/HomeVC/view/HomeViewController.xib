@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Shoppix" customModuleProvider="target">
             <connections>
+                <outlet property="andicator" destination="Gfq-vG-i41" id="oCS-vW-tLe"/>
                 <outlet property="categoriesCollectionView" destination="AyC-pJ-3bx" id="Fyp-ep-7Lb"/>
                 <outlet property="categoriesSearchBar" destination="RmK-jU-KNV" id="64t-1m-4l2"/>
                 <outlet property="couponsCollectionView" destination="LoC-QJ-vaP" id="OBV-Gu-QI7"/>
@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7Xd-bA-nmN">
-                    <rect key="frame" x="16" y="48" width="382" height="814"/>
+                    <rect key="frame" x="16" y="44" width="382" height="818"/>
                     <subviews>
                         <searchBar hidden="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="RmK-jU-KNV">
                             <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
@@ -34,7 +34,7 @@
                             </connections>
                         </searchBar>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="LoC-QJ-vaP">
-                            <rect key="frame" x="0.0" y="0.0" width="382" height="244"/>
+                            <rect key="frame" x="0.0" y="0.0" width="382" height="163.5"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="je0-nX-jNo">
                                 <size key="itemSize" width="128" height="128"/>
@@ -44,16 +44,16 @@
                             </collectionViewFlowLayout>
                         </collectionView>
                         <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="mmZ-Bc-sfI">
-                            <rect key="frame" x="0.0" y="244" width="382" height="24.5"/>
+                            <rect key="frame" x="0.0" y="163.5" width="382" height="16.5"/>
                         </pageControl>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brands" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a46-8R-PsK">
-                            <rect key="frame" x="0.0" y="268.5" width="382" height="29"/>
+                            <rect key="frame" x="0.0" y="180" width="382" height="29"/>
                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
                             <color key="textColor" red="0.36964291329999999" green="0.33733564620000001" blue="0.43139100070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="AyC-pJ-3bx">
-                            <rect key="frame" x="0.0" y="297.5" width="382" height="516.5"/>
+                            <rect key="frame" x="0.0" y="209" width="382" height="609"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Oak-U8-tCB">
                                 <size key="itemSize" width="128" height="128"/>
@@ -64,15 +64,21 @@
                         </collectionView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="LoC-QJ-vaP" firstAttribute="height" secondItem="7Xd-bA-nmN" secondAttribute="height" multiplier="0.3" id="HAL-kG-neH"/>
+                        <constraint firstItem="LoC-QJ-vaP" firstAttribute="height" secondItem="7Xd-bA-nmN" secondAttribute="height" multiplier="0.2" id="HAL-kG-neH"/>
                         <constraint firstItem="mmZ-Bc-sfI" firstAttribute="height" secondItem="LoC-QJ-vaP" secondAttribute="height" multiplier="0.1" id="r6p-0h-SKH"/>
                     </constraints>
                 </stackView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Gfq-vG-i41">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                    <color key="color" systemColor="systemGrayColor"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="7Xd-bA-nmN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Ez2-7Y-Iwz"/>
+                <constraint firstItem="Gfq-vG-i41" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="TwR-eR-ncR"/>
+                <constraint firstItem="Gfq-vG-i41" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ujk-v3-nqP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7Xd-bA-nmN" secondAttribute="trailing" constant="16" id="ZkU-hz-QqT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7Xd-bA-nmN" secondAttribute="bottom" id="bVd-mr-ABt"/>
                 <constraint firstItem="7Xd-bA-nmN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="cqe-Ba-RQi"/>
@@ -83,6 +89,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
