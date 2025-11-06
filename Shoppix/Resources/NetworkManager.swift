@@ -7,6 +7,14 @@
 
 import Foundation
 import UIKit
+
+enum NetworkHTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
+}
+
 protocol NetworkManagerDelegete {
     static func getData<T:Codable>(url: String, headers: [String: String]?,complationHandler: @escaping (T?,Error?)->Void)
 }
@@ -102,4 +110,60 @@ class NetworkManager:NetworkManagerDelegete{
     }
     
     
+       //MARK: - New methods for shopify api integration
+    static func requestGET<T: Codable>(
+            endpoint: String,
+            headers: [String: String]? = nil,
+            completion: @escaping (Result<T, Error>) -> Void
+        ) {
+            getData(url: endpoint, headers: headers) { (data: T?, error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else if let data = data {
+                    completion(.success(data))
+                }
+            }
+        }
+        
+        
+        // MARK: - ✅ New: Universal POST Request
+        static func requestPOST<T: Codable, U: Codable>(
+            endpoint: String,
+            body: T,
+            headers: [String: String]? = nil,
+            completion: @escaping (Result<U, Error>) -> Void
+        ) {
+            guard let url = URL(string: endpoint) else { return }
+            var request = URLRequest(url: url)
+            request.httpMethod = NetworkHTTPMethod.post.rawValue
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            headers?.forEach { key, value in
+                request.addValue(value, forHTTPHeaderField: key)
+            }
+            
+            do {
+                request.httpBody = try JSONEncoder().encode(body)
+            } catch {
+                completion(.failure(error))
+                return
+            }
+            
+            URLSession.shared.dataTask(with: request) { data, _, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                guard let data = data else {
+                    completion(.failure(NSError(domain: "NoData", code: -1)))
+                    return
+                }
+                do {
+                    let decoded = try JSONDecoder().decode(U.self, from: data)
+                    completion(.success(decoded))
+                } catch {
+                    completion(.failure(error))
+                }
+            }.resume()
+        }
 }

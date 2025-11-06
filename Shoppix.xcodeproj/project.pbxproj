@@ -101,6 +101,7 @@
 		AAFB64652EBCE19C004BC3C8 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = AAFB64642EBCE19C004BC3C8 /* RxCocoa */; };
 		AAFB64672EBCE19C004BC3C8 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AAFB64662EBCE19C004BC3C8 /* RxSwift */; };
 		AAFB64692EBCE1D7004BC3C8 /* DraftOrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB64682EBCE1D7004BC3C8 /* DraftOrderResponse.swift */; };
+		AAFB646B2EBCE4B9004BC3C8 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFB646A2EBCE4B9004BC3C8 /* NetworkConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +222,7 @@
 		AAE78A3D2EBC2EB9004CE710 /* ShopifyCustomerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopifyCustomerRequest.swift; sourceTree = "<group>"; };
 		AAFB64612EBCE10A004BC3C8 /* ShoppingCartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartService.swift; sourceTree = "<group>"; };
 		AAFB64682EBCE1D7004BC3C8 /* DraftOrderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftOrderResponse.swift; sourceTree = "<group>"; };
+		AAFB646A2EBCE4B9004BC3C8 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		B98BB0DFFDC1DDEDD70A6DD3 /* Pods-ShoppixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixTests.release.xcconfig"; path = "Target Support Files/Pods-ShoppixTests/Pods-ShoppixTests.release.xcconfig"; sourceTree = "<group>"; };
 		D303CDE8D44F09B22B4A9DFC /* Pods-Shoppix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix.release.xcconfig"; path = "Target Support Files/Pods-Shoppix/Pods-Shoppix.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -319,6 +321,7 @@
 				AAE5B7802EBA4B1000789A4A /* Session.swift */,
 				AA54569F2EBBB309000409D6 /* countries.json */,
 				4F78700C2EB8EC7F00FD9157 /* Images */,
+				AAFB646A2EBCE4B9004BC3C8 /* NetworkConstants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1171,6 +1174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAFB646B2EBCE4B9004BC3C8 /* NetworkConstants.swift in Sources */,
 				AAE5B7B72EBA4B2D00789A4A /* SignUpViewController.swift in Sources */,
 				4F7870202EB903CE00FD9157 /* HomeTabBarViewController.swift in Sources */,
 				AAE5B85A2EBAD59100789A4A /* SHOPPIX.xcdatamodeld in Sources */,

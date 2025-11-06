@@ -11,54 +11,62 @@ import RxSwift
 class ShopifyCartService {
     static let shared = ShopifyCartService()
     private let disposeBag = DisposeBag()
-    
     private init() {}
-    
+
+    // Add Product to Cart (creates a draft order)
     func addToCart(product: Product, variant: Variant, userEmail: String) -> Observable<DraftOrderResponse> {
-        let endpoint = "/draft_orders.json"
-        let url = NetworkConstants.baseURL
-        
-        let draftOrderPayload: [String: Any] = [
-            "draft_order": [
-                "email": userEmail,
-                "line_items": [
-                    [
-                        "variant_id": variant.id,
-                        "quantity": 1
-                    ]
-                ]
+        return Observable.create { observer in
+            let endpoint = "\(NetworkConstants.baseURL)/draft_orders.json"
+            let headers = [
+                "X-Shopify-Access-Token": NetworkConstants.token,
+                "Content-Type": "application/json"
             ]
-        ]
-        
-        let headers = [
-            "X-Shopify-Access-Token": Constant.adminApiAccessToken,
-            "Content-Type": "application/json"
-        ]
-        
-        return NetworkService.shared.post(
-            url: url,
-            endpoint: endpoint,
-            parameters: draftOrderPayload,
-            headers: headers
-        )
+
+            let payload = DraftOrderRequest(
+                draft_order: DraftOrderDataRequest(
+                    email: userEmail,
+                    note: nil,
+                    line_items: [
+                        DraftOrderLineItemRequest(variantId: variant.id, quantity: 1)
+                    ]
+                )
+            )
+
+            NetworkManager.requestPOST(endpoint: endpoint, body: payload, headers: headers) { (result: Result<DraftOrderResponse, Error>) in
+                switch result {
+                case .success(let response):
+                    observer.onNext(response)
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+
+            return Disposables.create()
+        }
     }
-    
+
+    // Fetch all draft orders then filter by user email
     func fetchCart(for email: String) -> Observable<[DraftOrder]> {
-        let endpoint = "/draft_orders.json"
-        let url = NetworkConstants.baseURL
-        let headers = [
-            "X-Shopify-Access-Token": Constant.adminApiAccessToken,
-            "Content-Type": "application/json"
-        ]
-        
-        return NetworkService.shared.get(
-            url: url,
-            endpoint: endpoint,
-            parameters: nil,
-            headers: headers
-        )
-        .map { (response: DraftOrdersResponse) in
-            return response.draft_orders.filter { $0.email == email }
+        return Observable.create { observer in
+            let endpoint = "\(NetworkConstants.baseURL)/draft_orders.json"
+            let headers = [
+                "X-Shopify-Access-Token": NetworkConstants.token,
+                "Content-Type": "application/json"
+            ]
+
+            NetworkManager.requestGET(endpoint: endpoint, headers: headers) { (result: Result<DraftOrdersResponse, Error>) in
+                switch result {
+                case .success(let response):
+                    let userOrders = response.draft_orders.filter { $0.email == email }
+                    observer.onNext(userOrders)
+                    observer.onCompleted()
+                case .failure(let error):
+                    observer.onError(error)
+                }
+            }
+
+            return Disposables.create()
         }
     }
 }
