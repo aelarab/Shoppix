@@ -151,9 +151,56 @@ class ProductDetailsViewController: UIViewController {
         
         self.navigationController?.present(reviewVC, animated: true)
     }
+    
+    func addToCart(product: Product) {
+        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+            showLoginAlert()
+            return
+        }
+
+        let request: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: "CartProduct")
+        request.predicate = NSPredicate(format: "id == %@ AND userId == %@", NSNumber(value: Session.productId), userId)
+        
+        do {
+            let results = try context.fetch(request)
+            if !results.isEmpty {
+                showSimpleAlert(title: "Already Added", message: "This item is already in your cart.")
+                return
+            }
+        } catch {
+            print(" Fetch failed: \(error.localizedDescription)")
+        }
+        
+        let cartItem = NSEntityDescription.insertNewObject(forEntityName: "CartProduct", into: context)
+        cartItem.setValue(Int64(Session.productId), forKey: "id")
+        cartItem.setValue(product.title, forKey: "title")
+        cartItem.setValue(product.variants.first?.price ?? "0.0", forKey: "price")
+        cartItem.setValue(product.images.first?.src, forKey: "image")
+        cartItem.setValue(userId, forKey: "userId")
+        cartItem.setValue(Int64(1), forKey: "quantity") 
+        
+        do {
+            try context.save()
+            print("✅ Product added to cart successfully. Quantity: 1")
+            showSimpleAlert(title: "Added to Cart", message: "\(product.title) has been added to your cart.")
+        } catch {
+            print("❌ Error saving cart product: \(error.localizedDescription)")
+        }
+    }
+
+    func showSimpleAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
 
     @IBAction func addToBagButtonPressed(_ sender: UIButton) {
-        //// iam  using log out here
+        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+                showLoginAlert()
+                return
+            }
+        guard let product = product else { return }
+        addToCart(product: product)
 
     }
 }

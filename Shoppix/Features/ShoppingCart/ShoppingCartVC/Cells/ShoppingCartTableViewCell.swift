@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol ShoppingCartCellDelegate: AnyObject {
+    func didUpdateQuantity(for cell: ShoppingCartTableViewCell, newQuantity: Int, totalItemPrice: Double)
+}
+
 class ShoppingCartTableViewCell: UITableViewCell {
-       //MARK: - Properties
+
+    //MARK: - Properties
     var itemQuantity: Int = 0
     var pricePerItem: Double = 0
+    weak var delegate: ShoppingCartCellDelegate?
     
     
        //MARK: - Outlets
@@ -40,6 +46,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         priceContainerView.layer.cornerRadius = priceContainerView.frame.height / 2
+
     }
     
        //MARK: - Behaviour
@@ -66,6 +73,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     private func updatePriceLabel() {
         let totalPrice = pricePerItem * Double(itemQuantity)
         priceLabel.text = String(format: "%.2f USD", totalPrice)
+        delegate?.didUpdateQuantity(for: self, newQuantity: itemQuantity, totalItemPrice: totalPrice)
     }
     
     func configure(with itemName: String, brandName: String, image: UIImage?, pricePerItem: Double, quantity: Int) {
