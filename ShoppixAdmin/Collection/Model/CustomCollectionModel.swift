@@ -7,13 +7,9 @@
 
 import Foundation
 
-struct CustomCollectionModel: Codable {
-    let custom_collection: NewCustomCollection
- 
-}
 
 struct AllCustomCollectionModel: Codable {
-    let custom_collections: [NewCustomCollection]
+    var custom_collections: [NewCustomCollection]
  
 }
  
@@ -21,5 +17,7 @@ struct AllCustomCollectionModel: Codable {
 struct NewCustomCollection: Codable {
     let id: Int
     let title: String
-     
+    var productsCount: Int?  // <-- new
+
 }
+

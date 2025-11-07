@@ -67,7 +67,7 @@ class ProductViewModel{
                 )
                 let params : Parameters = Utils.encodeToJson(objectClass:InventoryLevelResponse(inventoryLevel:inventoryLevel))!
                 
-                Api.post(endPoint: EndPoints.inventorySet, params: params) { [weak self] (data: InventoryLevelResponse?, error) in
+                Api.post(endPoint: EndPoints.inventorySet, params: params) {  (data: InventoryLevelResponse?, error) in
                     guard let responsData = data else{ return}
                     
                     print(responsData.inventoryLevel?.locationId ?? 1)

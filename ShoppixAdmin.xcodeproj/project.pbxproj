@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D1993BD2EB753AF000060FA /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2D1993BC2EB753AF000060FA /* RxCocoa */; };
+		2D1993BF2EB753B7000060FA /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2D1993BE2EB753B7000060FA /* RxSwift */; };
 		2D28FCE42EB194C000B2C240 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2D28FCE32EB194BA00B2C240 /* Secrets.xcconfig */; };
 		2D4015BD2EA9A49900B5735B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2D4015BC2EA9A49900B5735B /* FirebaseAnalytics */; };
 		2D4015BF2EA9A4A100B5735B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2D4015BE2EA9A4A100B5735B /* FirebaseAuth */; };
@@ -85,8 +87,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D1993BF2EB753B7000060FA /* RxSwift in Frameworks */,
 				2D4015BD2EA9A49900B5735B /* FirebaseAnalytics in Frameworks */,
 				2D4015BF2EA9A4A100B5735B /* FirebaseAuth in Frameworks */,
+				2D1993BD2EB753AF000060FA /* RxCocoa in Frameworks */,
 				2D40161F2EA9C7CE00B5735B /* FirebaseFirestore in Frameworks */,
 				4605E92A1EA018C62B339FF2 /* libPods-ShoppixAdmin.a in Frameworks */,
 			);
@@ -182,6 +186,8 @@
 				2D4015BC2EA9A49900B5735B /* FirebaseAnalytics */,
 				2D4015BE2EA9A4A100B5735B /* FirebaseAuth */,
 				2D40161E2EA9C7CE00B5735B /* FirebaseFirestore */,
+				2D1993BC2EB753AF000060FA /* RxCocoa */,
+				2D1993BE2EB753B7000060FA /* RxSwift */,
 			);
 			productName = ShoppixAdmin;
 			productReference = 2D40151E2EA9A02800B5735B /* ShoppixAdmin.app */;
@@ -266,6 +272,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				2D4015BA2EA9A46C00B5735B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2D1993BB2EB75337000060FA /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2D40151F2EA9A02800B5735B /* Products */;
@@ -766,6 +773,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2D1993BB2EB75337000060FA /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.9.1;
+			};
+		};
 		2D4015BA2EA9A46C00B5735B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -777,6 +792,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2D1993BC2EB753AF000060FA /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D1993BB2EB75337000060FA /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		2D1993BE2EB753B7000060FA /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D1993BB2EB75337000060FA /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
 		2D4015BC2EA9A49900B5735B /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2D4015BA2EA9A46C00B5735B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

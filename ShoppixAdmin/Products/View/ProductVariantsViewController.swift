@@ -5,6 +5,7 @@
 //  Created by Ahmed Mohamed on 26/10/2025.
 //
 
+
 import UIKit
 
 class ProductVariantsViewController: UIViewController {
@@ -96,13 +97,11 @@ class ProductVariantsViewController: UIViewController {
             deleteVariantAlert()
         }
     }
-    
-    @IBAction func EditSeg(_ sender: Any) {
-        guard let seg = sender as? UISegmentedControl else { return }
-        isNew = seg.selectedSegmentIndex == 0
+
+    @IBAction func switchDidChanged(_ sender: UISwitch) {
+        isNew = sender.isOn
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -428,7 +427,7 @@ extension ProductVariantsViewController : UICollectionViewDelegate,UICollectionV
         cell.quantity.text = "\(quantity)"
         
         return cell
-    }
+}
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             

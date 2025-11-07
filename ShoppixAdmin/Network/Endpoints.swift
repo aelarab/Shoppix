@@ -27,10 +27,13 @@ enum EndPoints {
     
     case createCustomCollection
     case editCustomCollection(id: Int)
+    case numberOfProductsInCollection(id: Int)
+    case numberOfProductsInSmartCollection(id: Int)
     
     var path:String{
         switch self {
-            
+            case .numberOfProductsInSmartCollection(id: let collectionId):
+                return "products.json?collection_id=\(collectionId)"
             case .createProduct:
                 return "products.json"
             case .createProductImg(id: let productId):
@@ -42,7 +45,8 @@ enum EndPoints {
             
             case .addProductToCustomCollection:
                 return "collects.json"
-            
+            case .numberOfProductsInCollection(id: let collectionId):
+                return "collects.json?collection_id=\(collectionId)"
             case .couponPriceRule:
                 return "price_rules.json"
             case .discountCodes(id: let priceRuleId):
@@ -64,6 +68,7 @@ enum EndPoints {
                 return "custom_collections.json"
             case .editCustomCollection(id: let customCollectionId):
                 return "custom_collections/\(customCollectionId).json"
+        
             
         }
     }
