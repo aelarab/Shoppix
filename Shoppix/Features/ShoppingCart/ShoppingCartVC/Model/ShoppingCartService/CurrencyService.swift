@@ -16,28 +16,24 @@ final class CurrencyService {
     private let baseURL = "https://api.currencyapi.com/v3/latest"
     private let apiKey = "cur_live_3CU7B9NoOndsH4svnWSvbekfmdjnazi7O4Xnt11Q"
     
-    private var usdToEgpRate: Double = 30.0 // Default fallback rate
+    private var usdToEgpRate: Double = 30.0
     private let disposeBag = DisposeBag()
     
     let ratesReady = BehaviorRelay<Bool>(value: false)
     let currentCurrency = BehaviorRelay<String>(value: UserDefaults.standard.string(forKey: "selectedCurrency") ?? "EGP")
     
     private init() {
-        // Load saved currency on init
         if let savedCurrency = UserDefaults.standard.string(forKey: "selectedCurrency") {
             currentCurrency.accept(savedCurrency)
         }
         
-        // Fetch rates when service is initialized
         fetchRates()
         
-        // Observe currency changes
         currentCurrency
-            .skip(1) // Skip initial value
+            .skip(1)
             .subscribe(onNext: { [weak self] newCurrency in
                 UserDefaults.standard.set(newCurrency, forKey: "selectedCurrency")
                 self?.fetchRates()
-                // Notify the app about currency change
                 NotificationCenter.default.post(name: .currencyDidChange, object: nil)
             })
             .disposed(by: disposeBag)

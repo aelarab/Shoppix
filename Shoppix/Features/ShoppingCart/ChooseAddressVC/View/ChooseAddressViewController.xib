@@ -9,10 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChooseAddressViewController" customModule="SHOPPIX" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChooseAddressViewController" customModule="Shoppix" customModuleProvider="target">
             <connections>
                 <outlet property="addressesTableVIew" destination="vvt-T1-auT" id="s8F-NE-dip"/>
                 <outlet property="continueToPaymentButton" destination="xcj-dd-9Rp" id="TlT-hY-zp7"/>
+                <outlet property="emptyStateLabel" destination="sDs-cK-tgG" id="h5o-qd-brl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,12 +25,18 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fWJ-W2-cUn">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDs-cK-tgG">
+                            <rect key="frame" x="16" y="7.9999999999999982" width="361" height="19.333333333333329"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vvt-T1-auT">
-                            <rect key="frame" x="16" y="8" width="361" height="688.66666666666663"/>
+                            <rect key="frame" x="16" y="43.333333333333314" width="361" height="652.33333333333348"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </tableView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xcj-dd-9Rp">
-                            <rect key="frame" x="16" y="712.66666666666663" width="361" height="38.333333333333371"/>
+                            <rect key="frame" x="16" y="711.66666666666663" width="361" height="39.333333333333371"/>
                             <color key="backgroundColor" red="0.36964291329999999" green="0.33733564620000001" blue="0.43139100070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>

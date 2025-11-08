@@ -31,3 +31,4 @@ class AddressTableViewCell: UITableViewCell {
         selectedAddressButton.setImage(UIImage(systemName: buttonImageName), for: .normal)
     }
 }
+

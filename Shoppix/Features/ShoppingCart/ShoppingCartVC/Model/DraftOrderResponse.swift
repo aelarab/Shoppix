@@ -12,12 +12,10 @@
 
 import Foundation
 
-// MARK: - Root Response for GET /draft_orders.json
 struct DraftOrdersListResponse: Codable {
     let draft_orders: [DraftOrder]
 }
 
-// MARK: - Single Draft Order Response
 struct DraftOrderResponse: Codable {
     let draft_order: DraftOrder
 }
@@ -30,10 +28,10 @@ struct DraftOrder: Codable {
     let currency: String?
     let note: String?
     let status: String?
-    let note_attributes: [Property]? 
+    let note_attributes: [Property]?
 }
 
-// MARK: - Line Item (for response)
+// line items
 struct DraftOrderLineItem: Codable {
     let id: Int?
     let variant_id: Int?
@@ -49,7 +47,6 @@ struct Property: Codable {
     let value: String?
 }
 
-// MARK: - SIMPLIFIED Request Models (USE THESE)
 struct DraftOrderRequest: Codable {
     let draft_order: DraftOrderData
 }
@@ -66,7 +63,6 @@ struct LineItemData: Codable {
     let price: String?
 }
 
-// MARK: - Update Request Models
 struct DraftOrderUpdateRequest: Codable {
     let draft_order: DraftOrderUpdateData
 }

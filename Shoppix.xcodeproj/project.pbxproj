@@ -53,6 +53,7 @@
 		AAD28DC92EBF559E00811EA4 /* CurrencyResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC82EBF559E00811EA4 /* CurrencyResponseModel.swift */; };
 		AAD28DCC2EBF9B6700811EA4 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DCB2EBF9B6700811EA4 /* AddressModel.swift */; };
 		AAD28DCF2EBF9CBC00811EA4 /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DCE2EBF9CBC00811EA4 /* AddressViewModel.swift */; };
+		AAD28DD22EBFAC7B00811EA4 /* ChooseAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DD12EBFAC7B00811EA4 /* ChooseAddressViewModel.swift */; };
 		AAE5B7842EBA4B1000789A4A /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B77F2EBA4B1000789A4A /* CheckInternet.swift */; };
 		AAE5B7852EBA4B1000789A4A /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7802EBA4B1000789A4A /* Session.swift */; };
 		AAE5B7862EBA4B1000789A4A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7812EBA4B1000789A4A /* Extension.swift */; };
@@ -181,6 +182,7 @@
 		AAD28DC82EBF559E00811EA4 /* CurrencyResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyResponseModel.swift; sourceTree = "<group>"; };
 		AAD28DCB2EBF9B6700811EA4 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
 		AAD28DCE2EBF9CBC00811EA4 /* AddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
+		AAD28DD12EBFAC7B00811EA4 /* ChooseAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAddressViewModel.swift; sourceTree = "<group>"; };
 		AAE5B77F2EBA4B1000789A4A /* CheckInternet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
 		AAE5B7802EBA4B1000789A4A /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		AAE5B7812EBA4B1000789A4A /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 		AA5456B22EBBB38D000409D6 /* ChooseAddressVC */ = {
 			isa = PBXGroup;
 			children = (
+				AAD28DD02EBFAC6900811EA4 /* ViewModel */,
 				AA5456B72EBBB3BA000409D6 /* View */,
 				AA5456AF2EBBB38D000409D6 /* Cells */,
 			);
@@ -638,6 +641,14 @@
 				AAD28DCE2EBF9CBC00811EA4 /* AddressViewModel.swift */,
 			);
 			path = AddressViewModel;
+			sourceTree = "<group>";
+		};
+		AAD28DD02EBFAC6900811EA4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AAD28DD12EBFAC7B00811EA4 /* ChooseAddressViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		AAE5B78B2EBA4B2D00789A4A /* Favorite VC */ = {
@@ -1251,6 +1262,7 @@
 				AAE5B7E32EBA4C3500789A4A /* AddressService.swift in Sources */,
 				AAD28DCF2EBF9CBC00811EA4 /* AddressViewModel.swift in Sources */,
 				AAD28DC92EBF559E00811EA4 /* CurrencyResponseModel.swift in Sources */,
+				AAD28DD22EBFAC7B00811EA4 /* ChooseAddressViewModel.swift in Sources */,
 				AAFB64622EBCE10A004BC3C8 /* ShoppingCartService.swift in Sources */,
 				AAE5B7DC2EBA4C3500789A4A /* AboutUsViewController.swift in Sources */,
 				AAE5B7DF2EBA4C3500789A4A /* SettingsViewController.swift in Sources */,
