@@ -21,6 +21,7 @@ final class ShoppixAdminUITestsLaunchTests: XCTestCase {
     func testLaunch() throws {
         let app = XCUIApplication()
         app.launch()
+        sleep(1) // Wait for app to settle
 
         // Insert steps here to perform after app launch but before taking a screenshot,
         // such as logging into a test account or navigating somewhere in the app
@@ -29,5 +30,7 @@ final class ShoppixAdminUITestsLaunchTests: XCTestCase {
         attachment.name = "Launch Screen"
         attachment.lifetime = .keepAlways
         add(attachment)
+
+        app.terminate() // Explicitly terminate the app
     }
 }
