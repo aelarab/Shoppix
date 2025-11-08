@@ -20,6 +20,7 @@ class PlaceOrderViewController: UIViewController {
 
        //MARK: - properties
     private var paymentRequest: PKPaymentRequest?
+    var selectedPaymentMethod: String?
     
        //MARK: - lifeCycle
     override func viewDidLoad() {

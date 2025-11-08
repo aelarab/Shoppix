@@ -9,9 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShoppingCartViewController" customModule="SHOPPIX" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShoppingCartViewController" customModule="Shoppix" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="Iy5-hn-9E1" id="CgN-eh-hJe"/>
                 <outlet property="checkoutButton" destination="O1f-18-bXq" id="StE-LS-8B7"/>
+                <outlet property="emptyCartView" destination="3GF-vk-gXz" id="via-AA-bst"/>
                 <outlet property="itemsTableView" destination="IFT-J8-V4P" id="PEK-9h-QqM"/>
                 <outlet property="totalPriceLabel" destination="EKp-sF-IRb" id="cgZ-eH-VDi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -22,21 +24,39 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Iy5-hn-9E1">
+                    <rect key="frame" x="186.66666666666666" y="428.66666666666669" width="20" height="20"/>
+                </activityIndicatorView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uLL-Ws-bjP">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3GF-vk-gXz">
+                            <rect key="frame" x="16" y="-120" width="361" height="128"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyCart" translatesAutoresizingMaskIntoConstraints="NO" id="z3o-TV-ur5">
+                                    <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="z3o-TV-ur5" firstAttribute="leading" secondItem="3GF-vk-gXz" secondAttribute="leading" id="GP7-1e-5uQ"/>
+                                <constraint firstAttribute="trailing" secondItem="z3o-TV-ur5" secondAttribute="trailing" id="Zyv-70-xme"/>
+                                <constraint firstAttribute="bottom" secondItem="z3o-TV-ur5" secondAttribute="bottom" id="ar1-D2-z6g"/>
+                                <constraint firstItem="z3o-TV-ur5" firstAttribute="top" secondItem="3GF-vk-gXz" secondAttribute="top" id="eq3-Xy-Yo0"/>
+                            </constraints>
+                        </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IFT-J8-V4P">
-                            <rect key="frame" x="16" y="8" width="361" height="664.66666666666663"/>
+                            <rect key="frame" x="16" y="8" width="361" height="650"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </tableView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub total: 225 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKp-sF-IRb">
-                            <rect key="frame" x="16" y="680.66666666666663" width="361" height="24"/>
+                            <rect key="frame" x="16" y="666" width="361" height="24"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1f-18-bXq">
-                            <rect key="frame" x="16" y="712.66666666666663" width="361" height="38.333333333333371"/>
+                            <rect key="frame" x="16" y="698" width="361" height="53"/>
                             <color key="backgroundColor" red="0.57418096070000002" green="0.59039992090000004" blue="0.62912005189999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
@@ -46,6 +66,10 @@
                             </connections>
                         </button>
                     </subviews>
+                    <constraints>
+                        <constraint firstItem="O1f-18-bXq" firstAttribute="height" secondItem="uLL-Ws-bjP" secondAttribute="height" multiplier="0.07" id="Idb-5K-XHJ"/>
+                        <constraint firstItem="3GF-vk-gXz" firstAttribute="height" secondItem="uLL-Ws-bjP" secondAttribute="height" multiplier="0.168643" id="gPM-Zg-pMq"/>
+                    </constraints>
                     <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                 </stackView>
             </subviews>
@@ -55,12 +79,15 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="uLL-Ws-bjP" secondAttribute="bottom" id="FaB-MG-3Qu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uLL-Ws-bjP" secondAttribute="trailing" id="G7E-xb-k1F"/>
                 <constraint firstItem="uLL-Ws-bjP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="N2q-B8-xVg"/>
+                <constraint firstItem="Iy5-hn-9E1" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="NmA-ch-s3Z"/>
+                <constraint firstItem="Iy5-hn-9E1" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="ifR-do-Kf8"/>
                 <constraint firstItem="uLL-Ws-bjP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kEG-vV-60w"/>
             </constraints>
             <point key="canvasLocation" x="114" y="-11"/>
         </view>
     </objects>
     <resources>
+        <image name="emptyCart" width="800" height="800"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

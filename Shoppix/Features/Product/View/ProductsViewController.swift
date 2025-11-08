@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import CoreData
+import RxSwift
 
 class ProductsViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
@@ -66,13 +67,42 @@ class ProductsViewController: UIViewController {
 
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItems = [searchButton]
-      
+      setupNotification()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         productCollectionView.reloadData()
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+       //MARK: - Behaviour
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(currencyDidChange),
+            name: .currencyDidChange,
+            object: nil
+        )
+    }
+    @objc private func currencyDidChange() {
+
+        productCollectionView.reloadData()
+    }
+    
+    private func formatProductPrice(_ product: Product) -> String {
+        guard let variantPrice = product.variants.first?.price,
+              let price = Double(variantPrice) else {
+            return "Not Available"
+        }
+        let currency = CurrencyService.shared.currentCurrency
+        let convertedPrice = CurrencyService.shared.convert(amount: price, from: "EGP", to: currency)
+        return CurrencyService.shared.formatPrice(convertedPrice, currency: currency)
+    }
+    
     @objc func openFavoriteScreen(){
        let favoriteVC = FavoriteViewController(nibName: "FavoriteViewController", bundle: nil)
         self.navigationController?.pushViewController(favoriteVC, animated: true)
@@ -86,7 +116,6 @@ class ProductsViewController: UIViewController {
     private func setupMenu() {
         let allAction = UIAction(title: "All", state: selectedFilter == "All" ? .on : .off) { [weak self] action in
            
-                 //   self?.selectedFilter = "All"
                     self?.applyFilter(type: "All")
                     self?.setupMenu()
                 }
@@ -151,6 +180,7 @@ extension ProductsViewController:UICollectionViewDelegate,UICollectionViewDataSo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as? ProductCollectionViewCell else {
             return UICollectionViewCell()
         }
+        let product = filterList[indexPath.row]
         cell.Name.text = filterList[indexPath.row].title
         cell.image.sd_setImage(
             with: URL(string:  filterList[indexPath.row].images.first?.src ?? "Shoppix"
@@ -165,52 +195,12 @@ extension ProductsViewController:UICollectionViewDelegate,UICollectionViewDataSo
                     cell.priceLabel.text =  "Not Avalible"
                 }
                
-                cell.priceLabel.textAlignment = .center
+        cell.priceLabel.text = formatProductPrice(product)
+        cell.priceLabel.textAlignment = .center
           
         return cell
     }
-//    func addToFavorite(product: Product){
-//        print("❤️ Adding to favorite: \(product.title) - ID: \(product.id)")
-//        let favoriteProduct = FavoriteProduct(context: context)
-//        favoriteProduct.id = Int64(product.id)
-//        favoriteProduct.title = product.title
-//        favoriteProduct.variant = product.variants.first?.price
-//        favoriteProduct.image = product.images.first?.src
-//        saveToCoreData()
-//        print("💾 Saved to Core Data with ID: \(favoriteProduct.id)")
-//    }
-//    func deleteFromFavorite(product:Product){
-//
-//        print("🗑️ Deleting from favorite: \(product.title) - ID: \(product.id)")
-//
-//        let request: NSFetchRequest<FavoriteProduct> = FavoriteProduct.fetchRequest()
-//        request.predicate = NSPredicate(format: "id == %d",NSNumber(value: product.id))
-//        if let object = try? context.fetch(request) {
-//            for object in object {
-//                context.delete(object)
-//                saveToCoreData()
-//            }
-//        }
-//    }
-//    func isProductFavorite(product:Product) -> Bool {
-//        let fetch = NSFetchRequest<FavoriteProduct>(entityName: "FavoriteProduct")
-//        fetch.predicate = NSPredicate(format: "id == %d", NSNumber(value: product.id))
-//
-//        let count = (try? context.count(for: fetch)) ?? 0
-//        print("🔍 Checking favorite for ID \(product.id) → count = \(count)")
-//            return count > 0
-//
-//    }
-//    func saveToCoreData(){
-//        do {
-//            try context.save()
-//
-//        }catch (let error){
-//            print("error saving data:\(error)")
-//        }
-//
-//    }
-   
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: productCollectionView.frame.width / 2 - 10, height: productCollectionView.frame.height / 2 - 60)
     }
@@ -219,7 +209,6 @@ extension ProductsViewController:UICollectionViewDelegate,UICollectionViewDataSo
         Session.productId = filterList[indexPath.row].id
         print("product id : \(filterList[indexPath.row].id)")
         let productDetails = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
-//        productDetails.productId = Session.productId
         self.navigationController?.pushViewController(productDetails, animated: true)
     }
     
