@@ -33,18 +33,49 @@ class ShoppingCartViewController: UIViewController {
         setupTableView()
         viewModel.refreshTrigger.accept(())
         bindViewModel()
-        //   fetchCartItems()
-        
-        //        checkoutButton.layer.cornerRadius = checkoutButton.frame.height / 2
+setupNotification()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        updateTotalPrice()
+        itemsTableView.reloadData()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     //MARK: - Behavior
+    
+    func setupNotification(){
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(currencyDidChange),
+            name: .currencyDidChange,
+            object: nil
+        )
+    }
+    
+    @objc private func currencyDidChange() {
+        updateTotalPrice()
+        itemsTableView.reloadData()
+    }
+    
+    private func updateTotalPrice() {
+        let currency = CurrencyService.shared.currentCurrency.value
+        
+        let total = viewModel.cartItems.value.reduce(0) { partial, item in
+            let price = Double(item.price ?? "0") ?? 0
+            let convertedPrice = CurrencyService.shared.convert(amount: price, from: "EGP", to: currency)
+            return partial + convertedPrice * Double(item.quantity)
+        }
+        
+        totalPriceLabel.text = CurrencyService.shared.formatPrice(total, currency: currency)
+    }
+
+    
     private func setupUI() {
         checkoutButton.layer.cornerRadius = checkoutButton.frame.height / 2
         emptyCartView.isHidden = true
@@ -66,12 +97,9 @@ class ShoppingCartViewController: UIViewController {
     private func bindViewModel() {
         viewModel.cartItems
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in self?.itemsTableView.reloadData() })
-            .disposed(by: disposeBag)
-        
-        viewModel.totalPrice
-            .map { "Total: $\(String(format: "%.2f", $0))" }
-            .bind(to: totalPriceLabel.rx.text)
+            .subscribe(onNext: { [weak self] _ in
+                self?.updateTotalPrice()
+                self?.itemsTableView.reloadData() })
             .disposed(by: disposeBag)
         
         viewModel.isLoading
@@ -120,13 +148,17 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartTableViewCell", for: indexPath) as! ShoppingCartTableViewCell
         let item = viewModel.cartItems.value[indexPath.row]
-        
+        let itemPrice = Double(item.price ?? "0") ?? 0
+        let currency = CurrencyService.shared.currentCurrency.value
+        let convertedPrice = CurrencyService.shared.convert(amount: itemPrice, from: "EGP", to: currency)
+
         cell.configure(
             with: item.title ?? "Unknown Product",
             brandName: extractBrandFromTitle(item.title ?? ""),
             image: nil,
-            pricePerItem: Double(item.price ?? "0") ?? 0,
-            quantity: item.quantity
+            pricePerItem: convertedPrice,
+            quantity: item.quantity,
+            currency: currency
         )
         cell.delegate = self
         

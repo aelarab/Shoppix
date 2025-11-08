@@ -49,6 +49,8 @@
 		AA5DF0092EBAE85300E72FB2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DF0042EBAE85300E72FB2 /* ProfileViewController.swift */; };
 		AA5DF00A2EBAE85300E72FB2 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5DF0052EBAE85300E72FB2 /* ProfileViewController.xib */; };
 		AAD28DC42EBF468E00811EA4 /* ShoppingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC32EBF468E00811EA4 /* ShoppingCartViewModel.swift */; };
+		AAD28DC72EBF557A00811EA4 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC62EBF557A00811EA4 /* CurrencyService.swift */; };
+		AAD28DC92EBF559E00811EA4 /* CurrencyResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC82EBF559E00811EA4 /* CurrencyResponseModel.swift */; };
 		AAE5B7842EBA4B1000789A4A /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B77F2EBA4B1000789A4A /* CheckInternet.swift */; };
 		AAE5B7852EBA4B1000789A4A /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7802EBA4B1000789A4A /* Session.swift */; };
 		AAE5B7862EBA4B1000789A4A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7812EBA4B1000789A4A /* Extension.swift */; };
@@ -173,6 +175,8 @@
 		AA5DF0042EBAE85300E72FB2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
 		AA5DF0052EBAE85300E72FB2 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		AAD28DC32EBF468E00811EA4 /* ShoppingCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewModel.swift; sourceTree = "<group>"; };
+		AAD28DC62EBF557A00811EA4 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
+		AAD28DC82EBF559E00811EA4 /* CurrencyResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyResponseModel.swift; sourceTree = "<group>"; };
 		AAE5B77F2EBA4B1000789A4A /* CheckInternet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
 		AAE5B7802EBA4B1000789A4A /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		AAE5B7812EBA4B1000789A4A /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -886,6 +890,7 @@
 			children = (
 				AAFB64602EBCE0F4004BC3C8 /* ShoppingCartService */,
 				AAFB64682EBCE1D7004BC3C8 /* DraftOrderResponse.swift */,
+				AAD28DC82EBF559E00811EA4 /* CurrencyResponseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -894,6 +899,7 @@
 			isa = PBXGroup;
 			children = (
 				AAFB64612EBCE10A004BC3C8 /* ShoppingCartService.swift */,
+				AAD28DC62EBF557A00811EA4 /* CurrencyService.swift */,
 			);
 			path = ShoppingCartService;
 			sourceTree = "<group>";
@@ -1189,6 +1195,7 @@
 				AAE5B7B72EBA4B2D00789A4A /* SignUpViewController.swift in Sources */,
 				4F7870202EB903CE00FD9157 /* HomeTabBarViewController.swift in Sources */,
 				AAE5B85A2EBAD59100789A4A /* SHOPPIX.xcdatamodeld in Sources */,
+				AAD28DC72EBF557A00811EA4 /* CurrencyService.swift in Sources */,
 				AA5456B32EBBB38D000409D6 /* AddressTableViewCell.swift in Sources */,
 				AAE5B7842EBA4B1000789A4A /* CheckInternet.swift in Sources */,
 				4F7870292EB9041300FD9157 /* SmartCollectionModel.swift in Sources */,
@@ -1219,6 +1226,7 @@
 				AAE78A362EBC07D6004CE710 /* FireBaseService.swift in Sources */,
 				AAE5B7E62EBA4C3500789A4A /* AddNewAddressViewController.swift in Sources */,
 				AAE5B7E32EBA4C3500789A4A /* AddressService.swift in Sources */,
+				AAD28DC92EBF559E00811EA4 /* CurrencyResponseModel.swift in Sources */,
 				AAFB64622EBCE10A004BC3C8 /* ShoppingCartService.swift in Sources */,
 				AAE5B7DC2EBA4C3500789A4A /* AboutUsViewController.swift in Sources */,
 				AAE5B7DF2EBA4C3500789A4A /* SettingsViewController.swift in Sources */,
