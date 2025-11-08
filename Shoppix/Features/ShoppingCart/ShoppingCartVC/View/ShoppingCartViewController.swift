@@ -69,7 +69,7 @@ setupNotification()
     }
     
     private func updateTotalPrice() {
-        let currency = CurrencyService.shared.currentCurrency.value
+        let currency = CurrencyService.shared.currentCurrency
         
         let total = viewModel.cartItems.value.reduce(0) { partial, item in
             let price = Double(item.price ?? "0") ?? 0
@@ -154,7 +154,7 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartTableViewCell", for: indexPath) as! ShoppingCartTableViewCell
         let item = viewModel.cartItems.value[indexPath.row]
         let itemPrice = Double(item.price ?? "0") ?? 0
-        let currency = CurrencyService.shared.currentCurrency.value
+        let currency = CurrencyService.shared.currentCurrency
         let convertedPrice = CurrencyService.shared.convert(amount: itemPrice, from: "EGP", to: currency)
 
         cell.configure(

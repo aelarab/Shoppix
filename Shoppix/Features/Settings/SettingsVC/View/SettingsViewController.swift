@@ -77,7 +77,7 @@ setupUI()
     private func setupUI() {
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         tabBarController?.tabBar.isHidden = true
-        currencyLabel.text = CurrencyService.shared.currentCurrency.value
+        currencyLabel.text = CurrencyService.shared.currentCurrency
         setupAddressLabel()
         
     }

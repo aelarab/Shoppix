@@ -98,8 +98,7 @@ class ProductsViewController: UIViewController {
               let price = Double(variantPrice) else {
             return "Not Available"
         }
-        
-        let currency = CurrencyService.shared.currentCurrency.value
+        let currency = CurrencyService.shared.currentCurrency
         let convertedPrice = CurrencyService.shared.convert(amount: price, from: "EGP", to: currency)
         return CurrencyService.shared.formatPrice(convertedPrice, currency: currency)
     }

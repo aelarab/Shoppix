@@ -87,7 +87,7 @@ class ProductDetailsViewController: UIViewController {
     }
     
     private func updatePriceLabel(for variant: Variant) {
-        let currency = CurrencyService.shared.currentCurrency.value
+        let currency = CurrencyService.shared.currentCurrency
         let price = Double(variant.price) ?? 0
         let convertedPrice = CurrencyService.shared.convert(amount: price, from: "EGP", to: currency)
         let formattedPrice = CurrencyService.shared.formatPrice(convertedPrice, currency: currency)

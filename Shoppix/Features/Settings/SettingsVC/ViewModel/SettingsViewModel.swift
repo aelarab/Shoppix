@@ -19,14 +19,19 @@ final class SettingsViewModel {
     var onCurrencyChanged: ((String) -> Void)?
     
     init() {
-        CurrencyService.shared.currentCurrency
-            .subscribe(onNext: { [weak self] currency in
-                self?.onCurrencyChanged?(currency)
-            })
-            .disposed(by: disposeBag)
+        NotificationCenter.default.addObserver(
+            forName: .currencyDidChange,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.onCurrencyChanged?(CurrencyService.shared.currentCurrency)
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
-    
     // MARK: - Behaviour
     func updateCurrency(to newCurrency: String) {
         CurrencyService.shared.updateCurrency(newCurrency)

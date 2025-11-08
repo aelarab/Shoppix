@@ -6,8 +6,8 @@
 //
 
 
-import RxSwift
-import RxCocoa
+import Foundation
+
 import Foundation
 
 final class CurrencyService {
@@ -17,91 +17,76 @@ final class CurrencyService {
     private let apiKey = "cur_live_3CU7B9NoOndsH4svnWSvbekfmdjnazi7O4Xnt11Q"
     
     private var usdToEgpRate: Double = 30.0
-    private let disposeBag = DisposeBag()
-    
-    let ratesReady = BehaviorRelay<Bool>(value: false)
-    let currentCurrency = BehaviorRelay<String>(value: UserDefaults.standard.string(forKey: "selectedCurrency") ?? "EGP")
-    
-    private init() {
-        if let savedCurrency = UserDefaults.standard.string(forKey: "selectedCurrency") {
-            currentCurrency.accept(savedCurrency)
+    private(set) var currentCurrency: String {
+        didSet {
+            UserDefaults.standard.set(currentCurrency, forKey: "selectedCurrency")
+            fetchRates()
+            NotificationCenter.default.post(name: .currencyDidChange, object: nil)
         }
-        
-        fetchRates()
-        
-        currentCurrency
-            .skip(1)
-            .subscribe(onNext: { [weak self] newCurrency in
-                UserDefaults.standard.set(newCurrency, forKey: "selectedCurrency")
-                self?.fetchRates()
-                NotificationCenter.default.post(name: .currencyDidChange, object: nil)
-            })
-            .disposed(by: disposeBag)
     }
     
-    func fetchRates() {
+    private init() {
+        currentCurrency = UserDefaults.standard.string(forKey: "selectedCurrency") ?? "EGP"
+        fetchRates()
+    }
+    
+    // MARK: - API Fetch
+    
+    func fetchRates(completion: ((Bool) -> Void)? = nil) {
         guard let url = URL(string: "\(baseURL)?apikey=\(apiKey)&base_currency=USD") else {
-            print("❌ Invalid URL for currency API")
+            print("Invalid URL")
             setDefaultRate()
+            completion?(false)
             return
         }
         
-        print("🔄 Fetching USD to EGP exchange rate")
-        
-        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            guard let self = self else { return }
+            
             if let error = error {
-                print("❌ Currency API error: \(error.localizedDescription)")
-                self?.setDefaultRate()
+                self.setDefaultRate()
+                completion?(false)
                 return
             }
             
             guard let data = data else {
-                print("❌ No data from currency API")
-                self?.setDefaultRate()
+                print("No data")
+                self.setDefaultRate()
+                completion?(false)
                 return
             }
             
             do {
                 let response = try JSONDecoder().decode(CurrencyResponse.self, from: data)
                 if let egpRate = response.data["EGP"]?.value {
-                    self?.usdToEgpRate = egpRate
-                    print("✅ USD to EGP rate fetched successfully: \(egpRate)")
-                    self?.ratesReady.accept(true)
+                    self.usdToEgpRate = egpRate
+                    completion?(true)
                 } else {
-                    print("❌ EGP rate not found in API response")
-                    self?.setDefaultRate()
+                    self.setDefaultRate()
+                    completion?(false)
                 }
             } catch {
-                print("❌ Currency API decoding error: \(error)")
-                self?.setDefaultRate()
+                self.setDefaultRate()
+                completion?(false)
             }
         }.resume()
     }
     
+    // this function for adding a default value ie dolar = 30 gneeh
     private func setDefaultRate() {
-        // Set default rate if API fails
         usdToEgpRate = 30.0
-        ratesReady.accept(true)
-        print("⚠️ Using default USD to EGP rate: 30.0")
     }
-    
+        
     func convert(amount: Double, from sourceCurrency: String = "EGP", to targetCurrency: String) -> Double {
-        // If same currency, return original amount
         if sourceCurrency == targetCurrency {
             return amount
         }
-        
-        // Convert from EGP to USD
         if sourceCurrency == "EGP" && targetCurrency == "USD" {
             return amount / usdToEgpRate
         }
-        
-        // Convert from USD to EGP
         if sourceCurrency == "USD" && targetCurrency == "EGP" {
             return amount * usdToEgpRate
         }
-        
-        print("⚠️ Unsupported currency conversion: \(sourceCurrency) to \(targetCurrency)")
         return amount
     }
     
@@ -111,7 +96,6 @@ final class CurrencyService {
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
         
-        // Custom formatting for EGP and USD only
         switch currency {
         case "EGP":
             formatter.currencySymbol = "EGP "
@@ -125,24 +109,17 @@ final class CurrencyService {
     }
     
     func updateCurrency(_ newCurrency: String) {
-        // Only allow EGP or USD
         guard newCurrency == "EGP" || newCurrency == "USD" else {
-            print("❌ Unsupported currency: \(newCurrency). Only EGP and USD are supported.")
             return
         }
-        
-        guard newCurrency != currentCurrency.value else { return }
-        
-        currentCurrency.accept(newCurrency)
-        print("🔄 Currency updated to: \(newCurrency)")
+        guard newCurrency != currentCurrency else { return }
+        currentCurrency = newCurrency
     }
     
-    // Helper method to get available currencies
     func getAvailableCurrencies() -> [String] {
         return ["EGP", "USD"]
     }
     
-    // Helper method to get current exchange rate
     func getCurrentExchangeRate() -> Double {
         return usdToEgpRate
     }
