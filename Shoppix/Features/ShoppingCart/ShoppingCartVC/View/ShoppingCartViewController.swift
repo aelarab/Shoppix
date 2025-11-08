@@ -31,7 +31,7 @@ class ShoppingCartViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupTableView()
-        viewModel.refreshTrigger.accept(())
+        
         bindViewModel()
 setupNotification()
         
@@ -41,6 +41,7 @@ setupNotification()
         super.viewWillAppear(animated)
         updateTotalPrice()
         itemsTableView.reloadData()
+        viewModel.refreshTrigger.accept(())
     }
     
     deinit {
@@ -59,6 +60,10 @@ setupNotification()
     }
     
     @objc private func currencyDidChange() {
+        updateUIForCurrentCurrency()
+    }
+    
+    private func updateUIForCurrentCurrency() {
         updateTotalPrice()
         itemsTableView.reloadData()
     }

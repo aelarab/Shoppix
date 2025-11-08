@@ -56,16 +56,46 @@ class ProductDetailsViewController: UIViewController {
         reviewButtomOutlet.setTitle("Reviews", for: .normal)
         favoriteButtonOutlet.addTarget(self, action: #selector(addFavoritTapped), for: .touchUpInside)
         reviewButtomOutlet.addTarget(self, action: #selector(reviewButtonTapped), for: .touchUpInside)
-       
+        setupNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
-        
+        updatePriceForCurrentVariant()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
        //MARK: - Behaviour
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(currencyDidChange),
+            name: .currencyDidChange,
+            object: nil
+        )
+    }
+    @objc private func currencyDidChange() {
+        updatePriceForCurrentVariant()
+    }
+    
+    private func updatePriceForCurrentVariant() {
+        guard let variant = selectedVariant ?? variants.first else { return }
+        updatePriceLabel(for: variant)
+    }
+    
+    private func updatePriceLabel(for variant: Variant) {
+        let currency = CurrencyService.shared.currentCurrency.value
+        let price = Double(variant.price) ?? 0
+        let convertedPrice = CurrencyService.shared.convert(amount: price, from: "EGP", to: currency)
+        let formattedPrice = CurrencyService.shared.formatPrice(convertedPrice, currency: currency)
+        
+        UIView.transition(with: productPrice, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.productPrice.text = formattedPrice
+        }, completion: nil)
+    }
 
    @objc func addFavoritTapped (){
        guard let product = product else {
@@ -256,28 +286,28 @@ extension ProductDetailsViewController:UICollectionViewDelegate,UICollectionView
 }
 extension ProductDetailsViewController:sendProductDetailsDelegete {
     func sendProductDetails(productDetail: SingleProductModel) {
-        productImages = productDetail.product.images
-        product = productDetail.product
-        variants = productDetail.product.variants
-        DispatchQueue.main.async { [weak self]  in
-            guard let self = self else {return}
-            self.productName.text = productDetail.product.title
-           
-            self.page.numberOfPages = self.productImages.count
-            self.title = productDetail.product.title
-            self.productDescription.text = productDetail.product.body_html
-            self.productCollectionView.reloadData()
-            
-            if let firstVariant = self.variants.first {
-                       self.productPrice.text = "\(firstVariant.price) EGP"
-                       self.variantPicker.selectRow(0, inComponent: 0, animated: false)
-                   }
-            self.variantPicker.reloadAllComponents()
-            
-            
-            self.isProductFavorite()
-        }
-    }
+           productImages = productDetail.product.images
+           product = productDetail.product
+           variants = productDetail.product.variants
+           DispatchQueue.main.async { [weak self]  in
+               guard let self = self else {return}
+               self.productName.text = productDetail.product.title
+              
+               self.page.numberOfPages = self.productImages.count
+               self.title = productDetail.product.title
+               self.productDescription.text = productDetail.product.body_html
+               self.productCollectionView.reloadData()
+               
+               if let firstVariant = self.variants.first {
+
+                   self.updatePriceLabel(for: firstVariant)
+                   self.variantPicker.selectRow(0, inComponent: 0, animated: false)
+               }
+               self.variantPicker.reloadAllComponents()
+               
+               self.isProductFavorite()
+           }
+       }
     func showError(message: String) {
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: "⚠️ Error", message: message, preferredStyle: .alert)
@@ -304,8 +334,5 @@ extension ProductDetailsViewController: UIPickerViewDataSource, UIPickerViewDele
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let variant = variants[row]
         self.selectedVariant = variant
-        UIView.transition(with: productPrice, duration: 0.3, options: .transitionCrossDissolve, animations: {
-               self.productPrice.text = "\(variant.price) EGP"
-           }, completion: nil)
-    }
-}
+        updatePriceLabel(for: variant)
+    }}

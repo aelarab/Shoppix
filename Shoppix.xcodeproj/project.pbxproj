@@ -619,6 +619,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		AAD28DCA2EBF930100811EA4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5B7CA2EBA4C3500789A4A /* SettingsViewController.swift */,
+				AAE5B7CB2EBA4C3500789A4A /* SettingsViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		AAE5B78B2EBA4B2D00789A4A /* Favorite VC */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,9 +787,8 @@
 		AAE5B7CC2EBA4C3500789A4A /* SettingsVC */ = {
 			isa = PBXGroup;
 			children = (
+				AAD28DCA2EBF930100811EA4 /* View */,
 				AAE5B7C92EBA4C3500789A4A /* ViewModel */,
-				AAE5B7CA2EBA4C3500789A4A /* SettingsViewController.swift */,
-				AAE5B7CB2EBA4C3500789A4A /* SettingsViewController.xib */,
 			);
 			path = SettingsVC;
 			sourceTree = "<group>";

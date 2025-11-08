@@ -100,20 +100,19 @@ class ShopifyCartService {
                             case .success(let detailResponse):
                                 fullOrders.append(detailResponse.draft_order)
                             case .failure(let err):
-                                print("❌ Failed to fetch order details: \(err.localizedDescription)")
+                                print(" Failed to fetch order details: \(err.localizedDescription)")
                             }
                             group.leave()
                         }
                     }
 
                     group.notify(queue: .main) {
-                        // Only emit after ALL details are fetched
                         observer.onNext(fullOrders)
                         observer.onCompleted()
                     }
 
                 case .failure(let error):
-                    print("❌ Failed to fetch cart list: \(error.localizedDescription)")
+                    print(" Failed to fetch cart list: \(error.localizedDescription)")
                     observer.onNext([])
                     observer.onCompleted()
                 }
@@ -140,7 +139,7 @@ class ShopifyCartService {
                    case .success:
                        observer.onNext(true)
                    case .failure(let error):
-                       print("❌ Failed to delete cart: \(error.localizedDescription)")
+                       print(" Failed to delete cart: \(error.localizedDescription)")
                        observer.onNext(false)
                    }
                    observer.onCompleted()
@@ -169,7 +168,7 @@ class ShopifyCartService {
                    case .success:
                        observer.onNext(true)
                    case .failure(let error):
-                       print("❌ Failed to update cart: \(error.localizedDescription)")
+                       print(" Failed to update cart: \(error.localizedDescription)")
                        observer.onNext(false)
                    }
                    observer.onCompleted()
