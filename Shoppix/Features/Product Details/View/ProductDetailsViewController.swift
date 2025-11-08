@@ -8,9 +8,12 @@
 import UIKit
 import FirebaseAuth
 import CoreData
+import RxSwift
+
 
 class ProductDetailsViewController: UIViewController {
 
+       //MARK: - Outlets
     @IBOutlet weak var variantPicker: UIPickerView!
     @IBOutlet weak var reviewButtomOutlet: UIButton!
     @IBOutlet weak var favoriteButtonOutlet: UIButton!
@@ -20,6 +23,8 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var page: UIPageControl!
     @IBOutlet weak var productCollectionView: UICollectionView!
+    
+       //MARK: - Properties
     var productImages = [ProductImage]()
 //    var productId = 0
     var isVaforite:Bool = false
@@ -28,6 +33,10 @@ class ProductDetailsViewController: UIViewController {
     var selectedVariant: Variant?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var product:Product?
+    private let disposeBag = DisposeBag()
+
+    
+       //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,6 +64,8 @@ class ProductDetailsViewController: UIViewController {
        
         
     }
+    
+       //MARK: - Behaviour
 
    @objc func addFavoritTapped (){
        guard let product = product else {
@@ -152,71 +163,69 @@ class ProductDetailsViewController: UIViewController {
         self.navigationController?.present(reviewVC, animated: true)
     }
     
-    func addToCart(product: Product) {
-        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
-            showLoginAlert()
-            return
-        }
+    private func addToCart() {
+           guard let product = product,
+                 let selectedVariant = selectedVariant ?? variants.first,
+                 let userEmail = Auth.auth().currentUser?.email else {
+               showSimpleAlert(title: "Error", message: "Please select a variant and make sure you're logged in.")
+               return
+           }
 
-        let request: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: "CartProduct")
-        request.predicate = NSPredicate(format: "id == %@ AND userId == %@", NSNumber(value: Session.productId), userId)
-        
-        do {
-            let results = try context.fetch(request)
-            
-            if let existingItem = results.first {
+           ShopifyCartService.shared.addToCart(
+               product: product,
+               variant: selectedVariant,
+               userEmail: userEmail
+           )
+           .observe(on: MainScheduler.instance)
+           .subscribe(
+               onNext: { [weak self] success in
+                   if success {
+                       self?.showSimpleAlert(
+                           title: "Success",
+                           message: "\(product.title) was added to your cart!"
+                       )
+                   } else {
+                       self?.showSimpleAlert(
+                           title: "Failed",
+                           message: "Couldn't add to cart. Please try again."
+                       )
+                   }
+               },
+               onError: { [weak self] error in
+                   self?.showSimpleAlert(
+                       title: "Error",
+                       message: "Failed to add to cart: \(error.localizedDescription)"
+                   )
+               }
+           )
+           .disposed(by: disposeBag)
+       }
 
-                let currentQuantity = existingItem.value(forKey: "quantity") as? Int64 ?? 0
-                existingItem.setValue(currentQuantity + 1, forKey: "quantity")
-                
-                try context.save()
-                print(" Increased quantity to \(currentQuantity + 1)")
-                
-                showSimpleAlert(
-                    title: "Quantity Updated",
-                    message: "Increased quantity of \(product.title) to \(currentQuantity + 1)."
-                )
-                
-            } else {
-                let cartItem = NSEntityDescription.insertNewObject(forEntityName: "CartProduct", into: context)
-                cartItem.setValue(Int64(Session.productId), forKey: "id")
-                cartItem.setValue(product.title, forKey: "title")
-                cartItem.setValue(product.variants.first?.price ?? "0.0", forKey: "price")
-                cartItem.setValue(product.images.first?.src, forKey: "image")
-                cartItem.setValue(userId, forKey: "userId")
-                cartItem.setValue(Int64(1), forKey: "quantity")
-                
-                try context.save()
-                print(" Product added to cart successfully. Quantity: 1")
-                
-                showSimpleAlert(
-                    title: "Added to Cart",
-                    message: "\(product.title) has been added to your cart."
-                )
-            }
-        } catch {
-            print(" Error saving or fetching cart product: \(error.localizedDescription)")
-        }
-    }
+       func showSimpleAlert(title: String, message: String) {
+           DispatchQueue.main.async {
+               let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "OK", style: .default))
+               self.present(alert, animated: true)
+           }
+       }
 
-
-    func showSimpleAlert(title: String, message: String) {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true)
-        }
-    }
-
-
+   //MARK: - Actions
     @IBAction func addToBagButtonPressed(_ sender: UIButton) {
-        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
-                showLoginAlert()
+        guard let product = product else {
+                showSimpleAlert(title: "Error", message: "Product not loaded yet.")
                 return
             }
-        guard let product = product else { return }
-        addToCart(product: product)
+            
+            guard let selectedVariant = selectedVariant ?? variants.first else {
+                showSimpleAlert(title: "Select Variant", message: "Please select a product variant first.")
+                return
+            }
+            
+            viewModel?.addToCart(product: product, variant: selectedVariant)
 
+    }
+    func showCartSuccess(message: String) {
+        showSimpleAlert(title: "Success", message: message)
     }
 }
 extension ProductDetailsViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{

@@ -7,8 +7,8 @@
 
 import Foundation
 struct NetworkConstants {
-    static let baseURL = "https://YOUR_STORE_NAME.myshopify.com/admin/api/2025-07"
+    static let baseURL = "https://iosr1g1.myshopify.com/admin/api/2025-07"
     static var token: String {
-        ProcessInfo.processInfo.environment["SHOPIFY_ADMIN_TOKEN"] ?? ""
+        ProcessInfo.processInfo.environment["SHOPIFY_ACCESS_TOKEN"] ?? ""
     }
 }

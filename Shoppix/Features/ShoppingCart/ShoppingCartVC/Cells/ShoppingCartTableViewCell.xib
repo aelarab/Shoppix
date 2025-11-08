@@ -98,6 +98,7 @@
                             </stackView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="APM-G0-tlU" firstAttribute="width" secondItem="rwU-dt-UNl" secondAttribute="width" multiplier="0.278125" id="WIy-Kf-oz5"/>
                             <constraint firstItem="APM-G0-tlU" firstAttribute="width" secondItem="rwU-dt-UNl" secondAttribute="height" multiplier="1:1" id="mHw-bD-q35"/>
                         </constraints>
                     </stackView>
