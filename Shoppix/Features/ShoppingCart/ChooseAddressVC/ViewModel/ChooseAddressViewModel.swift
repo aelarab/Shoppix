@@ -57,13 +57,11 @@ final class ChooseAddressViewModel {
         let db = Firestore.firestore()
         db.collection("users").document(uid).getDocument { snapshot, error in
             if let error = error {
-                print("Error fetching customer ID from Firebase: \(error)")
                 completion(nil)
                 return
             }
             
             guard let data = snapshot?.data() else {
-                print("No user data found in Firebase")
                 completion(nil)
                 return
             }
@@ -83,3 +81,4 @@ final class ChooseAddressViewModel {
         }
     }
 }
+

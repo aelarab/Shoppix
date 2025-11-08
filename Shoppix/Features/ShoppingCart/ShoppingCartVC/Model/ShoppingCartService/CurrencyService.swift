@@ -119,8 +119,4 @@ final class CurrencyService {
     func getAvailableCurrencies() -> [String] {
         return ["EGP", "USD"]
     }
-    
-    func getCurrentExchangeRate() -> Double {
-        return usdToEgpRate
-    }
 }

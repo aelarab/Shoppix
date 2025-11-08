@@ -48,6 +48,7 @@
 		AA5DF0082EBAE85300E72FB2 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5DF0022EBAE85300E72FB2 /* OrdersTableViewCell.xib */; };
 		AA5DF0092EBAE85300E72FB2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DF0042EBAE85300E72FB2 /* ProfileViewController.swift */; };
 		AA5DF00A2EBAE85300E72FB2 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5DF0052EBAE85300E72FB2 /* ProfileViewController.xib */; };
+		AA6255462EC000E50080BDEB /* ChoosePaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6255452EC000E50080BDEB /* ChoosePaymentViewModel.swift */; };
 		AAD28DC42EBF468E00811EA4 /* ShoppingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC32EBF468E00811EA4 /* ShoppingCartViewModel.swift */; };
 		AAD28DC72EBF557A00811EA4 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC62EBF557A00811EA4 /* CurrencyService.swift */; };
 		AAD28DC92EBF559E00811EA4 /* CurrencyResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC82EBF559E00811EA4 /* CurrencyResponseModel.swift */; };
@@ -177,6 +178,7 @@
 		AA5DF0022EBAE85300E72FB2 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		AA5DF0042EBAE85300E72FB2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
 		AA5DF0052EBAE85300E72FB2 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		AA6255452EC000E50080BDEB /* ChoosePaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePaymentViewModel.swift; sourceTree = "<group>"; };
 		AAD28DC32EBF468E00811EA4 /* ShoppingCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewModel.swift; sourceTree = "<group>"; };
 		AAD28DC62EBF557A00811EA4 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		AAD28DC82EBF559E00811EA4 /* CurrencyResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyResponseModel.swift; sourceTree = "<group>"; };
@@ -532,6 +534,7 @@
 		AA5456BD2EBBB3E4000409D6 /* ChoosePaymentVC */ = {
 			isa = PBXGroup;
 			children = (
+				AA6255442EC000D30080BDEB /* ViewModel */,
 				AA5456C22EBBB409000409D6 /* View */,
 				AA5456BA2EBBB3E4000409D6 /* Cells */,
 			);
@@ -616,6 +619,14 @@
 				AA5DF0032EBAE85300E72FB2 /* Cells */,
 			);
 			path = ProfileVC;
+			sourceTree = "<group>";
+		};
+		AA6255442EC000D30080BDEB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AA6255452EC000E50080BDEB /* ChoosePaymentViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		AAD28DC22EBF467A00811EA4 /* ViewModel */ = {
@@ -1224,6 +1235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA6255462EC000E50080BDEB /* ChoosePaymentViewModel.swift in Sources */,
 				AAFB646B2EBCE4B9004BC3C8 /* NetworkConstants.swift in Sources */,
 				AAE5B7B72EBA4B2D00789A4A /* SignUpViewController.swift in Sources */,
 				4F7870202EB903CE00FD9157 /* HomeTabBarViewController.swift in Sources */,

@@ -5,11 +5,6 @@
 //  Created by Nafea Elkassas on 06/11/2025.
 //
 
-//
-//  DraftOrderResponse.swift
-//  Shoppix
-//
-
 import Foundation
 
 struct DraftOrdersListResponse: Codable {

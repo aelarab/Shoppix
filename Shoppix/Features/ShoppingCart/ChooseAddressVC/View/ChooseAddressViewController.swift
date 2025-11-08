@@ -82,28 +82,13 @@ class ChooseAddressViewController: UIViewController {
         continueToPaymentButton.isEnabled = !isEmpty && selectedAddress != nil
 
     }
-//    private func addAddAddressButton() {
-//        let addButton = UIButton(type: .system)
-//        addButton.setTitle("Add New Address", for: .normal)
-//        addButton.backgroundColor = UIColor(named: "mainColor")
-//        addButton.setTitleColor(.white, for: .normal)
-//        addButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-//        addButton.layer.cornerRadius = 8
-//        addButton.frame = CGRect(x: 20, y: emptyStateLabel.frame.maxY + 20, width: view.frame.width - 40, height: 50)
-//        addButton.addTarget(self, action: #selector(addNewAddressTapped), for: .touchUpInside)
-//        view.addSubview(addButton)
-//    }
+
     
     private func showError(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
-    
-//    @objc private func addNewAddressTapped() {
-//        let addNewAddressVC = AddNewAddressViewController(nibName: "AddNewAddressViewController", bundle: nil)
-//        navigationController?.pushViewController(addNewAddressVC, animated: true)
-//    }
     
     private func saveSelectedAddress(_ address: ShopifyAddress) {
 
@@ -147,12 +132,11 @@ extension ChooseAddressViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return addresses.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = addressesTableVIew.dequeueReusableCell(withIdentifier: "AddressTableViewCell", for: indexPath) as! AddressTableViewCell
         let address = addresses[indexPath.row]
         
-        // Configure cell with ShopifyAddress data using only available outlets
+        // Configure text
         cell.countryNameLabel.text = "\(address.country) - \(address.city)"
         cell.specificAddressLabel.text = "\(address.address1) • \(address.phone ?? "No phone")"
         
@@ -161,8 +145,9 @@ extension ChooseAddressViewController: UITableViewDelegate, UITableViewDataSourc
         cell.isAddressSelected = isSelected
         let iconName = isSelected ? "smallcircle.fill.circle.fill" : "circle"
         cell.selectedAddressButton.setImage(UIImage(systemName: iconName), for: .normal)
+        cell.isDefaultAddressImageView.isHidden = !(address.isDefault ?? false)
         
-        // Remove any existing targets to avoid duplicate calls
+        // Fix button target
         cell.selectedAddressButton.removeTarget(nil, action: nil, for: .allEvents)
         cell.selectedAddressButton.tag = indexPath.row
         cell.selectedAddressButton.addTarget(self, action: #selector(selectAddress(_:)), for: .touchUpInside)
@@ -171,7 +156,7 @@ extension ChooseAddressViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80 // Adjusted height for your current cell layout
+        return 80
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

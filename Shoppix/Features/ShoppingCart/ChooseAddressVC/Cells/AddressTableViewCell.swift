@@ -20,8 +20,10 @@ class AddressTableViewCell: UITableViewCell {
     
     @IBOutlet weak var selectedAddressButton: UIButton!
     
+    @IBOutlet weak var isDefaultAddressImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        isDefaultAddressImageView.isHidden = true
     }
     
     
