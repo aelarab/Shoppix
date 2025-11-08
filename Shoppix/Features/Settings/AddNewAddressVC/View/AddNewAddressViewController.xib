@@ -9,12 +9,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewAddressViewController" customModule="SHOPPIX" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewAddressViewController" customModule="Shoppix" customModuleProvider="target">
             <connections>
                 <outlet property="addAddressButton" destination="Qw2-ef-HIl" id="rfj-VV-5m8"/>
                 <outlet property="addressTextField" destination="79b-3s-nKX" id="HqX-CU-Wm2"/>
                 <outlet property="cityTextField" destination="FUH-N1-AP4" id="vc9-zY-o0f"/>
                 <outlet property="countryTextField" destination="CbM-hh-rY5" id="SVn-zS-Ufr"/>
+                <outlet property="isDefaultSwitch" destination="CST-N6-FMS" id="CzJ-uc-RvD"/>
                 <outlet property="phoneTextField" destination="KqF-mD-b4e" id="fLR-0O-0Kg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,31 +29,48 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="596.33333333333337"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="SRn-Ge-wQc">
-                            <rect key="frame" x="32" y="9" width="329" height="220.66666666666669"/>
+                            <rect key="frame" x="32" y="9" width="329" height="192"/>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CbM-hh-rY5" customClass="SearchTextField" customModule="SearchTextField">
-                            <rect key="frame" x="32" y="246.33333333333329" width="329" height="55.666666666666657"/>
+                            <rect key="frame" x="32" y="217.66666666666669" width="329" height="48.666666666666686"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FUH-N1-AP4" customClass="SearchTextField" customModule="SearchTextField">
-                            <rect key="frame" x="32" y="318" width="329" height="55.666666666666686"/>
+                            <rect key="frame" x="32" y="282.33333333333331" width="329" height="48.333333333333314"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="79b-3s-nKX">
-                            <rect key="frame" x="32" y="389.66666666666669" width="329" height="55.666666666666686"/>
+                            <rect key="frame" x="32" y="346.66666666666669" width="329" height="48.333333333333314"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KqF-mD-b4e">
-                            <rect key="frame" x="32" y="461.33333333333337" width="329" height="55.333333333333371"/>
+                            <rect key="frame" x="32" y="411" width="329" height="48.666666666666686"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" textContentType="tel"/>
                         </textField>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69G-VD-DFG">
+                            <rect key="frame" x="32" y="475.66666666666663" width="329" height="48.333333333333371"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Default ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j94-yd-vZf">
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="48.333333333333336"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CST-N6-FMS">
+                                    <rect key="frame" x="280" y="0.0" width="51" height="48.333333333333336"/>
+                                    <connections>
+                                        <action selector="defaultSwitchChanged:" destination="-1" eventType="valueChanged" id="xtk-Ot-BOh"/>
+                                    </connections>
+                                </switch>
+                            </subviews>
+                        </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qw2-ef-HIl">
-                            <rect key="frame" x="32" y="532.66666666666663" width="329" height="55.666666666666629"/>
+                            <rect key="frame" x="32" y="540" width="329" height="48.333333333333371"/>
                             <color key="backgroundColor" red="0.36964291329999999" green="0.33733564620000001" blue="0.43139100070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
@@ -65,6 +83,7 @@
                     <constraints>
                         <constraint firstItem="KqF-mD-b4e" firstAttribute="height" secondItem="SRn-Ge-wQc" secondAttribute="height" multiplier="0.25" id="NOx-cV-OaM"/>
                         <constraint firstItem="79b-3s-nKX" firstAttribute="height" secondItem="SRn-Ge-wQc" secondAttribute="height" multiplier="0.25" id="O64-TT-onm"/>
+                        <constraint firstItem="69G-VD-DFG" firstAttribute="height" secondItem="SRn-Ge-wQc" secondAttribute="height" multiplier="0.25" id="azp-2J-kzL"/>
                         <constraint firstItem="Qw2-ef-HIl" firstAttribute="height" secondItem="SRn-Ge-wQc" secondAttribute="height" multiplier="0.25" id="cD8-6r-elb"/>
                         <constraint firstItem="CbM-hh-rY5" firstAttribute="height" secondItem="SRn-Ge-wQc" secondAttribute="height" multiplier="0.25" id="flx-Z0-xml"/>
                         <constraint firstItem="FUH-N1-AP4" firstAttribute="height" secondItem="SRn-Ge-wQc" secondAttribute="height" multiplier="0.25" id="iiB-GH-05R"/>

@@ -51,6 +51,8 @@
 		AAD28DC42EBF468E00811EA4 /* ShoppingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC32EBF468E00811EA4 /* ShoppingCartViewModel.swift */; };
 		AAD28DC72EBF557A00811EA4 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC62EBF557A00811EA4 /* CurrencyService.swift */; };
 		AAD28DC92EBF559E00811EA4 /* CurrencyResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC82EBF559E00811EA4 /* CurrencyResponseModel.swift */; };
+		AAD28DCC2EBF9B6700811EA4 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DCB2EBF9B6700811EA4 /* AddressModel.swift */; };
+		AAD28DCF2EBF9CBC00811EA4 /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DCE2EBF9CBC00811EA4 /* AddressViewModel.swift */; };
 		AAE5B7842EBA4B1000789A4A /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B77F2EBA4B1000789A4A /* CheckInternet.swift */; };
 		AAE5B7852EBA4B1000789A4A /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7802EBA4B1000789A4A /* Session.swift */; };
 		AAE5B7862EBA4B1000789A4A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE5B7812EBA4B1000789A4A /* Extension.swift */; };
@@ -177,6 +179,8 @@
 		AAD28DC32EBF468E00811EA4 /* ShoppingCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewModel.swift; sourceTree = "<group>"; };
 		AAD28DC62EBF557A00811EA4 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		AAD28DC82EBF559E00811EA4 /* CurrencyResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyResponseModel.swift; sourceTree = "<group>"; };
+		AAD28DCB2EBF9B6700811EA4 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
+		AAD28DCE2EBF9CBC00811EA4 /* AddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
 		AAE5B77F2EBA4B1000789A4A /* CheckInternet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
 		AAE5B7802EBA4B1000789A4A /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		AAE5B7812EBA4B1000789A4A /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -628,6 +632,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		AAD28DCD2EBF9CAE00811EA4 /* AddressViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AAD28DCE2EBF9CBC00811EA4 /* AddressViewModel.swift */,
+			);
+			path = AddressViewModel;
+			sourceTree = "<group>";
+		};
 		AAE5B78B2EBA4B2D00789A4A /* Favorite VC */ = {
 			isa = PBXGroup;
 			children = (
@@ -796,6 +808,7 @@
 		AAE5B7CF2EBA4C3500789A4A /* AddressVC */ = {
 			isa = PBXGroup;
 			children = (
+				AAD28DCD2EBF9CAE00811EA4 /* AddressViewModel */,
 				AAE5B7CD2EBA4C3500789A4A /* AddressViewController.swift */,
 				AAE5B7CE2EBA4C3500789A4A /* AddressViewController.xib */,
 			);
@@ -815,6 +828,7 @@
 			children = (
 				AAE5B7D12EBA4C3500789A4A /* AddressService */,
 				AAE5B7D22EBA4C3500789A4A /* CountryData.swift */,
+				AAD28DCB2EBF9B6700811EA4 /* AddressModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1213,6 +1227,7 @@
 				AAE5B7E42EBA4C3500789A4A /* CountryData.swift in Sources */,
 				AA5456AA2EBBB33E000409D6 /* ShoppingCartViewController.swift in Sources */,
 				4F78701B2EB8FC0A00FD9157 /* GauestOrUserViewController.swift in Sources */,
+				AAD28DCC2EBF9B6700811EA4 /* AddressModel.swift in Sources */,
 				AAE5B7BD2EBA4B2D00789A4A /* ReviewCellTableViewCell.swift in Sources */,
 				AAE5B7B22EBA4B2D00789A4A /* ProductDetailsViewController.swift in Sources */,
 				4F78702C2EB9041300FD9157 /* HomeViewModel.swift in Sources */,
@@ -1234,6 +1249,7 @@
 				AAE78A362EBC07D6004CE710 /* FireBaseService.swift in Sources */,
 				AAE5B7E62EBA4C3500789A4A /* AddNewAddressViewController.swift in Sources */,
 				AAE5B7E32EBA4C3500789A4A /* AddressService.swift in Sources */,
+				AAD28DCF2EBF9CBC00811EA4 /* AddressViewModel.swift in Sources */,
 				AAD28DC92EBF559E00811EA4 /* CurrencyResponseModel.swift in Sources */,
 				AAFB64622EBCE10A004BC3C8 /* ShoppingCartService.swift in Sources */,
 				AAE5B7DC2EBA4C3500789A4A /* AboutUsViewController.swift in Sources */,

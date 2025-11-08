@@ -37,6 +37,8 @@ class SettingsViewController: UIViewController {
         setupGestures()
 setupUI()
         bindViewModel()
+        loadDefaultAddress()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -45,12 +47,31 @@ setupUI()
     }
     
        //MARK: - Behaviour
-    func setupAddressLabel(){
-        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+    
+    private func loadDefaultAddress() {
+           if Auth.auth().currentUser != nil {
+               viewModel.loadDefaultAddress()
+           } else {
+               updateAddressLabel(with: nil)
+           }
+       }
+    
+    
+    
+    private func setupAddressLabel() {
+        guard Auth.auth().currentUser != nil else {
             addressLabel.text = "Login To Access"
-                return
-            }
-        addressLabel.text = "Ismaila"
+            addressLabel.textColor = .systemGray
+            return
+        }
+        
+        if let address = viewModel.defaultAddress.value {
+            addressLabel.text = address.city
+            addressLabel.textColor = .label
+        } else {
+            addressLabel.text = "Add Address"
+            addressLabel.textColor = .systemGray
+        }
     }
     
     private func setupUI() {
@@ -79,6 +100,25 @@ setupUI()
     private func bindViewModel() {
         viewModel.onCurrencyChanged = { [weak self] newCurrency in
             self?.currencyLabel.text = newCurrency
+        }
+        
+        viewModel.defaultAddress
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] address in
+                self?.updateAddressLabel(with: address)
+            })
+            .disposed(by: disposeBag)
+    }
+
+    private func updateAddressLabel(with address: ShopifyAddress?) {
+        if let address = address {
+            addressLabel.text = address.city
+            addressLabel.textColor = .label
+            print("Settings - Updated address label to: \(address.city)")
+        } else {
+            addressLabel.text = "Add Address"
+            addressLabel.textColor = .systemGray
+            print("Settings - No default address found")
         }
     }
     

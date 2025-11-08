@@ -25,7 +25,7 @@ class ChooseAddressViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadAddresses()
+       // loadAddresses()
     }
     
     
@@ -36,10 +36,10 @@ class ChooseAddressViewController: UIViewController {
         addressesTableVIew.register(UINib(nibName: "AddressTableViewCell", bundle: nil), forCellReuseIdentifier: "AddressTableViewCell")
     }
     
-    private func loadAddresses() {
-        addresses = AddressService.shared.fetchAddresses()
-        addressesTableVIew.reloadData()
-    }
+//    private func loadAddresses() {
+//        addresses = AddressService.shared.fetchAddresses()
+//        addressesTableVIew.reloadData()
+//    }
     
     
     
