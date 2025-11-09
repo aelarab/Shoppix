@@ -100,6 +100,13 @@ class CollectionsViewModel {
             "smart_collection": [
                 "title": title,
                 "sort_order": sortOrder,
+                "rules": [
+                    [
+                        "column": "title",
+                        "relation": "contains",
+                        "condition": title
+                    ]
+                ],
                 "image": ["src": imgUrl]
             ]
         ]
@@ -140,7 +147,7 @@ extension CollectionsViewModel {
                 completion(0)
                 return
             }
-            completion(data.products!.count)
+            completion(data.products?.count ?? 0)
         }
     }
 }

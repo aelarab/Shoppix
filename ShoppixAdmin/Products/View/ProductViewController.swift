@@ -137,12 +137,11 @@ class ProductViewController: UIViewController, UITextViewDelegate {
 
         //Edit
         if flagEditAdd == 1{
-
             collectionLabel.isHidden = true
             productCustomCellectionMenu.isHidden = true
-            addImageBtn.isHidden = true
-            deleteImageBtn.isHidden=true
-            
+            // Do NOT hide addImageBtn and deleteImageBtn in edit mode
+            // addImageBtn.isHidden = true
+            // deleteImageBtn.isHidden=true
             productId = product.id ?? 0
             productTitleTF.text = product.title
             productDetailsTF.text = product.bodyHtml
@@ -152,6 +151,20 @@ class ProductViewController: UIViewController, UITextViewDelegate {
             
             product.options = optionArr
             
+            // Reload collection view to show all images
+            collectionView.reloadData()
+            // Show/hide navigation stack and delete button based on images count
+            if let images = product.images {
+                imageNavigationStack.isHidden = images.count < 2
+                deleteImageBtn.isHidden = images.isEmpty
+                noImage.isHidden = !images.isEmpty
+                pageControl.numberOfPages = images.count
+            } else {
+                imageNavigationStack.isHidden = true
+                deleteImageBtn.isHidden = true
+                noImage.isHidden = false
+                pageControl.numberOfPages = 0
+            }
         }else{
             product = Product( id: nil, title: "", bodyHtml: "", vendor: "", productType: "", createdAt: nil, handle: nil, updatedAt: nil, publishedAt: nil, status: nil, publishedScope: nil, tags: nil, adminGraphqlApiId: nil, variants: [], options: optionArr, images: [], image: nil)
         }
@@ -212,15 +225,13 @@ class ProductViewController: UIViewController, UITextViewDelegate {
         if saveProductImage(){
             addImageUrlTextField.text = ""
             collectionView.reloadData()
-            if product.images!.count > 1{
-                imageNavigationStack.isHidden = false
+            // Update UI state after adding image
+            if let images = product.images {
+                imageNavigationStack.isHidden = images.count < 2
+                deleteImageBtn.isHidden = images.isEmpty
+                noImage.isHidden = !images.isEmpty
+                pageControl.numberOfPages = images.count
             }
-            if product.images!.count > 0{
-                deleteImageBtn.isHidden = false
-               noImage.isHidden = true
-            }
-            
-            pageControl.numberOfPages = product.images!.count
         }
     }
     
@@ -390,22 +401,23 @@ extension ProductViewController : UITextFieldDelegate{
             
             
             product.images?.remove(at: currentIndex)
-            if product.images!.count < 2{
+            collectionView.reloadData()
+            // Update UI state after deleting image
+            if let images = product.images {
+                imageNavigationStack.isHidden = images.count < 2
+                deleteImageBtn.isHidden = images.isEmpty
+                noImage.isHidden = !images.isEmpty
+                pageControl.numberOfPages = images.count
+                if currentIndex > 0 {
+                    currentIndex -= 1
+                }
+            } else {
                 imageNavigationStack.isHidden = true
-            }
-            if product.images!.count == 0{
                 deleteImageBtn.isHidden = true
                 noImage.isHidden = false
-
+                pageControl.numberOfPages = 0
+                currentIndex = 0
             }
-            
-            if(currentIndex>0){
-                currentIndex -= 1
-            }
-            
-            pageControl.numberOfPages = product.images!.count
-            self.collectionView.reloadData()
-            
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel))
@@ -511,7 +523,7 @@ extension ProductViewController : UICollectionViewDelegate,UICollectionViewDataS
                     with: url,
                     placeholder: UIImage(named: "placeholder"))
         return cell
-}
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             
@@ -523,4 +535,3 @@ extension ProductViewController : UICollectionViewDelegate,UICollectionViewDataS
     }
     
 }
-
