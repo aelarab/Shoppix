@@ -79,6 +79,8 @@ setupUI()
         tabBarController?.tabBar.isHidden = true
         currencyLabel.text = CurrencyService.shared.currentCurrency
         setupAddressLabel()
+        logoutButton.setTitle("Logout", for: .normal)
+        designButton(button: logoutButton)
         
     }
     private func setupGestures() {
