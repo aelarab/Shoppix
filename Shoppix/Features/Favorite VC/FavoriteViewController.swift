@@ -35,6 +35,7 @@ class FavoriteViewController: UIViewController {
             noDataLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             noDataLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        setupNotification()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +52,30 @@ class FavoriteViewController: UIViewController {
                 self.noDataLabel.isHidden = true
             }
     }
+       //MARK: - Behaviour
+    
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(currencyDidChange),
+            name: .currencyDidChange,
+            object: nil
+        )
+    }
+    @objc private func currencyDidChange() {
+
+        favoriteCollectionView.reloadData()
+    }
+    
+    private func formatProductPrice(_ favorite: FavoriteProduct) -> String {
+        guard let variantPrice = Double(favorite.variant ?? "") else {
+            return "Not Available"
+        }
+        let currency = CurrencyService.shared.currentCurrency
+        let convertedPrice = CurrencyService.shared.convert(amount: variantPrice, from: "EGP", to: currency)
+        return CurrencyService.shared.formatPrice(convertedPrice, currency: currency)
+    }
+    
     func fetchFavorites(){
         guard let userId = UserDefaults.standard.string(forKey: "userId") else { return }
         let request:NSFetchRequest <FavoriteProduct> = FavoriteProduct.fetchRequest()
@@ -74,6 +99,7 @@ extension FavoriteViewController:UICollectionViewDelegate,UICollectionViewDataSo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as? ProductCollectionViewCell  else {
            return UICollectionViewCell()
         }
+        let product = favoriteList[indexPath.row]
         cell.Name.text = favoriteList[indexPath.row].title
         cell.image.sd_setImage(
             with: URL(string:  favoriteList[indexPath.row].image ?? "Shoppix"
@@ -87,7 +113,7 @@ extension FavoriteViewController:UICollectionViewDelegate,UICollectionViewDataSo
         }
        
         if favoriteList[indexPath.row].variant != nil {
-                    cell.priceLabel.text = "\(favoriteList[indexPath.row].variant!) EGP"
+                    cell.priceLabel.text = formatProductPrice(product)
                 } else {
                     cell.priceLabel.text =  "Not Avalible"
                 }

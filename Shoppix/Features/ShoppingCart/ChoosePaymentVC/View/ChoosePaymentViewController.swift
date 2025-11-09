@@ -72,12 +72,6 @@ extension ChoosePaymentViewController: UITableViewDelegate, UITableViewDataSourc
         let paymentTitle = viewModel.paymentOptions[indexPath.section][indexPath.row]
         cell.paymentTitleLabel.text = paymentTitle
         
-        if paymentTitle == viewModel.selectedPayment {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
-        }
-        
         return cell
     }
     
@@ -94,3 +88,4 @@ extension ChoosePaymentViewController: UITableViewDelegate, UITableViewDataSourc
         return 70
     }
 }
+

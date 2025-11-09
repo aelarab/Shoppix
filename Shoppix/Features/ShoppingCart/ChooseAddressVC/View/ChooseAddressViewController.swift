@@ -91,22 +91,9 @@ class ChooseAddressViewController: UIViewController {
     }
     
     private func saveSelectedAddress(_ address: ShopifyAddress) {
+        ChooseAddressService.shared.saveSelectedAddress(address)
+    }
 
-           let addressData: [String: Any] = [
-               "id": address.id,
-               "address1": address.address1,
-               "city": address.city,
-               "country": address.country,
-               "phone": address.phone ?? "",
-               "first_name": address.first_name ?? "",
-               "last_name": address.last_name ?? ""
-           ]
-           
-           UserDefaults.standard.set(addressData, forKey: "selectedShippingAddress")
-           UserDefaults.standard.synchronize()
-           
-           print("Selected address saved: \(address.address1), \(address.city)")
-       }
     
     
        //MARK: - Actions

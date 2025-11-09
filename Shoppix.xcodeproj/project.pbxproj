@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4F786FD82EB8DB4A00FD9157 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FD72EB8DB4A00FD9157 /* ViewController.swift */; };
-		4F786FDE2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FDC2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld */; };
 		4F786FE02EB8DB4F00FD9157 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F786FDF2EB8DB4F00FD9157 /* Assets.xcassets */; };
 		4F786FEE2EB8DB4F00FD9157 /* ShoppixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FED2EB8DB4F00FD9157 /* ShoppixTests.swift */; };
 		4F786FF82EB8DB5000FD9157 /* ShoppixUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F786FF72EB8DB5000FD9157 /* ShoppixUITests.swift */; };
@@ -26,6 +25,9 @@
 		68B38070594FEEFD4FA02201 /* Pods_Shoppix_ShoppixUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332912C87E90C7DF052B9118 /* Pods_Shoppix_ShoppixUITests.framework */; };
 		821C4394C82B7631462DDA1A /* Pods_ShoppixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B682D27E7B00921FA9ADF68 /* Pods_ShoppixTests.framework */; };
 		A760A74981999E76A328479D /* Pods_Shoppix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603011A66045CE00BD905AA5 /* Pods_Shoppix.framework */; };
+		AA3014D12EC0D25D0085648D /* OrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3014D02EC0D25D0085648D /* OrderService.swift */; };
+		AA3014D42EC0D2B40085648D /* PlaceOrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3014D32EC0D2B40085648D /* PlaceOrderViewModel.swift */; };
+		AA3014DA2EC0D79B0085648D /* ChooseAddressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3014D92EC0D79B0085648D /* ChooseAddressService.swift */; };
 		AA5456A02EBBB309000409D6 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = AA54569F2EBBB309000409D6 /* countries.json */; };
 		AA5456A82EBBB33E000409D6 /* ShoppingCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5456A22EBBB33E000409D6 /* ShoppingCartTableViewCell.swift */; };
 		AA5456A92EBBB33E000409D6 /* ShoppingCartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5456A32EBBB33E000409D6 /* ShoppingCartTableViewCell.xib */; };
@@ -134,7 +136,6 @@
 		486DD44B48AAF3E5F508C050 /* Pods-Shoppix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix.debug.xcconfig"; path = "Target Support Files/Pods-Shoppix/Pods-Shoppix.debug.xcconfig"; sourceTree = "<group>"; };
 		4F786FD02EB8DB4A00FD9157 /* Shoppix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoppix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F786FD72EB8DB4A00FD9157 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4F786FDD2EB8DB4A00FD9157 /* Shoppix.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shoppix.xcdatamodel; sourceTree = "<group>"; };
 		4F786FDF2EB8DB4F00FD9157 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F786FE42EB8DB4F00FD9157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F786FE92EB8DB4F00FD9157 /* ShoppixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoppixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +156,9 @@
 		603011A66045CE00BD905AA5 /* Pods_Shoppix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shoppix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		735FFA15C40C13A7FC5BE0F9 /* Pods-Shoppix-ShoppixUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoppix-ShoppixUITests.debug.xcconfig"; path = "Target Support Files/Pods-Shoppix-ShoppixUITests/Pods-Shoppix-ShoppixUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		94482A64B27E68AC5846ECF1 /* Pods-ShoppixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppixTests.debug.xcconfig"; path = "Target Support Files/Pods-ShoppixTests/Pods-ShoppixTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AA3014D02EC0D25D0085648D /* OrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderService.swift; sourceTree = "<group>"; };
+		AA3014D32EC0D2B40085648D /* PlaceOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderViewModel.swift; sourceTree = "<group>"; };
+		AA3014D92EC0D79B0085648D /* ChooseAddressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAddressService.swift; sourceTree = "<group>"; };
 		AA54569F2EBBB309000409D6 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		AA5456A22EBBB33E000409D6 /* ShoppingCartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartTableViewCell.swift; sourceTree = "<group>"; };
 		AA5456A32EBBB33E000409D6 /* ShoppingCartTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartTableViewCell.xib; sourceTree = "<group>"; };
@@ -302,7 +306,6 @@
 				AAE5B8542EBAD59100789A4A /* Application */,
 				4F786FD72EB8DB4A00FD9157 /* ViewController.swift */,
 				4F786FE42EB8DB4F00FD9157 /* Info.plist */,
-				4F786FDC2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld */,
 			);
 			path = Shoppix;
 			sourceTree = "<group>";
@@ -445,6 +448,46 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AA3014CE2EC0D23F0085648D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA3014CF2EC0D2500085648D /* Sevice */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AA3014CF2EC0D2500085648D /* Sevice */ = {
+			isa = PBXGroup;
+			children = (
+				AA3014D02EC0D25D0085648D /* OrderService.swift */,
+			);
+			path = Sevice;
+			sourceTree = "<group>";
+		};
+		AA3014D22EC0D2A40085648D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AA3014D32EC0D2B40085648D /* PlaceOrderViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AA3014D72EC0D7890085648D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA3014D82EC0D78E0085648D /* Service */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AA3014D82EC0D78E0085648D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				AA3014D92EC0D79B0085648D /* ChooseAddressService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		AA54569E2EBBB028000409D6 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +549,7 @@
 		AA5456B22EBBB38D000409D6 /* ChooseAddressVC */ = {
 			isa = PBXGroup;
 			children = (
+				AA3014D72EC0D7890085648D /* Model */,
 				AAD28DD02EBFAC6900811EA4 /* ViewModel */,
 				AA5456B72EBBB3BA000409D6 /* View */,
 				AA5456AF2EBBB38D000409D6 /* Cells */,
@@ -553,6 +597,8 @@
 		AA5456C52EBBB42E000409D6 /* PlaceOrderVC */ = {
 			isa = PBXGroup;
 			children = (
+				AA3014D22EC0D2A40085648D /* ViewModel */,
+				AA3014CE2EC0D23F0085648D /* Model */,
 				AA5456C82EBBB432000409D6 /* View */,
 			);
 			path = PlaceOrderVC;
@@ -1239,7 +1285,9 @@
 				AAFB646B2EBCE4B9004BC3C8 /* NetworkConstants.swift in Sources */,
 				AAE5B7B72EBA4B2D00789A4A /* SignUpViewController.swift in Sources */,
 				4F7870202EB903CE00FD9157 /* HomeTabBarViewController.swift in Sources */,
+				AA3014D12EC0D25D0085648D /* OrderService.swift in Sources */,
 				AAE5B85A2EBAD59100789A4A /* SHOPPIX.xcdatamodeld in Sources */,
+				AA3014DA2EC0D79B0085648D /* ChooseAddressService.swift in Sources */,
 				AAD28DC72EBF557A00811EA4 /* CurrencyService.swift in Sources */,
 				AA5456B32EBBB38D000409D6 /* AddressTableViewCell.swift in Sources */,
 				AAE5B7842EBA4B1000789A4A /* CheckInternet.swift in Sources */,
@@ -1291,11 +1339,11 @@
 				AAE78A302EBC06D5004CE710 /* ProfileViewModel.swift in Sources */,
 				AA5456B52EBBB38D000409D6 /* ChooseAddressViewController.swift in Sources */,
 				AA5456C62EBBB42E000409D6 /* PlaceOrderViewController.swift in Sources */,
-				4F786FDE2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld in Sources */,
 				AAE5B7B02EBA4B2D00789A4A /* ProductImageCollectionViewCell.swift in Sources */,
 				4F7870162EB8F8AC00FD9157 /* LandSceenViewController.swift in Sources */,
 				AAE5B8592EBAD59100789A4A /* SceneDelegate.swift in Sources */,
 				AAE5B7BC2EBA4B2D00789A4A /* ProductViewModel.swift in Sources */,
+				AA3014D42EC0D2B40085648D /* PlaceOrderViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1706,16 +1754,6 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		4F786FDC2EB8DB4A00FD9157 /* Shoppix.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				4F786FDD2EB8DB4A00FD9157 /* Shoppix.xcdatamodel */,
-			);
-			currentVersion = 4F786FDD2EB8DB4A00FD9157 /* Shoppix.xcdatamodel */;
-			path = Shoppix.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		AAE5B8522EBAD59100789A4A /* SHOPPIX.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

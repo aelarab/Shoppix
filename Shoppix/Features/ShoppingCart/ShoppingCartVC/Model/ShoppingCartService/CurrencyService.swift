@@ -17,6 +17,8 @@ final class CurrencyService {
     private let apiKey = "cur_live_3CU7B9NoOndsH4svnWSvbekfmdjnazi7O4Xnt11Q"
     
     private var usdToEgpRate: Double = 30.0
+    
+    
     private(set) var currentCurrency: String {
         didSet {
             UserDefaults.standard.set(currentCurrency, forKey: "selectedCurrency")
