@@ -15,21 +15,23 @@ class ChoosePaymentViewController: UIViewController {
     @IBOutlet weak var continueToPaymentButton: UIButton!
     
     
-       //MARK: - Properties
-    private let sections = ["Online Payments", "More Payment Options"]
-    private let paymentOptions = [
-        ["Apple Pay"],
-        ["Cash on Delivery"]
-    ]
+    // MARK: - Properties
+    private let viewModel = ChoosePaymentViewModel()
     
        //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        continueToPaymentButton.layer.cornerRadius = continueToPaymentButton.frame.height / 2
+setupUI()
         setupTableView()
     }
 
    //MARK: - Behaviour
+    private func setupUI() {
+        continueToPaymentButton.layer.cornerRadius = continueToPaymentButton.frame.height / 2
+        continueToPaymentButton.isEnabled = false
+        continueToPaymentButton.alpha = 0.5
+    }
+    
     func setupTableView(){
         paymentsTableView.delegate = self
         paymentsTableView.dataSource = self
@@ -39,7 +41,10 @@ class ChoosePaymentViewController: UIViewController {
        //MARK: - Actions
     
     @IBAction func continueToPaymentButtonTapped(_ sender: UIButton) {
+        guard let selectedPayment = viewModel.selectedPayment else { return }
+        
         let placeOrderVC = PlaceOrderViewController(nibName: "PlaceOrderViewController", bundle: nil)
+        placeOrderVC.selectedPaymentMethod = selectedPayment
         navigationController?.pushViewController(placeOrderVC, animated: true)
     }
     
@@ -47,31 +52,40 @@ class ChoosePaymentViewController: UIViewController {
 
    //MARK: - TableView Methods
 extension ChoosePaymentViewController: UITableViewDelegate, UITableViewDataSource {
-
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.paymentSections.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.paymentOptions[section].count
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   titleForHeaderInSection section: Int) -> String? {
+        return viewModel.paymentSections[section]
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentsTableViewCell", for: indexPath) as! PaymentsTableViewCell
-        let paymentTitle = paymentOptions[indexPath.section][indexPath.row]
+        let paymentTitle = viewModel.paymentOptions[indexPath.section][indexPath.row]
         cell.paymentTitleLabel.text = paymentTitle
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        70
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.selectPayment(at: indexPath)
+        tableView.reloadData()
+        
+        continueToPaymentButton.isEnabled = viewModel.isPaymentSelected()
+        continueToPaymentButton.alpha = viewModel.isPaymentSelected() ? 1.0 : 0.5
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-           return sections.count
-       }
-       
-       func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           return paymentOptions[section].count
-       }
-       
-       func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-           return sections[section]
-       }
-    
-    
+    func tableView(_ tableView: UITableView,
+                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
 }
+

@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import RxSwift
 
 class SettingsViewController: UIViewController {
        //MARK: - Outlets
@@ -27,6 +28,7 @@ class SettingsViewController: UIViewController {
     
     // MARK: - Properties
     private let viewModel = SettingsViewModel()
+    private let disposeBag = DisposeBag()
     
        //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -35,6 +37,8 @@ class SettingsViewController: UIViewController {
         setupGestures()
 setupUI()
         bindViewModel()
+        loadDefaultAddress()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,19 +47,40 @@ setupUI()
     }
     
        //MARK: - Behaviour
-    func setupAddressLabel(){
-        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+    
+    private func loadDefaultAddress() {
+           if Auth.auth().currentUser != nil {
+               viewModel.loadDefaultAddress()
+           } else {
+               updateAddressLabel(with: nil)
+           }
+       }
+    
+    
+    
+    private func setupAddressLabel() {
+        guard Auth.auth().currentUser != nil else {
             addressLabel.text = "Login To Access"
-                return
-            }
-        addressLabel.text = "Ismaila"
+            addressLabel.textColor = .systemGray
+            return
+        }
+        
+        if let address = viewModel.defaultAddress.value {
+            addressLabel.text = address.city
+            addressLabel.textColor = .label
+        } else {
+            addressLabel.text = "Add Address"
+            addressLabel.textColor = .systemGray
+        }
     }
     
     private func setupUI() {
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         tabBarController?.tabBar.isHidden = true
-        currencyLabel.text = viewModel.currentCurrency
+        currencyLabel.text = CurrencyService.shared.currentCurrency
         setupAddressLabel()
+        logoutButton.setTitle("Logout", for: .normal)
+        designButton(button: logoutButton)
         
     }
     private func setupGestures() {
@@ -78,7 +103,27 @@ setupUI()
         viewModel.onCurrencyChanged = { [weak self] newCurrency in
             self?.currencyLabel.text = newCurrency
         }
+        
+        viewModel.defaultAddress
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] address in
+                self?.updateAddressLabel(with: address)
+            })
+            .disposed(by: disposeBag)
     }
+
+    private func updateAddressLabel(with address: ShopifyAddress?) {
+        if let address = address {
+            addressLabel.text = address.city
+            addressLabel.textColor = .label
+            print("Settings - Updated address label to: \(address.city)")
+        } else {
+            addressLabel.text = "Add Address"
+            addressLabel.textColor = .systemGray
+            print("Settings - No default address found")
+        }
+    }
+    
     private func showLoginAlert() {
         let alert = UIAlertController(title: "Login Required", message: "Please sign in to add items to your favorites.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -104,7 +149,7 @@ setupUI()
     @objc private func currencyTapped() {
         let alert = UIAlertController(title: "Select Currency", message: nil, preferredStyle: .actionSheet)
         
-        ["EGP", "USD"].forEach { currency in
+        CurrencyService.shared.getAvailableCurrencies().forEach { currency in
             alert.addAction(UIAlertAction(title: currency, style: .default, handler: { _ in
                 self.viewModel.updateCurrency(to: currency)
             }))

@@ -7,6 +7,7 @@
 
 import UIKit
 import SearchTextField
+import RxSwift
 
 class AddNewAddressViewController: UIViewController {
        //MARK: - Outlets
@@ -16,9 +17,10 @@ class AddNewAddressViewController: UIViewController {
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var addAddressButton: UIButton!
-    
+    @IBOutlet weak var isDefaultSwitch: UISwitch!
     
     // MARK: - Properties
+    private let disposeBag = DisposeBag()
     private let viewModel = AddAddressViewModel()
     private var countries: [Country] = []
     
@@ -33,9 +35,33 @@ class AddNewAddressViewController: UIViewController {
         setupCountrySearch()
         loadCountries()
         setupCountrySearch()
+        setupUI()
+        fetchUserData()
     }
-
+    
+       //MARK: - Address update
+    private func fetchUserData() {
+            viewModel.fetchUserData { [weak self] success in
+                DispatchQueue.main.async {
+                    if success {
+                        print("Successfully fetched user data from Firebase")
+                    } else {
+                        print("Warning: Could not fetch user data from Firebase")
+                        // Set default values
+                        self?.viewModel.firstName = "Customer"
+                        self?.viewModel.lastName = "User"
+                    }
+                }
+            }
+        }
    //MARK: - Behaviour
+    
+       //MARK: -
+    
+    private func setupUI() {
+        isDefaultSwitch.onTintColor = UIColor(named: "mainColor")
+        isDefaultSwitch.isOn = false
+    }
     
     private func loadCountries() {
         guard let path = Bundle.main.path(forResource: "countries", ofType: "json"),
@@ -91,6 +117,7 @@ class AddNewAddressViewController: UIViewController {
         viewModel.onError = { [weak self] message in
             DispatchQueue.main.async {
                 self?.showAlert(message)
+                print("Error: \(message)") // Debug print
             }
         }
     }
@@ -106,7 +133,23 @@ class AddNewAddressViewController: UIViewController {
         viewModel.city = cityTextField.text ?? ""
         viewModel.address = addressTextField.text ?? ""
         viewModel.phone = phoneTextField.text ?? ""
+        viewModel.isDefault = isDefaultSwitch.isOn
+        
+        // Debug print to verify all data
+        print("Saving address with:")
+        print("Name: \(viewModel.firstName) \(viewModel.lastName)")
+        print("Country: \(viewModel.country)")
+        print("City: \(viewModel.city)")
+        print("Address: \(viewModel.address)")
+        print("Phone: \(viewModel.phone)")
+        print("Is Default: \(viewModel.isDefault)")
+        print("Customer ID: \(viewModel.customerId ?? 0)")
         
      //   viewModel.saveAddress()
     }
+    
+    @IBAction func defaultSwitchChanged(_ sender: UISwitch) {
+        viewModel.isDefault = sender.isOn
+    }
+    
 }

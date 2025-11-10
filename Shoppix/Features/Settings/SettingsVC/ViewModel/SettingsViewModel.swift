@@ -6,36 +6,92 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+import FirebaseAuth
+import FirebaseFirestore
 
 final class SettingsViewModel {
     
     // MARK: - Properties
-    private let userDefaults = UserDefaults.standard
-    private let currencyKey = "selectedCurrency"
-    
+    private let disposeBag = DisposeBag()
+    let defaultAddress = BehaviorRelay<ShopifyAddress?>(value: nil)
     var onCurrencyChanged: ((String) -> Void)?
     
-    private(set) var currentCurrency: String {
-        didSet {
-            userDefaults.set(currentCurrency, forKey: currencyKey)
-            onCurrencyChanged?(currentCurrency)
-            NotificationCenter.default.post(
-                name: .currencyDidChange,
-                object: nil,
-                userInfo: ["currency": currentCurrency]
-            )
+    init() {
+        NotificationCenter.default.addObserver(
+            forName: .currencyDidChange,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.onCurrencyChanged?(CurrencyService.shared.currentCurrency)
         }
     }
     
-    // MARK: - Init
-    init() {
-        let savedCurrency = userDefaults.string(forKey: currencyKey)
-        self.currentCurrency = savedCurrency ?? "EGP"
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
-    
+
     // MARK: - Behaviour
     func updateCurrency(to newCurrency: String) {
-        guard newCurrency != currentCurrency else { return }
-        currentCurrency = newCurrency
+        CurrencyService.shared.updateCurrency(newCurrency)
     }
+    
+    func loadDefaultAddress() {
+            
+            fetchCustomerIdFromFirebase { [weak self] customerId in
+                guard let customerId = customerId else {
+
+                    return
+                }
+                
+                AddressService.shared.getDefaultAddress(customerId: customerId) { result in
+                    
+                    switch result {
+                    case .success(let address):
+                        print("Settings - Loaded default address: \(address?.city ?? "No city")")
+                        self?.defaultAddress.accept(address)
+                    case .failure(let error):
+                        print("Settings - Error loading default address: \(error)")
+
+                    }
+                }
+            }
+        }
+        
+        // MARK: - Firebase Customer ID Fetching
+        private func fetchCustomerIdFromFirebase(completion: @escaping (Int?) -> Void) {
+            guard let uid = Auth.auth().currentUser?.uid else {
+                completion(nil)
+                return
+            }
+            
+            let db = Firestore.firestore()
+            db.collection("users").document(uid).getDocument { snapshot, error in
+                if let error = error {
+                    print("Error fetching customer ID from Firebase: \(error)")
+                    completion(nil)
+                    return
+                }
+                
+                guard let data = snapshot?.data() else {
+                    print("No user data found in Firebase")
+                    completion(nil)
+                    return
+                }
+                
+                // Try to get customer ID as Int or String
+                if let customerId = data["shopifyCustomerId"] as? Int {
+                    print("Settings - Found customer ID in Firebase: \(customerId)")
+                    completion(customerId)
+                } else if let customerIdString = data["shopifyCustomerId"] as? String,
+                          let customerId = Int(customerIdString) {
+                    print("Settings - Found customer ID in Firebase (string): \(customerId)")
+                    completion(customerId)
+                } else {
+                    print("Settings - No customer ID found in Firebase data")
+                    completion(nil)
+                }
+            }
+        }
 }

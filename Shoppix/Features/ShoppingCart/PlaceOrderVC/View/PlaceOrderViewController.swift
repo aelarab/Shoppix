@@ -20,6 +20,8 @@ class PlaceOrderViewController: UIViewController {
 
        //MARK: - properties
     private var paymentRequest: PKPaymentRequest?
+    var selectedPaymentMethod: String?
+    private let viewModel = PlaceOrderViewModel()
     
        //MARK: - lifeCycle
     override func viewDidLoad() {
@@ -29,11 +31,12 @@ class PlaceOrderViewController: UIViewController {
     
        //MARK: - Behaviour
     private func startApplePayPayment() {
-            // Ensure device supports Apple Pay
             guard PKPaymentAuthorizationViewController.canMakePayments() else {
-                let alert = UIAlertController(title: "Apple Pay Not Available",
-                                              message: "Please set up Apple Pay in your device settings.",
-                                              preferredStyle: .alert)
+                let alert = UIAlertController(
+                    title: "Apple Pay Not Available",
+                    message: "Please set up Apple Pay in your device settings.",
+                    preferredStyle: .alert
+                )
                 alert.addAction(UIAlertAction(title: "OK", style: .default))
                 present(alert, animated: true)
                 return
@@ -45,7 +48,7 @@ class PlaceOrderViewController: UIViewController {
 
             // Create payment request
             let request = PKPaymentRequest()
-            request.merchantIdentifier = "merchant.adham-ragap.Shoppix" 
+            request.merchantIdentifier = "merchant.adham-ragap.Shoppix"
             request.supportedNetworks = [.visa, .masterCard, .amex]
             request.merchantCapabilities = .capability3DS
             request.countryCode = "US"
@@ -62,7 +65,6 @@ class PlaceOrderViewController: UIViewController {
             }
         }
     
-    
        //MARK: - Actions
     
     @IBAction func placeOrderTapped(_ sender: UIButton) {
@@ -70,8 +72,6 @@ class PlaceOrderViewController: UIViewController {
     }
 }
 
-
-// MARK: - PKPaymentAuthorizationViewControllerDelegate
 extension PlaceOrderViewController: PKPaymentAuthorizationViewControllerDelegate {
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
         controller.dismiss(animated: true)
@@ -82,10 +82,50 @@ extension PlaceOrderViewController: PKPaymentAuthorizationViewControllerDelegate
         didAuthorizePayment payment: PKPayment,
         handler completion: @escaping (PKPaymentAuthorizationResult) -> Void
     ) {
-        // Here you’d send payment.token to your backend to process the charge
-        print("Apple Pay Token: \(payment.token)")
+        controller.dismiss(animated: true)
 
-        // Simulate success
-        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+        // Use grandTotalLabel as total amount
+        guard let totalText = grandTotalLabel.text?.replacingOccurrences(of: " USD", with: "") else {
+            completion(PKPaymentAuthorizationResult(status: .failure, errors: nil))
+            return
+        }
+
+        viewModel.selectedPaymentMethod = "apple_pay"
+        viewModel.totalAmountString = totalText
+
+        viewModel.loadCartAndPlaceOrder { [weak self] result in
+            guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+
+                    let alert = UIAlertController(
+                        title: "Order Placed Successfully 🎉",
+                        message: "Your order has been confirmed! A receipt has been sent to your email.",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "Go to Cart", style: .default) { _ in
+                        let cartVC = ShoppingCartViewController(
+                            nibName: "ShoppingCartViewController",
+                            bundle: nil
+                        )
+                        self.navigationController?.pushViewController(cartVC, animated: true)
+                    })
+                    self.present(alert, animated: true)
+
+                case .failure(let error):
+                    completion(PKPaymentAuthorizationResult(status: .failure, errors: nil))
+                    self.showError(message: error.localizedDescription)
+                }
+            }
+        }
+    }
+
+    private func showError(message: String) {
+        let alert = UIAlertController(title: "Order Failed", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }

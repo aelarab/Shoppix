@@ -8,9 +8,12 @@
 import UIKit
 import FirebaseAuth
 import CoreData
+import RxSwift
+
 
 class ProductDetailsViewController: UIViewController {
 
+       //MARK: - Outlets
     @IBOutlet weak var variantPicker: UIPickerView!
     @IBOutlet weak var reviewButtomOutlet: UIButton!
     @IBOutlet weak var favoriteButtonOutlet: UIButton!
@@ -20,6 +23,8 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var page: UIPageControl!
     @IBOutlet weak var productCollectionView: UICollectionView!
+    
+       //MARK: - Properties
     var productImages = [ProductImage]()
 //    var productId = 0
     var isVaforite:Bool = false
@@ -28,6 +33,10 @@ class ProductDetailsViewController: UIViewController {
     var selectedVariant: Variant?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var product:Product?
+    private let disposeBag = DisposeBag()
+
+    
+       //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,13 +56,45 @@ class ProductDetailsViewController: UIViewController {
         reviewButtomOutlet.setTitle("Reviews", for: .normal)
         favoriteButtonOutlet.addTarget(self, action: #selector(addFavoritTapped), for: .touchUpInside)
         reviewButtomOutlet.addTarget(self, action: #selector(reviewButtonTapped), for: .touchUpInside)
-       
+        setupNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
+        updatePriceForCurrentVariant()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+       //MARK: - Behaviour
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(currencyDidChange),
+            name: .currencyDidChange,
+            object: nil
+        )
+    }
+    @objc private func currencyDidChange() {
+        updatePriceForCurrentVariant()
+    }
+    
+    private func updatePriceForCurrentVariant() {
+        guard let variant = selectedVariant ?? variants.first else { return }
+        updatePriceLabel(for: variant)
+    }
+    
+    private func updatePriceLabel(for variant: Variant) {
+        let currency = CurrencyService.shared.currentCurrency
+        let price = Double(variant.price) ?? 0
+        let convertedPrice = CurrencyService.shared.convert(amount: price, from: "EGP", to: currency)
+        let formattedPrice = CurrencyService.shared.formatPrice(convertedPrice, currency: currency)
         
+        UIView.transition(with: productPrice, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.productPrice.text = formattedPrice
+        }, completion: nil)
     }
 
    @objc func addFavoritTapped (){
@@ -152,56 +193,69 @@ class ProductDetailsViewController: UIViewController {
         self.navigationController?.present(reviewVC, animated: true)
     }
     
-    func addToCart(product: Product) {
-        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
-            showLoginAlert()
-            return
-        }
+    private func addToCart() {
+           guard let product = product,
+                 let selectedVariant = selectedVariant ?? variants.first,
+                 let userEmail = Auth.auth().currentUser?.email else {
+               showSimpleAlert(title: "Error", message: "Please select a variant and make sure you're logged in.")
+               return
+           }
 
-        let request: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: "CartProduct")
-        request.predicate = NSPredicate(format: "id == %@ AND userId == %@", NSNumber(value: Session.productId), userId)
-        
-        do {
-            let results = try context.fetch(request)
-            if !results.isEmpty {
-                showSimpleAlert(title: "Already Added", message: "This item is already in your cart.")
-                return
-            }
-        } catch {
-            print(" Fetch failed: \(error.localizedDescription)")
-        }
-        
-        let cartItem = NSEntityDescription.insertNewObject(forEntityName: "CartProduct", into: context)
-        cartItem.setValue(Int64(Session.productId), forKey: "id")
-        cartItem.setValue(product.title, forKey: "title")
-        cartItem.setValue(product.variants.first?.price ?? "0.0", forKey: "price")
-        cartItem.setValue(product.images.first?.src, forKey: "image")
-        cartItem.setValue(userId, forKey: "userId")
-        cartItem.setValue(Int64(1), forKey: "quantity") 
-        
-        do {
-            try context.save()
-            print("✅ Product added to cart successfully. Quantity: 1")
-            showSimpleAlert(title: "Added to Cart", message: "\(product.title) has been added to your cart.")
-        } catch {
-            print("❌ Error saving cart product: \(error.localizedDescription)")
-        }
-    }
+           ShopifyCartService.shared.addToCart(
+               product: product,
+               variant: selectedVariant,
+               userEmail: userEmail
+           )
+           .observe(on: MainScheduler.instance)
+           .subscribe(
+               onNext: { [weak self] success in
+                   if success {
+                       self?.showSimpleAlert(
+                           title: "Success",
+                           message: "\(product.title) was added to your cart!"
+                       )
+                   } else {
+                       self?.showSimpleAlert(
+                           title: "Failed",
+                           message: "Couldn't add to cart. Please try again."
+                       )
+                   }
+               },
+               onError: { [weak self] error in
+                   self?.showSimpleAlert(
+                       title: "Error",
+                       message: "Failed to add to cart: \(error.localizedDescription)"
+                   )
+               }
+           )
+           .disposed(by: disposeBag)
+       }
 
-    func showSimpleAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
+       func showSimpleAlert(title: String, message: String) {
+           DispatchQueue.main.async {
+               let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "OK", style: .default))
+               self.present(alert, animated: true)
+           }
+       }
 
+   //MARK: - Actions
     @IBAction func addToBagButtonPressed(_ sender: UIButton) {
-        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
-                showLoginAlert()
+        guard let product = product else {
+                showSimpleAlert(title: "Error", message: "Product not loaded yet.")
                 return
             }
-        guard let product = product else { return }
-        addToCart(product: product)
+            
+            guard let selectedVariant = selectedVariant ?? variants.first else {
+                showSimpleAlert(title: "Select Variant", message: "Please select a product variant first.")
+                return
+            }
+            
+            viewModel?.addToCart(product: product, variant: selectedVariant)
 
+    }
+    func showCartSuccess(message: String) {
+        showSimpleAlert(title: "Success", message: message)
     }
 }
 extension ProductDetailsViewController:UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -232,28 +286,28 @@ extension ProductDetailsViewController:UICollectionViewDelegate,UICollectionView
 }
 extension ProductDetailsViewController:sendProductDetailsDelegete {
     func sendProductDetails(productDetail: SingleProductModel) {
-        productImages = productDetail.product.images
-        product = productDetail.product
-        variants = productDetail.product.variants
-        DispatchQueue.main.async { [weak self]  in
-            guard let self = self else {return}
-            self.productName.text = productDetail.product.title
-           
-            self.page.numberOfPages = self.productImages.count
-            self.title = productDetail.product.title
-            self.productDescription.text = productDetail.product.body_html
-            self.productCollectionView.reloadData()
-            
-            if let firstVariant = self.variants.first {
-                       self.productPrice.text = "\(firstVariant.price) EGP"
-                       self.variantPicker.selectRow(0, inComponent: 0, animated: false)
-                   }
-            self.variantPicker.reloadAllComponents()
-            
-            
-            self.isProductFavorite()
-        }
-    }
+           productImages = productDetail.product.images
+           product = productDetail.product
+           variants = productDetail.product.variants
+           DispatchQueue.main.async { [weak self]  in
+               guard let self = self else {return}
+               self.productName.text = productDetail.product.title
+              
+               self.page.numberOfPages = self.productImages.count
+               self.title = productDetail.product.title
+               self.productDescription.text = productDetail.product.body_html
+               self.productCollectionView.reloadData()
+               
+               if let firstVariant = self.variants.first {
+
+                   self.updatePriceLabel(for: firstVariant)
+                   self.variantPicker.selectRow(0, inComponent: 0, animated: false)
+               }
+               self.variantPicker.reloadAllComponents()
+               
+               self.isProductFavorite()
+           }
+       }
     func showError(message: String) {
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: "⚠️ Error", message: message, preferredStyle: .alert)
@@ -280,8 +334,5 @@ extension ProductDetailsViewController: UIPickerViewDataSource, UIPickerViewDele
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let variant = variants[row]
         self.selectedVariant = variant
-        UIView.transition(with: productPrice, duration: 0.3, options: .transitionCrossDissolve, animations: {
-               self.productPrice.text = "\(variant.price) EGP"
-           }, completion: nil)
-    }
-}
+        updatePriceLabel(for: variant)
+    }}
