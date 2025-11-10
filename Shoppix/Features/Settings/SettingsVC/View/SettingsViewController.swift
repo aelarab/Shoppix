@@ -26,6 +26,9 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var logoutButton: UIButton!
     
+    @IBOutlet weak var nightModeSwitch: UISwitch!
+    
+    
     // MARK: - Properties
     private let viewModel = SettingsViewModel()
     private let disposeBag = DisposeBag()
@@ -38,7 +41,7 @@ class SettingsViewController: UIViewController {
 setupUI()
         bindViewModel()
         loadDefaultAddress()
-        
+        setupNightModeSwitch()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,6 +50,30 @@ setupUI()
     }
     
        //MARK: - Behaviour
+    
+    private func setupNightModeSwitch() {
+        let isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
+        nightModeSwitch.isOn = isDarkMode
+        applyTheme(isDarkMode: isDarkMode)
+        
+        nightModeSwitch.addTarget(self, action: #selector(nightModeSwitchChanged(_:)), for: .valueChanged)
+    }
+    
+    @objc private func nightModeSwitchChanged(_ sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: "isDarkMode")
+        
+        applyTheme(isDarkMode: sender.isOn)
+        let themeName = sender.isOn ? "Dark" : "Light"
+        print("Switched to \(themeName) mode")
+    }
+    
+    private func applyTheme(isDarkMode: Bool) {
+        // Apply to all windows
+        UIApplication.shared.windows.forEach { window in
+            window.overrideUserInterfaceStyle = isDarkMode ? .dark : .light
+        }
+    }
+    
     
     private func loadDefaultAddress() {
            if Auth.auth().currentUser != nil {
