@@ -154,12 +154,27 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == couponsCollectionView {
             let selectedCoupon = coupons[indexPath.item]
-            UIPasteboard.general.string = selectedCoupon.couponName
+            let couponCode = selectedCoupon.shopifyCode
+            
 
-            let alert = UIAlertController(title: "Copied!", message: "Coupon \(selectedCoupon.couponName) copied.", preferredStyle: .alert)
-            present(alert, animated: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                alert.dismiss(animated: true)
+            ShopifyCouponService.shared.validateDiscountCode(couponCode!) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        UIPasteboard.general.string = couponCode
+                        let alert = UIAlertController(title: "Copied!", message: "Coupon \(couponCode!) copied successfully.", preferredStyle: .alert)
+                        self.present(alert, animated: true)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            alert.dismiss(animated: true)
+                        }
+                    case .failure(let error):
+                        let alert = UIAlertController(title: "Invalid Coupon", message: "This coupon is no longer valid. (\(error.localizedDescription))", preferredStyle: .alert)
+                        self.present(alert, animated: true)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            alert.dismiss(animated: true)
+                        }
+                    }
+                }
             }
         } else if collectionView == categoriesCollectionView {
             guard checkInternetConnection() else { return }
@@ -184,17 +199,27 @@ extension HomeViewController: SendProuctDelegete {
     
     
     func didFetchCoupons(_ coupons: [Coupon]) {
-        self.coupons = coupons
-        DispatchQueue.main.async {
-            self.couponsPageControl.numberOfPages = coupons.count
-            self.couponsPageControl.currentPage = 0
-
-            self.couponsPageControl.pageIndicatorTintColor = .lightGray
-            self.couponsPageControl.currentPageIndicatorTintColor = UIColor(named: "mainColor") ?? .systemBlue
-
-            self.couponsCollectionView.reloadData()
+            self.coupons = coupons
+            DispatchQueue.main.async {
+                self.couponsPageControl.numberOfPages = coupons.count
+                self.couponsPageControl.currentPage = 0
+                self.couponsPageControl.pageIndicatorTintColor = .lightGray
+                self.couponsPageControl.currentPageIndicatorTintColor = UIColor(named: "mainColor") ?? .systemBlue
+                self.couponsCollectionView.reloadData()
+            }
         }
-    }
+        
+        func didFailToFetchCoupons(with error: Error) {
+            print("Failed to fetch coupons: \(error)")
+            let localCoupons: [Coupon] = [
+                Coupon(couponName: "WELCOME25", couponDiscount: 25, couponImage: UIImage(named: "25coupon")!, shopifyCode: "WELCOME25", valueType: "percentage"),
+                Coupon(couponName: "SAVE50", couponDiscount: 50, couponImage: UIImage(named: "50coupon")!, shopifyCode: "SAVE50", valueType: "percentage")
+            ]
+            self.coupons = localCoupons
+            DispatchQueue.main.async {
+                self.couponsCollectionView.reloadData()
+            }
+        }
 
     
     

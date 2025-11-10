@@ -77,7 +77,7 @@ setupNotification()
             return partial + convertedPrice * Double(item.quantity)
         }
         
-        totalPriceLabel.text = CurrencyService.shared.formatPrice(total, currency: currency)
+        totalPriceLabel.text = "Total Price: \(CurrencyService.shared.formatPrice(total, currency: currency))"
     }
 
     

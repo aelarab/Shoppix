@@ -56,6 +56,7 @@
 		AA5DF0092EBAE85300E72FB2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5DF0042EBAE85300E72FB2 /* ProfileViewController.swift */; };
 		AA5DF00A2EBAE85300E72FB2 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA5DF0052EBAE85300E72FB2 /* ProfileViewController.xib */; };
 		AA6255462EC000E50080BDEB /* ChoosePaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6255452EC000E50080BDEB /* ChoosePaymentViewModel.swift */; };
+		AAA271412EC2263800E16F27 /* ShopifyCouponService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA271402EC2263800E16F27 /* ShopifyCouponService.swift */; };
 		AAD28DC42EBF468E00811EA4 /* ShoppingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC32EBF468E00811EA4 /* ShoppingCartViewModel.swift */; };
 		AAD28DC72EBF557A00811EA4 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC62EBF557A00811EA4 /* CurrencyService.swift */; };
 		AAD28DC92EBF559E00811EA4 /* CurrencyResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD28DC82EBF559E00811EA4 /* CurrencyResponseModel.swift */; };
@@ -193,6 +194,7 @@
 		AA5DF0042EBAE85300E72FB2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
 		AA5DF0052EBAE85300E72FB2 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		AA6255452EC000E50080BDEB /* ChoosePaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePaymentViewModel.swift; sourceTree = "<group>"; };
+		AAA271402EC2263800E16F27 /* ShopifyCouponService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyCouponService.swift; sourceTree = "<group>"; };
 		AAD28DC32EBF468E00811EA4 /* ShoppingCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewModel.swift; sourceTree = "<group>"; };
 		AAD28DC62EBF557A00811EA4 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		AAD28DC82EBF559E00811EA4 /* CurrencyResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyResponseModel.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 		4F7870222EB9041300FD9157 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AAA2713F2EC2261B00E16F27 /* Services */,
 				4F7870232EB9041300FD9157 /* SmartCollectionModel.swift */,
 				AA5456CA2EBBC416000409D6 /* CouponModel.swift */,
 			);
@@ -728,6 +731,14 @@
 				AA6255452EC000E50080BDEB /* ChoosePaymentViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AAA2713F2EC2261B00E16F27 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AAA271402EC2263800E16F27 /* ShopifyCouponService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		AAD28DC22EBF467A00811EA4 /* ViewModel */ = {
@@ -1357,6 +1368,7 @@
 				4F78701B2EB8FC0A00FD9157 /* GauestOrUserViewController.swift in Sources */,
 				AAD28DCC2EBF9B6700811EA4 /* AddressModel.swift in Sources */,
 				AAE5B7BD2EBA4B2D00789A4A /* ReviewCellTableViewCell.swift in Sources */,
+				AAA271412EC2263800E16F27 /* ShopifyCouponService.swift in Sources */,
 				AAE5B7B22EBA4B2D00789A4A /* ProductDetailsViewController.swift in Sources */,
 				4F78702C2EB9041300FD9157 /* HomeViewModel.swift in Sources */,
 				AAE5B7AC2EBA4B2D00789A4A /* FavoriteViewController.swift in Sources */,
