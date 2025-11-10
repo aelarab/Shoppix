@@ -21,7 +21,7 @@ final class OrderService {
         lineItems: [[String: Any]],
         shippingAddress: [String: Any],
         paymentMethod: String,
-        totalAmount: String, // formatted string, 2 decimals
+        totalAmount: String,
         completion: @escaping (Result<Void, Error>) -> Void
     ) {
         guard let url = URL(string: "\(baseURL)/orders.json") else { return }
@@ -30,6 +30,17 @@ final class OrderService {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue(token, forHTTPHeaderField: "X-Shopify-Access-Token")
+
+        // 🧩 Normalize gateway name
+        let gateway: String
+        switch paymentMethod.lowercased() {
+        case "apple_pay":
+            gateway = "Apple Pay"
+        case "cash_on_delivery":
+            gateway = "Cash on Delivery"
+        default:
+            gateway = paymentMethod
+        }
 
         let body: [String: Any] = [
             "order": [
@@ -42,7 +53,7 @@ final class OrderService {
                     [
                         "kind": "sale",
                         "status": "success",
-                        "gateway": paymentMethod,
+                        "gateway": gateway,
                         "amount": totalAmount
                     ]
                 ]
@@ -63,7 +74,7 @@ final class OrderService {
             }
 
             if let httpResponse = response as? HTTPURLResponse {
-                print("📦 Status code:", httpResponse.statusCode)
+                print(" Status code:", httpResponse.statusCode)
             }
 
             guard let data = data else {
@@ -73,7 +84,7 @@ final class OrderService {
             }
 
             if let jsonString = String(data: data, encoding: .utf8) {
-                print("🧾 Shopify Response JSON:\n\(jsonString)")
+                print(" Shopify Response JSON:\n\(jsonString)")
             }
 
             do {
@@ -99,6 +110,7 @@ final class OrderService {
         }.resume()
     }
 
+
     private func sendConfirmationEmail(orderId: Int, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/orders/\(orderId)/send.json") else { return }
 
@@ -112,8 +124,96 @@ final class OrderService {
                 completion(.failure(error))
                 return
             }
-            print("📧 Shopify confirmation email triggered for order \(orderId)")
+            print(" Shopify confirmation email triggered for order \(orderId)")
             completion(.success(()))
+        }.resume()
+    }
+    
+    func getOrdersForUser(email: String, completion: @escaping (Result<[Order], Error>) -> Void) {
+        let endpoint = "\(baseURL)/orders.json?email=\(email)&status=any&limit=250"
+        
+        guard let url = URL(string: endpoint) else {
+            completion(.failure(NSError(domain: "", code: -1,
+                userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(token, forHTTPHeaderField: "X-Shopify-Access-Token")
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Orders API Status Code: \(httpResponse.statusCode)")
+            }
+
+            guard let data = data else {
+                completion(.failure(NSError(domain: "", code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "No data received"])))
+                return
+            }
+
+            if let jsonString = String(data: data, encoding: .utf8) {
+                print(" Shopify Orders Response JSON:\n\(jsonString)")
+            }
+
+            do {
+                let response = try JSONDecoder().decode(OrdersResponse.self, from: data)
+                completion(.success(response.orders))
+            } catch {
+                print(" Error decoding orders: \(error)")
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+
+    func getOrdersForUser(
+        email: String,
+        status: String? = nil,
+        limit: Int = 50,
+        completion: @escaping (Result<[Order], Error>) -> Void
+    ) {
+        var endpoint = "\(baseURL)/orders.json?email=\(email)&limit=\(limit)"
+        
+        if let status = status, !status.isEmpty {
+            endpoint += "&status=\(status)"
+        }
+        
+        guard let url = URL(string: endpoint) else {
+            completion(.failure(NSError(domain: "", code: -1,
+                userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(token, forHTTPHeaderField: "X-Shopify-Access-Token")
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(NSError(domain: "", code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "No data received"])))
+                return
+            }
+
+            do {
+                let response = try JSONDecoder().decode(OrdersResponse.self, from: data)
+                completion(.success(response.orders))
+            } catch {
+                completion(.failure(error))
+            }
         }.resume()
     }
 }

@@ -66,7 +66,6 @@ final class ChooseAddressViewModel {
                 return
             }
             
-            // Try to get customer ID as Int or String
             if let customerId = data["shopifyCustomerId"] as? Int {
                 print("ChooseAddress - Found customer ID in Firebase: \(customerId)")
                 completion(customerId)

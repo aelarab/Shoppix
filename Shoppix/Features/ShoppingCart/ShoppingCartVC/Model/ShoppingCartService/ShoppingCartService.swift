@@ -121,9 +121,7 @@ class ShopifyCartService {
             return Disposables.create()
         }
     }
-
-
-       
+ 
        // Delete entire draft order (cart)
        func deleteCart(draftOrderId: String) -> Observable<Bool> {
            return Observable.create { observer in

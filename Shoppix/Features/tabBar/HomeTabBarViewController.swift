@@ -6,15 +6,16 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarIntiliaze ()
-        // Do any additional setup after loading the view.
+        applySavedTheme()
     }
-    
+
     func tabBarIntiliaze (){
         let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
            homeVC.tabBarItem = UITabBarItem(
@@ -42,14 +43,26 @@ class HomeTabBarViewController: UITabBarController {
            )
            let meNav = UINavigationController(rootViewController: meVC)
         
+        let shoppingCartVC = ShoppingCartViewController(nibName: "ShoppingCartViewController", bundle: nil)
+        shoppingCartVC.tabBarItem = UITabBarItem(
+            title: "Cart",
+            image: UIImage(systemName: "cart.circle"),
+            selectedImage: UIImage(systemName: "cart.circle.fill")
+        )
+        let cartNav = UINavigationController(rootViewController: shoppingCartVC)
         
-        UITabBar.appearance().tintColor = UIColor(named: "MainColor")
+        UITabBar.appearance().tintColor = UIColor(named: "mainColor")
           UITabBar.appearance().unselectedItemTintColor = .gray
-        
-//
-//        UITabBar.appearance().tintColor = UIColor(named: "MainColor")
-//        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "MainColor")
-        self.viewControllers = [homeNav, meNav]
+
+        self.viewControllers = [homeNav, cartNav, meNav]
+    }
+
+    
+    private func applySavedTheme() {
+        let isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
+        UIApplication.shared.windows.forEach { window in
+            window.overrideUserInterfaceStyle = isDarkMode ? .dark : .light
+        }
     }
 
 }
