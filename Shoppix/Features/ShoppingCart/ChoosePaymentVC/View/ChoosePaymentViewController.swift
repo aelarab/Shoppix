@@ -37,6 +37,8 @@ setupUI()
         continueToPaymentButton.layer.cornerRadius = continueToPaymentButton.frame.height / 2
         continueToPaymentButton.isEnabled = false
         continueToPaymentButton.alpha = 0.5
+        continueToPaymentButton.setTitle("Continue To Payment", for: .normal)
+        designButton(button: continueToPaymentButton)
     }
     
     func setupTableView(){

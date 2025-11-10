@@ -39,6 +39,8 @@ class AddressViewController: UIViewController {
     func setupUI(){
         addNewAddressButton.layer.cornerRadius = addNewAddressButton.frame.height / 2
         tabBarController?.tabBar.isHidden = true
+        addNewAddressButton.setTitle("Add New Address", for: .normal)
+        designButton(button: addNewAddressButton)
     }
     
     private func setupBindings() {

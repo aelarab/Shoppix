@@ -50,6 +50,8 @@ class ChooseAddressViewController: UIViewController {
            continueToPaymentButton.layer.cornerRadius = continueToPaymentButton.frame.height / 2
            emptyStateLabel.isHidden = true
            emptyStateLabel.text = "No addresses found. Please add an address first."
+        continueToPaymentButton.setTitle("Continue To Payment", for: .normal)
+        designButton(button: continueToPaymentButton)
        }
     
     func setupTableView(){

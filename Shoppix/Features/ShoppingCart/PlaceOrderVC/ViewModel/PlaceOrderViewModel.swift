@@ -5,9 +5,6 @@
 //  Created by Nafea Elkassas on 09/11/2025.
 //
 
-import Foundation
-import FirebaseAuth
-import RxSwift
 
 import Foundation
 import FirebaseAuth
@@ -41,7 +38,6 @@ final class PlaceOrderViewModel {
                     [
                         "variant_id": $0.variant_id ?? 0,
                         "quantity": $0.quantity ?? 1
-                        // no need to include price here since Shopify will use transaction amount
                     ]
                 }
                 
@@ -75,7 +71,6 @@ final class PlaceOrderViewModel {
             return
         }
 
-        // Use the Apple Pay total passed from VC
         let totalAmount = totalAmountString ?? "0.00"
 
         orderService.createOrder(

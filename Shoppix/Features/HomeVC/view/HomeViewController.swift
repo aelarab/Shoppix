@@ -80,7 +80,7 @@ class HomeViewController: UIViewController {
        //MARK: - Behaviour
     
     func startCouponAutoScroll() {
-        couponTimer?.invalidate() // stop any old timers
+        couponTimer?.invalidate() 
         couponTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             if self.coupons.isEmpty { return }

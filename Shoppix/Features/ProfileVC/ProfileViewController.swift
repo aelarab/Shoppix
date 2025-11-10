@@ -48,21 +48,18 @@ class ProfileViewController: UIViewController {
 
        //MARK: - Behaviour
     private func setupTables() {
-            // Setup Orders Table
             ordersTableView.delegate = self
             ordersTableView.dataSource = self
             ordersTableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersTableViewCell")
             ordersTableView.rowHeight = 60
             ordersTableView.separatorStyle = .singleLine
             
-            // Setup Favorites Table
             favoritesTableView.delegate = self
             favoritesTableView.dataSource = self
             favoritesTableView.register(UINib(nibName: "FavoriteTableViewCell", bundle: nil), forCellReuseIdentifier: "FavoriteTableViewCell")
             favoritesTableView.rowHeight = 60
             favoritesTableView.separatorStyle = .singleLine
             
-            // Update section titles
             updateSectionTitles()
         }
         
@@ -88,7 +85,6 @@ class ProfileViewController: UIViewController {
     
     private func loadRecentData() {
             guard UserDefaults.standard.string(forKey: "userId") != nil else {
-                // User not logged in, clear data
                 recentOrders = []
                 recentFavorites = []
                 reloadTables()
@@ -110,7 +106,6 @@ class ProfileViewController: UIViewController {
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let orders):
-                        // Get only the 4 most recent orders
                         self?.recentOrders = Array(orders.sorted {
                             ($0.created_at ?? "") > ($1.created_at ?? "")
                         }.prefix(4))

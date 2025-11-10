@@ -68,7 +68,6 @@ setupUI()
     }
     
     private func applyTheme(isDarkMode: Bool) {
-        // Apply to all windows
         UIApplication.shared.windows.forEach { window in
             window.overrideUserInterfaceStyle = isDarkMode ? .dark : .light
         }

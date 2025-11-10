@@ -85,6 +85,8 @@ setupNotification()
         checkoutButton.layer.cornerRadius = checkoutButton.frame.height / 2
         emptyCartView.isHidden = true
         activityIndicator.hidesWhenStopped = true
+        designButton(button: checkoutButton)
+        checkoutButton.setTitle("Proceed To Checkout", for: .normal)
     }
     
     func setupTableView(){
