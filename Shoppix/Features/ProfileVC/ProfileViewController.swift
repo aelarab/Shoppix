@@ -7,20 +7,29 @@
 
 import UIKit
 import RxSwift
+import CoreData
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
        //MARK: - Outlets
     
     @IBOutlet weak var welcomeUsernameLabel: UILabel!
-    @IBOutlet weak var orderPriceLabel: UILabel!
-    @IBOutlet weak var orderDateLabel: UILabel!
     
+    @IBOutlet weak var ordersSectionTitle: UILabel!
+    @IBOutlet weak var ordersTableView: UITableView!
+    
+    @IBOutlet weak var favoritesTableView: UITableView!
+    
+    @IBOutlet weak var favoritesSectionTitle: UILabel!
     //MARK: - Properties
     
     private let viewModel = ProfileViewModel()
     private let disposeBag = DisposeBag()
     private var cartButton: UIBarButtonItem!
+    private var recentOrders: [Order] = []
+    private var recentFavorites: [FavoriteProduct] = []
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
        //MARK: - LifeCycle
     
@@ -28,14 +37,43 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupnavBar()
         loadUserName()
-        setupLastOrderData()
+        setupTables()
+        loadRecentData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadRecentData()
     }
 
        //MARK: - Behaviour
+    private func setupTables() {
+            // Setup Orders Table
+            ordersTableView.delegate = self
+            ordersTableView.dataSource = self
+            ordersTableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersTableViewCell")
+            ordersTableView.rowHeight = 60
+            ordersTableView.separatorStyle = .singleLine
+            
+            // Setup Favorites Table
+            favoritesTableView.delegate = self
+            favoritesTableView.dataSource = self
+            favoritesTableView.register(UINib(nibName: "FavoriteTableViewCell", bundle: nil), forCellReuseIdentifier: "FavoriteTableViewCell")
+            favoritesTableView.rowHeight = 60
+            favoritesTableView.separatorStyle = .singleLine
+            
+            // Update section titles
+            updateSectionTitles()
+        }
+        
+        private func updateSectionTitles() {
+            ordersSectionTitle.text = recentOrders.isEmpty ? "Recent Orders" : "Recent Orders (\(recentOrders.count))"
+            favoritesSectionTitle.text = recentFavorites.isEmpty ? "Favorite Items" : "Favorite Items (\(recentFavorites.count))"
+        }
+    
+    
+    
+    
     func loadUserName() {
         viewModel.getUserFullName { [weak self] fullName in
             DispatchQueue.main.async {
@@ -47,17 +85,74 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    func setupLastOrderData(){
-        guard UserDefaults.standard.string(forKey: "userId") != nil else {
-            orderPriceLabel.text = "00000"
-            orderDateLabel.text = "00/00/2000"
+    
+    private func loadRecentData() {
+            guard UserDefaults.standard.string(forKey: "userId") != nil else {
+                // User not logged in, clear data
+                recentOrders = []
+                recentFavorites = []
+                reloadTables()
                 return
             }
-        orderPriceLabel.text = "128.0"
-        orderDateLabel.text = "18/12/2000 + 02:00"
-
-
-    }
+            
+            loadRecentOrders()
+            loadRecentFavorites()
+        }
+        
+        private func loadRecentOrders() {
+            guard let userEmail = Auth.auth().currentUser?.email else {
+                recentOrders = []
+                reloadTables()
+                return
+            }
+            
+            OrderService.shared.getOrdersForUser(email: userEmail) { [weak self] result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let orders):
+                        // Get only the 4 most recent orders
+                        self?.recentOrders = Array(orders.sorted {
+                            ($0.created_at ?? "") > ($1.created_at ?? "")
+                        }.prefix(4))
+                        
+                    case .failure(let error):
+                        print("Error loading recent orders: \(error.localizedDescription)")
+                        self?.recentOrders = []
+                    }
+                    
+                    self?.reloadTables()
+                }
+            }
+        }
+        
+        private func loadRecentFavorites() {
+            guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+                recentFavorites = []
+                reloadTables()
+                return
+            }
+            
+            let request: NSFetchRequest<FavoriteProduct> = FavoriteProduct.fetchRequest()
+            request.predicate = NSPredicate(format: "userId == %@", userId)
+            
+            do {
+                let allFavorites = try context.fetch(request)
+                // Get only the 4 most recent favorites (assuming they're ordered by addition)
+                recentFavorites = Array(allFavorites.prefix(4))
+            } catch {
+                print("Error fetching recent favorites: \(error.localizedDescription)")
+                recentFavorites = []
+            }
+            
+            reloadTables()
+        }
+        
+        private func reloadTables() {
+            ordersTableView.reloadData()
+            favoritesTableView.reloadData()
+            updateSectionTitles()
+            
+                  }
         
     func setupnavBar(){
         navigationItem.title = "Me"
@@ -129,4 +224,98 @@ class ProfileViewController: UIViewController {
     }
     
     
+}
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    // MARK: - Orders Table
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView == ordersTableView {
+            return min(recentOrders.count, 4) // Max 4 orders
+        } else {
+            return min(recentFavorites.count, 4) // Max 4 favorites
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == ordersTableView {
+            // Orders Table
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "OrdersTableViewCell", for: indexPath) as? OrdersTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            let order = recentOrders[indexPath.row]
+            cell.configure(with: order)
+            return cell
+            
+        } else {
+            // Favorites Table - Simple configuration without configure function
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as? FavoriteTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            let favorite = recentFavorites[indexPath.row]
+            
+            // Direct configuration without configure function
+            cell.itemNameLabel.text = favorite.title ?? "Unknown Product"
+            
+            // Load image directly
+            if let imageUrl = favorite.image, let url = URL(string: imageUrl) {
+                cell.itemImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
+            } else {
+                cell.itemImageView.image = UIImage(named: "placeholder")
+            }
+            
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if tableView == ordersTableView {
+            let order = recentOrders[indexPath.row]
+            showOrderDetails(order)
+        } else {
+            let favorite = recentFavorites[indexPath.row]
+            navigateToProductDetails(favorite)
+        }
+    }
+    
+    private func showOrderDetails(_ order: Order) {
+        let alert = UIAlertController(
+            title: "Order #\(order.order_number ?? order.id)",
+            message: """
+            Total: \(order.total_price ?? "N/A") \(order.currency ?? "")
+            Status: \(order.financial_status?.capitalized ?? "Pending")
+            Date: \(formatDate(order.created_at))
+            Items: \(order.line_items.count)
+            """,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: "View Full Order", style: .default) { [weak self] _ in
+            self?.moreOrdersButtonTapped(UIButton())
+        })
+        present(alert, animated: true)
+    }
+    
+    private func navigateToProductDetails(_ favorite: FavoriteProduct) {
+        Session.productId = Int(favorite.id)
+        let productDetailsVC = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
+        navigationController?.pushViewController(productDetailsVC, animated: true)
+    }
+    
+    private func formatDate(_ dateString: String?) -> String {
+        guard let dateString = dateString else { return "N/A" }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        if let date = dateFormatter.date(from: dateString) {
+            dateFormatter.dateFormat = "MMM dd, yyyy"
+            return dateFormatter.string(from: date)
+        }
+        
+        return dateString
+    }
 }
