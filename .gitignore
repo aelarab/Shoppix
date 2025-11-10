@@ -1,3 +1,10 @@
 .DS_Store
 Pods/
 Podfile.lock
+# SwiftPM
+Package.resolved
+
+# Xcode
+*.xcuserstate
+*.xcuserdata/
+DerivedData/

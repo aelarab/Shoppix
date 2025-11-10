@@ -53,7 +53,7 @@ class HomeViewController: UIViewController {
         searchButton.tintColor = UIColor(named: "mainColor")
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItems = [searchButton]
-       // navigationItem.rightBarButtonItem = favoriteButton
+        navigationItem.rightBarButtonItem = favoriteButton
         
         if let layout = couponsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
@@ -177,7 +177,7 @@ extension HomeViewController: SendProuctDelegete {
         vendorsList = smartCollectionModel?.smart_collections ?? [SmartCollection(id: 1, title: "no data", handle: "no", image: SmartImage(src: ""))]
         filterdList = vendorsList
         DispatchQueue.main.async {
-            andicator.stopAnimating()
+            self.andicator.stopAnimating()
             self.categoriesCollectionView.reloadData()
         }
     }

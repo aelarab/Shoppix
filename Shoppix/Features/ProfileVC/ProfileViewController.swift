@@ -71,13 +71,13 @@ class ProfileViewController: UIViewController {
             action: #selector(settingsTapped)
         )
         
-        if #available(iOS 16.0, *) {
-                navigationItem.trailingItemGroups = [
-                    UIBarButtonItemGroup(barButtonItems: [cartButton, favoriteButton], representativeItem: nil)
-                ]
-            } else {
-                navigationItem.rightBarButtonItems = [favoriteButton, cartButton]
-            }
+//        if #available(iOS 16.0, *) {
+//                navigationItem.trailingItemGroups = [
+//                    UIBarButtonItemGroup(barButtonItems: [cartButton, favoriteButton], representativeItem: nil)
+//                ]
+//            } else {
+//                navigationItem.rightBarButtonItems = [favoriteButton, cartButton]
+//            }
     }
     
     @objc func cartTapped(){

@@ -28,15 +28,15 @@ final class AddAddressViewModel {
     }
     
     // for saving address later
-    func saveAddress() {
-        guard validateFields() else { return }
-        
-        AddressService.shared.addAddress(
-            country: country,
-            city: city,
-            address: address,
-            phone: phone
-        )
-        onSuccess?()
-    }
+//    func saveAddress() {
+//        guard validateFields() else { return }
+//        
+//        AddressService.shared.addAddress(
+//            country: country,
+//            city: city,
+//            address: address,
+//            phone: phone
+//        )
+//        onSuccess?()
+//    }
 }

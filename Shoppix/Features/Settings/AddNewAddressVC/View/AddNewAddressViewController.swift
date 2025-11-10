@@ -107,6 +107,6 @@ class AddNewAddressViewController: UIViewController {
         viewModel.address = addressTextField.text ?? ""
         viewModel.phone = phoneTextField.text ?? ""
         
-        viewModel.saveAddress()
+     //   viewModel.saveAddress()
     }
 }

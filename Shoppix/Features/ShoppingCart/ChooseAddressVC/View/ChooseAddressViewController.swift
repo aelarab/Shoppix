@@ -14,13 +14,13 @@ class ChooseAddressViewController: UIViewController {
     @IBOutlet weak var continueToPaymentButton: UIButton!
     
        //MARK: - Properties
-    private var addresses: [AddressEntity] = []
-    private var selectedAddress: AddressEntity?
-    
+//    private var addresses: [AddressEntity] = []
+//    private var selectedAddress: AddressEntity?
+//
     override func viewDidLoad() {
         super.viewDidLoad()
         continueToPaymentButton.layer.cornerRadius = continueToPaymentButton.frame.height / 2
-        setupTableView()
+      //  setupTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,14 +30,14 @@ class ChooseAddressViewController: UIViewController {
     
     
        //MARK: - Behaviour
-    func setupTableView(){
-        addressesTableVIew.delegate = self
-        addressesTableVIew.dataSource = self
-        addressesTableVIew.register(UINib(nibName: "AddressTableViewCell", bundle: nil), forCellReuseIdentifier: "AddressTableViewCell")
-    }
+//    func setupTableView(){
+//        addressesTableVIew.delegate = self
+//        addressesTableVIew.dataSource = self
+//        addressesTableVIew.register(UINib(nibName: "AddressTableViewCell", bundle: nil), forCellReuseIdentifier: "AddressTableViewCell")
+//    }
     
     private func loadAddresses() {
-        addresses = AddressService.shared.fetchAddresses()
+     //   addresses = AddressService.shared.fetchAddresses()
         addressesTableVIew.reloadData()
     }
     
@@ -48,37 +48,39 @@ class ChooseAddressViewController: UIViewController {
        //MARK: - Actions
     
     @IBAction func continueToPaymentTapped(_ sender: UIButton) {
-        guard selectedAddress != nil else {
-                    let alert = UIAlertController(title: "SHOPPIX", message: "Please select an address to continue.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    present(alert, animated: true)
-                    return
-                }
-                
-                let paymentsVC = ChoosePaymentViewController(nibName: "ChoosePaymentViewController", bundle: nil)
-                navigationController?.pushViewController(paymentsVC, animated: true)
-    }
+//        guard selectedAddress != nil else {
+//                    let alert = UIAlertController(title: "SHOPPIX", message: "Please select an address to continue.", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+//                    present(alert, animated: true)
+//                    return
+//                }
+//
+//                let paymentsVC = ChoosePaymentViewController(nibName: "ChoosePaymentViewController", bundle: nil)
+//                navigationController?.pushViewController(paymentsVC, animated: true)
+//    }
     
+}
 }
 
    //MARK: - TableView Methods
 extension ChooseAddressViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return addresses.count
+   //     return addresses.count
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = addressesTableVIew.dequeueReusableCell(withIdentifier: "AddressTableViewCell", for: indexPath) as! AddressTableViewCell
-               let address = addresses[indexPath.row]
-               
-               cell.countryNameLabel.text = "\(address.country ?? "") - \(address.city ?? "")"
-               cell.specificAddressLabel.text = address.address
-               cell.isAddressSelected = (address == selectedAddress)
-               let iconName = cell.isAddressSelected ? "smallcircle.fill.circle.fill" : "circle"
-               cell.selectedAddressButton.setImage(UIImage(systemName: iconName), for: .normal)
-               
-               cell.selectedAddressButton.tag = indexPath.row
-               cell.selectedAddressButton.addTarget(self, action: #selector(selectAddress(_:)), for: .touchUpInside)
+//               let address = addresses[indexPath.row]
+//
+//               cell.countryNameLabel.text = "\(address.country ?? "") - \(address.city ?? "")"
+//               cell.specificAddressLabel.text = address.address
+//               cell.isAddressSelected = (address == selectedAddress)
+//               let iconName = cell.isAddressSelected ? "smallcircle.fill.circle.fill" : "circle"
+//               cell.selectedAddressButton.setImage(UIImage(systemName: iconName), for: .normal)
+//
+//               cell.selectedAddressButton.tag = indexPath.row
+//               cell.selectedAddressButton.addTarget(self, action: #selector(selectAddress(_:)), for: .touchUpInside)
                
                return cell
     }
@@ -88,7 +90,7 @@ extension ChooseAddressViewController: UITableViewDelegate, UITableViewDataSourc
     
     @objc private func selectAddress(_ sender: UIButton) {
         let selectedIndex = sender.tag
-        selectedAddress = addresses[selectedIndex]
+    //    selectedAddress = addresses[selectedIndex]
         addressesTableVIew.reloadData()
     }
     

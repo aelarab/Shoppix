@@ -16,11 +16,6 @@ class HomeViewModel {
     init(delegete:SendProuctDelegete){
         self.delegete = delegete
     }
-    
-
-
-    
-    
     func getDataFromServer(){
         let shopifyToken = ProcessInfo.processInfo.environment["SHOPIFY_ACCESS_TOKEN"] ?? ""
         NetworkManager.getData(url: "https://iosr1g1.myshopify.com/admin/api/2025-07/smart_collections.json", headers: [
