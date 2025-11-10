@@ -42,11 +42,9 @@ class PlaceOrderViewController: UIViewController {
                 return
             }
 
-            // Get total from label
             guard let totalText = grandTotalLabel.text?.replacingOccurrences(of: " USD", with: ""),
                   let total = Double(totalText) else { return }
 
-            // Create payment request
             let request = PKPaymentRequest()
             request.merchantIdentifier = "merchant.adham-ragap.Shoppix"
             request.supportedNetworks = [.visa, .masterCard, .amex]
@@ -54,11 +52,9 @@ class PlaceOrderViewController: UIViewController {
             request.countryCode = "US"
             request.currencyCode = "USD"
 
-            // Line items
             let totalItem = PKPaymentSummaryItem(label: "SHOPPIX Order", amount: NSDecimalNumber(value: total))
             request.paymentSummaryItems = [totalItem]
 
-            // Present Apple Pay sheet
             if let paymentVC = PKPaymentAuthorizationViewController(paymentRequest: request) {
                 paymentVC.delegate = self
                 present(paymentVC, animated: true)
@@ -85,7 +81,7 @@ class PlaceOrderViewController: UIViewController {
        // MARK: - Cash on Delivery Logic
        private func confirmCashOnDeliveryOrder() {
            let alert = UIAlertController(
-               title: "Confirm Cash on Delivery 💵",
+               title: "Confirm Cash on Delivery",
                message: "Are you sure you want to place this order and pay on delivery?",
                preferredStyle: .alert
            )
@@ -102,7 +98,7 @@ class PlaceOrderViewController: UIViewController {
                        switch result {
                        case .success:
                            let successAlert = UIAlertController(
-                               title: "Order Placed Successfully 🎉",
+                               title: "Order Placed Successfully ",
                                message: "Your order has been confirmed and will be paid upon delivery.",
                                preferredStyle: .alert
                            )
@@ -137,7 +133,6 @@ extension PlaceOrderViewController: PKPaymentAuthorizationViewControllerDelegate
     ) {
         controller.dismiss(animated: true)
 
-        // Use grandTotalLabel as total amount
         guard let totalText = grandTotalLabel.text?.replacingOccurrences(of: " USD", with: "") else {
             completion(PKPaymentAuthorizationResult(status: .failure, errors: nil))
             return
@@ -155,7 +150,7 @@ extension PlaceOrderViewController: PKPaymentAuthorizationViewControllerDelegate
                     completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
 
                     let alert = UIAlertController(
-                        title: "Order Placed Successfully 🎉",
+                        title: "Order Placed Successfully",
                         message: "Your order has been confirmed! A receipt has been sent to your email.",
                         preferredStyle: .alert
                     )

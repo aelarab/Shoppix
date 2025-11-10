@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeTabBarViewController: UITabBarController {
 
@@ -13,7 +14,7 @@ class HomeTabBarViewController: UITabBarController {
         super.viewDidLoad()
         tabBarIntiliaze ()
     }
-    
+
     func tabBarIntiliaze (){
         let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
            homeVC.tabBarItem = UITabBarItem(
@@ -44,8 +45,8 @@ class HomeTabBarViewController: UITabBarController {
         let shoppingCartVC = ShoppingCartViewController(nibName: "ShoppingCartViewController", bundle: nil)
         shoppingCartVC.tabBarItem = UITabBarItem(
             title: "Cart",
-            image: UIImage(systemName: "cart"),
-            selectedImage: UIImage(systemName: "cart.fill")
+            image: UIImage(systemName: "cart.circle"),
+            selectedImage: UIImage(systemName: "cart.circle.fill")
         )
         let cartNav = UINavigationController(rootViewController: shoppingCartVC)
         
@@ -54,5 +55,6 @@ class HomeTabBarViewController: UITabBarController {
 
         self.viewControllers = [homeNav, meNav, cartNav]
     }
+
 
 }

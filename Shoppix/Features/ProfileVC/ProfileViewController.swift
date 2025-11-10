@@ -6,20 +6,21 @@
 //
 
 import UIKit
+import RxSwift
 
 class ProfileViewController: UIViewController {
     
        //MARK: - Outlets
     
     @IBOutlet weak var welcomeUsernameLabel: UILabel!
-    
     @IBOutlet weak var orderPriceLabel: UILabel!
-    
     @IBOutlet weak var orderDateLabel: UILabel!
     
     //MARK: - Properties
     
     private let viewModel = ProfileViewModel()
+    private let disposeBag = DisposeBag()
+    private var cartButton: UIBarButtonItem!
     
        //MARK: - LifeCycle
     
@@ -28,6 +29,10 @@ class ProfileViewController: UIViewController {
         setupnavBar()
         loadUserName()
         setupLastOrderData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
 
        //MARK: - Behaviour
@@ -57,8 +62,8 @@ class ProfileViewController: UIViewController {
     func setupnavBar(){
         navigationItem.title = "Me"
 
-        let cartButton = UIBarButtonItem(
-            image: UIImage(systemName: "cart"),
+         cartButton = UIBarButtonItem(
+            image: UIImage(systemName: "cart.circle"),
             style: .plain,
             target: self,
             action: #selector(cartTapped)
@@ -110,7 +115,8 @@ class ProfileViewController: UIViewController {
                 showLoginAlert()
                 return
             }
-        print("More orders tapped")
+        let ordersVC = OrdersViewController(nibName: "OrdersViewController", bundle: nil)
+        navigationController?.pushViewController(ordersVC, animated: true)
     }
     
     @IBAction func moreWishlistButtonTapped(_ sender: UIButton) {
