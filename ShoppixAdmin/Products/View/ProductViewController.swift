@@ -135,13 +135,9 @@ class ProductViewController: UIViewController, UITextViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
 
-        //Edit
         if flagEditAdd == 1{
             collectionLabel.isHidden = true
-            productCustomCellectionMenu.isHidden = true
-            // Do NOT hide addImageBtn and deleteImageBtn in edit mode
-            // addImageBtn.isHidden = true
-            // deleteImageBtn.isHidden=true
+            productCustomCellectionMenu.isHidden = true 
             productId = product.id ?? 0
             productTitleTF.text = product.title
             productDetailsTF.text = product.bodyHtml

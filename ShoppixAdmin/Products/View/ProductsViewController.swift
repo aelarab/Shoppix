@@ -14,7 +14,10 @@ class ProductsViewController: UIViewController {
     var displayProductsViewModel : ProductsViewModel!
     
     var allProducts :[Product] = [Product]()
+    var filteredProducts: [Product] = [] // For search results
+    var isSearching = false
     var indicator = UIActivityIndicatorView(style: .large)
+    let searchBar = UISearchBar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +25,12 @@ class ProductsViewController: UIViewController {
         view.addSubview(indicator)
         indicator.startAnimating()
         displayProductsViewModel = ProductsViewModel()
-                
+        
+        // Setup search bar
+        searchBar.delegate = self
+        searchBar.placeholder = "Search Products"
+        searchBar.sizeToFit()
+        navigationItem.titleView = searchBar
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,16 +38,15 @@ class ProductsViewController: UIViewController {
 
         displayProductsViewModel.bindResultToDisplayProducts = { [weak self] in
             DispatchQueue.main.async {
-                
                 self?.allProducts = self?.displayProductsViewModel.allProducts.products ?? []
+                self?.filteredProducts = self?.allProducts ?? []
                 self?.collectionView.reloadData()
             }
             self?.indicator.stopAnimating()
-
         }
         displayProductsViewModel.getAllProducts()
     }
-        
+    
     @IBAction func addNewProduct(_ sender: Any) {
         let productVC = self.storyboard?.instantiateViewController(withIdentifier: "ProductViewController") as! ProductViewController
         productVC.flagEditAdd = 0
@@ -49,40 +56,51 @@ class ProductsViewController: UIViewController {
     
 }
 
+extension ProductsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            isSearching = false
+            filteredProducts = allProducts
+        } else {
+            isSearching = true
+            filteredProducts = allProducts.filter { $0.title?.lowercased().contains(searchText.lowercased()) ?? false }
+        }
+        collectionView.reloadData()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.text = ""
+        filteredProducts = allProducts
+        collectionView.reloadData()
+        searchBar.resignFirstResponder()
+    }
+}
 
-extension ProductsViewController: UICollectionViewDelegate,UICollectionViewDataSource{
-    
+extension ProductsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allProducts.count
-        
+        return isSearching ? filteredProducts.count : allProducts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productItem", for: indexPath) as! ProductCell
-        
-        cell.productTitle.text = allProducts[indexPath.row].title
-        cell.productPrice.text = "EGP \(allProducts[indexPath.row].variants?.first?.price ?? "")"
-        cell.productImage.kf.setImage(with: URL(string: allProducts[indexPath.row].image?.src ?? ""),placeholder: UIImage(named: "placeholder"))
-        
+        let product = isSearching ? filteredProducts[indexPath.row] : allProducts[indexPath.row]
+        cell.productTitle.text = product.title
+        cell.productPrice.text = "EGP \(product.variants?.first?.price ?? "")"
+        cell.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""),placeholder: UIImage(named: "placeholder"))
         cell.editProduct = { [unowned self] in
             let productVC = self.storyboard?.instantiateViewController(withIdentifier: "ProductViewController") as! ProductViewController
             productVC.flagEditAdd = 1
-            
-            productVC.product = allProducts[indexPath.row]
-        
+            productVC.product = product
             self.navigationController?.pushViewController(productVC, animated: true)
         }
-        
         cell.deleteProduct = { [unowned self] in
-        
-            showAlert(indexPath: indexPath)
-            
+            let idx = isSearching ? allProducts.firstIndex(where: { $0.id == product.id }) ?? indexPath.row : indexPath.row
+            showAlert(indexPath: IndexPath(row: idx, section: indexPath.section))
         }
-        
         return cell
     }
     
@@ -107,7 +125,6 @@ extension ProductsViewController: UICollectionViewDelegate,UICollectionViewDataS
       
         }
     }
-    
 }
 
 extension ProductsViewController : UICollectionViewDelegateFlowLayout{
@@ -129,5 +146,3 @@ extension ProductsViewController : UICollectionViewDelegateFlowLayout{
     
 
 }
-
-
