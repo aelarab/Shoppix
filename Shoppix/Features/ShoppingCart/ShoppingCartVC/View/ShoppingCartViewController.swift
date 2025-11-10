@@ -136,6 +136,7 @@ setupNotification()
     //MARK: - Actions
     
     @IBAction func proceedToCheckoutTapped(_ sender: UIButton) {
+        guard checkInternetConnection() else { return }
         if viewModel.isCartEmpty() {
             showError(message: "Your cart is empty")
             return
@@ -176,17 +177,34 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
+    private func extractBrandFromTitle(_ title: String) -> String {
+        title.components(separatedBy: " ").first ?? "Shoppix"
+    }
+    
     func didUpdateQuantity(for cell: ShoppingCartTableViewCell, newQuantity: Int, totalItemPrice: Double) {
         guard let indexPath = itemsTableView.indexPath(for: cell) else { return }
         let item = viewModel.cartItems.value[indexPath.row]
+        
         if newQuantity == 0 {
-            viewModel.deleteItemTrigger.accept(item)
+            showDeleteConfirmationAlert(for: item)
         } else {
             viewModel.updateQuantityTrigger.accept((item, newQuantity))
         }
     }
-    
-    private func extractBrandFromTitle(_ title: String) -> String {
-        title.components(separatedBy: " ").first ?? "Shoppix"
+
+    private func showDeleteConfirmationAlert(for item: DraftOrderLineItem) {
+        let alert = UIAlertController(
+            title: "Remove Item",
+            message: "Are you sure you want to remove this item from your cart?",
+            preferredStyle: .alert
+        )
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes, Delete", style: .destructive, handler: { [weak self] _ in
+            self?.viewModel.deleteItemTrigger.accept(item)
+        }))
+
+        present(alert, animated: true)
     }
+    
 }

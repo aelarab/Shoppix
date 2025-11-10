@@ -51,6 +51,7 @@ setupCouponTextField()
             checkCouponUsage()
             placeOrderButton.setTitle("Place Order", for: .normal)
             designButton(button: placeOrderButton)
+            designTextField(text: promocodeTextField)
         }
     
     
@@ -401,32 +402,32 @@ extension PlaceOrderViewController: PKPaymentAuthorizationViewControllerDelegate
     }
 
     func paymentAuthorizationViewController(
-           _ controller: PKPaymentAuthorizationViewController,
-           didAuthorizePayment payment: PKPayment,
-           handler completion: @escaping (PKPaymentAuthorizationResult) -> Void
-       ) {
-           let finalTotal = cartSubtotal + shippingFees - discountAmount
+               _ controller: PKPaymentAuthorizationViewController,
+               didAuthorizePayment payment: PKPayment,
+               handler completion: @escaping (PKPaymentAuthorizationResult) -> Void
+           ) {
+               let finalTotal = cartSubtotal + shippingFees - discountAmount
 
-           viewModel.selectedPaymentMethod = "apple_pay"
-           viewModel.totalAmountString = String(format: "%.2f", finalTotal)
+               viewModel.selectedPaymentMethod = "apple_pay"
+               viewModel.totalAmountString = String(format: "%.2f", finalTotal)
 
-           viewModel.loadCartAndPlaceOrder { [weak self] result in
-               DispatchQueue.main.async {
-                   switch result {
-                   case .success:
-                       completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
-                       
-                       DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                           self?.showOrderSuccess(total: finalTotal, paymentMethod: "apple_pay")
+               viewModel.loadCartAndPlaceOrder { [weak self] result in
+                   DispatchQueue.main.async {
+                       switch result {
+                       case .success:
+                           completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+                           
+                           controller.dismiss(animated: true) {
+                               self?.navigateToEmptyCart()
+                           }
+                           
+                       case .failure(let error):
+                           completion(PKPaymentAuthorizationResult(status: .failure, errors: [error]))
+                           self?.showError(message: error.localizedDescription)
                        }
-                       
-                   case .failure(let error):
-                       completion(PKPaymentAuthorizationResult(status: .failure, errors: [error]))
-                       self?.showError(message: error.localizedDescription)
                    }
                }
            }
-       }
 
 
     private func showError(message: String) {

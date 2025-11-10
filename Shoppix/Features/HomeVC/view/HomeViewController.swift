@@ -53,7 +53,7 @@ class HomeViewController: UIViewController {
         searchButton.tintColor = UIColor(named: "mainColor")
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItems = [searchButton]
-       // navigationItem.rightBarButtonItem = favoriteButton
+       navigationItem.rightBarButtonItem = favoriteButton
         
         if let layout = couponsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal

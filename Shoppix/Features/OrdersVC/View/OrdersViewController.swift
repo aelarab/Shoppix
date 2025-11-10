@@ -36,6 +36,7 @@ class OrdersViewController: UIViewController {
            
            ordersTableView.rowHeight = 120
            ordersTableView.separatorStyle = .singleLine
+        
        }
     
     private func loadOrders() {

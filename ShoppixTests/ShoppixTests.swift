@@ -95,4 +95,94 @@ class ShoppixTests: XCTestCase {
       
         waitForExpectations(timeout: 15)
     }
+    
+    func testRequestPOST_CreateProduct() {
+        let expectation = expectation(description: "Waiting for POST request to complete")
+        
+        struct ProductBody: Codable {
+            let product: ProductData
+        }
+
+        struct ProductData: Codable {
+            let title: String
+            let body_html: String
+            let vendor: String
+            let product_type: String
+        }
+
+        let body = ProductBody(product: ProductData(
+            title: "Test Product \(UUID().uuidString)",
+            body_html: "Created from unit test",
+            vendor: "UnitTestVendor",
+            product_type: "TestType"
+        ))
+
+
+        let headers = [
+            "X-Shopify-Access-Token": "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",
+            "Content-Type": "application/json"
+        ]
+
+        let endpoint = "https://iosr1g1.myshopify.com/admin/api/2025-07/products.json"
+
+        NetworkManager.requestPOST(
+            endpoint: endpoint,
+            body: body,
+            headers: headers
+        ) { (result: Result<SingleProductModel, Error>) in
+            switch result {
+            case .success(let response):
+                XCTAssertNotNil(response.product, " Product is nil in response")
+                print(" Created product with ID: \(response.product.id ?? 0)")
+            case .failure(let error):
+                XCTFail(" Request failed with error: \(error.localizedDescription)")
+            }
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 15)
+    }
+    
+    func testUpdateProductDetails() {
+        let expectation = expectation(description: "Waiting for PUT request to complete")
+        
+        let productId = 7936265158719
+        let endpoint = "https://iosr1g1.myshopify.com/admin/api/2025-07/products/\(productId).json"
+        
+        let headers = [
+            "X-Shopify-Access-Token": "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",
+            "Content-Type": "application/json"
+        ]
+        
+        struct UpdateProductBody: Codable {
+            let product: ProductUpdate
+        }
+        
+        struct ProductUpdate: Codable {
+            let id: Int
+            let title: String
+        }
+        
+        let body = UpdateProductBody(
+            product: ProductUpdate(id: productId, title: "Updated Product Title")
+        )
+        
+        NetworkManager.requestPUT(
+            endpoint: endpoint,
+            body: body,
+            headers: headers
+        ) { (result: Result<SingleProductModel, Error>) in
+            switch result {
+            case .success(let response):
+                XCTAssertNotNil(response.product, " Product is nil in response")
+                XCTAssertEqual(response.product.title, "Updated Product Title", " Title did not update correctly")
+                print("PUT request succeeded and updated product title")
+            case .failure(let error):
+                XCTFail("PUT request failed: \(error.localizedDescription)")
+            }
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 15)
+    }
 }

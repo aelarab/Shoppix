@@ -222,7 +222,7 @@ class NetworkManager:NetworkManagerDelegete{
                 completion(.success(decoded))
             } catch {
                 if let raw = String(data: data, encoding: .utf8) {
-                    print("⚠️ Raw Shopify PUT Response:\n\(raw)")
+                    print(" Raw Shopify PUT Response:\n\(raw)")
                 }
                 completion(.failure(error))
             }

@@ -53,13 +53,14 @@ class ProfileViewController: UIViewController {
             ordersTableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersTableViewCell")
             ordersTableView.rowHeight = 60
             ordersTableView.separatorStyle = .singleLine
+        //ordersTableView.isScrollEnabled = false
             
             favoritesTableView.delegate = self
             favoritesTableView.dataSource = self
             favoritesTableView.register(UINib(nibName: "FavoriteTableViewCell", bundle: nil), forCellReuseIdentifier: "FavoriteTableViewCell")
             favoritesTableView.rowHeight = 60
             favoritesTableView.separatorStyle = .singleLine
-            
+     //   favoritesTableView.isScrollEnabled = false
             updateSectionTitles()
         }
         

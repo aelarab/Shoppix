@@ -68,7 +68,7 @@ class SignUpViewController: UIViewController {
               let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
               let password = PasswordTextField.text,
               !firstName.isEmpty,!lastName.isEmpty,!email.isEmpty,!password.isEmpty else {
-                  self.showAlert(title: "⚠️", message: "Please fill all fields")
+                  self.showAlert(title: "!!", message: "Please fill all fields")
                   sender.isEnabled = true
                   andicator.stopAnimating()
                   return
@@ -82,7 +82,7 @@ class SignUpViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
             guard let self = self else { return }
             if let error = error {
-                        self.showAlert(title: "❌", message: error.localizedDescription)
+                        self.showAlert(title: "x", message: error.localizedDescription)
                 sender.isEnabled = true
                 self.andicator.stopAnimating()
                         return
@@ -90,7 +90,7 @@ class SignUpViewController: UIViewController {
                 guard let user = result?.user else { return }
                 user.sendEmailVerification { error in
                     if let error = error {
-                                    self.showAlert(title: "❌ Failed to send verification email", message: error.localizedDescription)
+                                    self.showAlert(title: " Failed to send verification email", message: error.localizedDescription)
                         sender.isEnabled = true
                         self.andicator.stopAnimating()
                                     return
@@ -105,13 +105,13 @@ class SignUpViewController: UIViewController {
                             "createdAt": Timestamp(date: Date())
                         ]) { error in
                             if let error = error {
-                                self.showAlert(title: "❌", message: "Failed to save data: \(error.localizedDescription)")
+                                self.showAlert(title: "x", message: "Failed to save data: \(error.localizedDescription)")
                                 sender.isEnabled = true
                                 self.andicator.stopAnimating()
-                                return // <-- this return stops this closure
+                                return
                             }
                         
-                        let alert = UIAlertController(title: "✅ Verification Sent",
+                        let alert = UIAlertController(title: "Verification Sent",
                                                       message: "A verification link has been sent to \(email). Please check your inbox.",
                                                       preferredStyle: .alert)
                         self.present(alert, animated: true)
@@ -122,10 +122,9 @@ class SignUpViewController: UIViewController {
                                
                                 if let shopifyId = shopifyId {
                                     db.collection("users").document(uid).updateData(["shopifyCustomerId": shopifyId])
-                                    print("✅ Shopify user created with ID: \(shopifyId)")
                                 } else {
                                     
-                                print("❌ Failed to create Shopify customer")
+                                print(" Failed to create Shopify customer")
                                 }
                             }
                      //   print("User signed up successfully")

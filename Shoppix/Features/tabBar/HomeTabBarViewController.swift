@@ -13,6 +13,7 @@ class HomeTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarIntiliaze ()
+        applySavedTheme()
     }
 
     func tabBarIntiliaze (){
@@ -50,11 +51,18 @@ class HomeTabBarViewController: UITabBarController {
         )
         let cartNav = UINavigationController(rootViewController: shoppingCartVC)
         
-        UITabBar.appearance().tintColor = UIColor(named: "MainColor")
+        UITabBar.appearance().tintColor = UIColor(named: "mainColor")
           UITabBar.appearance().unselectedItemTintColor = .gray
 
         self.viewControllers = [homeNav, meNav, cartNav]
     }
 
+    
+    private func applySavedTheme() {
+        let isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
+        UIApplication.shared.windows.forEach { window in
+            window.overrideUserInterfaceStyle = isDarkMode ? .dark : .light
+        }
+    }
 
 }
