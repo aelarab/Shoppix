@@ -4,12 +4,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceOrderViewController" customModule="SHOPPIX" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceOrderViewController" customModule="Shoppix" customModuleProvider="target">
             <connections>
                 <outlet property="discountLabel" destination="qCi-OX-kH9" id="dFz-oc-qp6"/>
                 <outlet property="grandTotalLabel" destination="Ysm-Y4-VXG" id="Wfn-ft-Xcp"/>
@@ -17,6 +18,7 @@
                 <outlet property="promocodeTextField" destination="GKe-Un-0kH" id="A3Q-Vy-gpy"/>
                 <outlet property="shippingFeesLabel" destination="KE0-uZ-fyB" id="0Qg-5z-VVO"/>
                 <outlet property="subtotalLabel" destination="5m0-mc-Dco" id="lQQ-oF-IPK"/>
+                <outlet property="validateButton" destination="uxx-GS-mmt" id="YnR-iP-ZKd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,13 +37,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="71.333333333333329" height="21"/>
                                     <color key="tintColor" red="0.36964291329999999" green="0.33733564620000001" blue="0.43139100070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.36964291329999999" green="0.33733564620000001" blue="0.43139100070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" name="mainColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="976.0 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5m0-mc-Dco">
                                     <rect key="frame" x="283" y="0.0" width="78" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" name="mainColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -52,13 +54,13 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipping Fees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5CG-mF-9gh">
                                     <rect key="frame" x="0.0" y="0.0" width="102.66666666666667" height="20.333333333333332"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <color key="textColor" red="0.36964291329999999" green="0.33733564620000001" blue="0.43139100070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" name="mainColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30.0 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KE0-uZ-fyB">
                                     <rect key="frame" x="291.66666666666669" y="0.0" width="69.333333333333314" height="20.333333333333332"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" name="mainColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -73,7 +75,7 @@
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uxx-GS-mmt">
                                     <rect key="frame" x="276.33333333333331" y="0.0" width="84.666666666666686" height="35.333333333333336"/>
-                                    <color key="tintColor" red="0.36964291329999999" green="0.33733564620000001" blue="0.43139100070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="tintColor" name="mainColor"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain">
                                         <attributedString key="attributedTitle">
@@ -86,6 +88,9 @@
                                             </fragment>
                                         </attributedString>
                                     </buttonConfiguration>
+                                    <connections>
+                                        <action selector="validateButtonTapped:" destination="-1" eventType="touchUpInside" id="QaD-5i-m0I"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -98,13 +103,13 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jf0-8u-jdQ">
                                     <rect key="frame" x="0.0" y="0.0" width="64.666666666666671" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <color key="textColor" red="0.36964291329999999" green="0.33733564620000001" blue="0.43139100070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" name="mainColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCi-OX-kH9">
                                     <rect key="frame" x="298.33333333333331" y="0.0" width="62.666666666666686" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" systemColor="systemRedColor"/>
+                                    <color key="textColor" name="mainColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -112,13 +117,13 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grand Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6J-WT-Pr1">
                             <rect key="frame" x="16" y="233.66666666666669" width="361" height="22.666666666666686"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" name="mainColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1006.0 USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ysm-Y4-VXG">
                             <rect key="frame" x="16" y="288.33333333333331" width="361" height="22.333333333333314"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" name="mainColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ui2-Xy-FCo">
@@ -147,11 +152,11 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="mainColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

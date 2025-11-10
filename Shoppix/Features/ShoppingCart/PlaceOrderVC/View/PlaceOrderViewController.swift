@@ -17,19 +17,97 @@ class PlaceOrderViewController: UIViewController {
     @IBOutlet weak var discountLabel: UILabel!
     @IBOutlet weak var grandTotalLabel: UILabel!
     @IBOutlet weak var placeOrderButton: UIButton!
-
+    
+    @IBOutlet weak var validateButton: UIButton!
+    
        //MARK: - properties
     private var paymentRequest: PKPaymentRequest?
     var selectedPaymentMethod: String?
     private let viewModel = PlaceOrderViewModel()
+    private var appliedCoupon: Coupon?
+    private var isCouponApplied = false
     
        //MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         placeOrderButton.layer.cornerRadius = placeOrderButton.frame.height / 2
+        updateTotals()
+        checkCouponUsage()
     }
     
        //MARK: - Behaviour
+    
+    private func updateTotals() {
+        let subtotal: Double = 100.0
+        let shipping: Double = 10.0
+        
+        subtotalLabel.text = "\(subtotal) EGP"
+        shippingFeesLabel.text = "\(shipping) EGP"
+        
+        calculateGrandTotal(subtotal: subtotal, shipping: shipping, discount: 0)
+    }
+    private func calculateGrandTotal(subtotal: Double, shipping: Double, discount: Double) {
+            let grandTotal = subtotal + shipping - discount
+            grandTotalLabel.text = "\(grandTotal) EGP"
+            discountLabel.text = "\(discount) EGP"
+        }
+        
+        private func checkCouponUsage() {
+            if UserDefaults.standard.bool(forKey: "couponUsed") {
+                promocodeTextField.isEnabled = false
+                validateButton.isEnabled = false
+                promocodeTextField.placeholder = "Coupon already used"
+                promocodeTextField.textColor = .gray
+            }
+        }
+        
+        private func applyCoupon(_ coupon: Coupon) {
+            guard !isCouponApplied else {
+                showAlert(title: "Already Applied", message: "Coupon has already been applied.")
+                return
+            }
+            
+            if UserDefaults.standard.bool(forKey: "couponUsed") {
+                showAlert(title: "Coupon Used", message: "You can only use one coupon per account.")
+                return
+            }
+            
+            let subtotal: Double = 100.0
+            let shipping: Double = 10.0
+            let discount = subtotal * Double(coupon.couponDiscount) / 100.0
+            
+            appliedCoupon = coupon
+            isCouponApplied = true
+            
+            calculateGrandTotal(subtotal: subtotal, shipping: shipping, discount: discount)
+            
+            promocodeTextField.isEnabled = false
+            validateButton.isEnabled = false
+            promocodeTextField.textColor = .gray
+            
+            UserDefaults.standard.set(true, forKey: "couponUsed")
+            
+            showAlert(title: "Success", message: "Coupon \(coupon.couponName) applied successfully!")
+        }
+        
+        private func validateCoupon(_ code: String) {
+            if UserDefaults.standard.bool(forKey: "couponUsed") {
+                showAlert(title: "Already Used", message: "You can only use one coupon per account.")
+                return
+            }
+            
+            let availableCoupons = [
+                Coupon(couponName: "25% OFF", couponDiscount: 25, couponImage: UIImage(named: "25coupon")!),
+                Coupon(couponName: "50% OFF", couponDiscount: 50, couponImage: UIImage(named: "50coupon")!)
+            ]
+            
+            if let coupon = availableCoupons.first(where: { $0.couponName.lowercased() == code.lowercased() }) {
+                applyCoupon(coupon)
+            } else {
+                showAlert(title: "Invalid Coupon", message: "The coupon code is invalid or expired.")
+            }
+        }
+    
     private func startApplePayPayment() {
             guard PKPaymentAuthorizationViewController.canMakePayments() else {
                 let alert = UIAlertController(
@@ -63,6 +141,15 @@ class PlaceOrderViewController: UIViewController {
     
        //MARK: - Actions
     
+    @IBAction func validateButtonTapped(_ sender: UIButton) {
+        guard let couponCode = promocodeTextField.text, !couponCode.isEmpty else {
+                    showAlert(title: "Empty Field", message: "Please enter a coupon code.")
+                    return
+                }
+                
+                validateCoupon(couponCode)
+        
+    }
     @IBAction func placeOrderTapped(_ sender: UIButton) {
         guard let paymentMethod = selectedPaymentMethod else {
                showError(message: "Please select a payment method before placing your order.")
