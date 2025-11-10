@@ -28,7 +28,7 @@ class PlaceOrderViewController: UIViewController {
     private var appliedCoupon: Coupon?
     private var isCouponApplied = false
     private var cartSubtotal: Double = 0.0
-    private var shippingFees: Double = 50.0
+    private var shippingFees: Double = 0.0
     private var discountAmount: Double = 0.0
     private let cartService = ShopifyCartService.shared
     private let disposeBag = DisposeBag()

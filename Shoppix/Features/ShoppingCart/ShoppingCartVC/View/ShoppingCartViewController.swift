@@ -202,6 +202,7 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes, Delete", style: .destructive, handler: { [weak self] _ in
             self?.viewModel.deleteItemTrigger.accept(item)
+            NotificationCenter.default.post(name: .cartDidUpdate, object: nil)
         }))
 
         present(alert, animated: true)

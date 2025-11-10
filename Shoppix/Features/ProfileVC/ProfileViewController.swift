@@ -39,28 +39,42 @@ class ProfileViewController: UIViewController {
         loadUserName()
         setupTables()
         loadRecentData()
+        setupNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadRecentData()
+        updateCartBadgeFromAPI()
     }
 
        //MARK: - Behaviour
+    
+    func setupNotification(){
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(cartDidUpdate),
+            name: .cartDidUpdate,
+            object: nil
+        )
+    }
+    @objc private func cartDidUpdate() {
+        updateCartBadgeFromAPI()
+    }
+
+    
     private func setupTables() {
             ordersTableView.delegate = self
             ordersTableView.dataSource = self
             ordersTableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "OrdersTableViewCell")
             ordersTableView.rowHeight = 60
             ordersTableView.separatorStyle = .singleLine
-        //ordersTableView.isScrollEnabled = false
             
             favoritesTableView.delegate = self
             favoritesTableView.dataSource = self
             favoritesTableView.register(UINib(nibName: "FavoriteTableViewCell", bundle: nil), forCellReuseIdentifier: "FavoriteTableViewCell")
             favoritesTableView.rowHeight = 60
             favoritesTableView.separatorStyle = .singleLine
-     //   favoritesTableView.isScrollEnabled = false
             updateSectionTitles()
         }
         
@@ -133,10 +147,8 @@ class ProfileViewController: UIViewController {
             
             do {
                 let allFavorites = try context.fetch(request)
-                // Get only the 4 most recent favorites (assuming they're ordered by addition)
                 recentFavorites = Array(allFavorites.prefix(4))
             } catch {
-                print("Error fetching recent favorites: \(error.localizedDescription)")
                 recentFavorites = []
             }
             
@@ -149,6 +161,25 @@ class ProfileViewController: UIViewController {
             updateSectionTitles()
             
                   }
+    
+    private func updateCartBadgeFromAPI() {
+        guard let email = Auth.auth().currentUser?.email else {
+            cartButton.showDotBadge(shouldShow: false)
+            return
+        }
+
+        ShopifyCartService.shared.getCart(userEmail: email)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] draftOrders in
+                let totalItems = draftOrders.flatMap { $0.line_items }.count
+                self?.cartButton.showDotBadge(shouldShow: totalItems > 0)
+            }, onError: { [weak self] _ in
+                self?.cartButton.showDotBadge(shouldShow: false)
+            })
+            .disposed(by: disposeBag)
+    }
+
+
         
     func setupnavBar(){
         navigationItem.title = "Me"
@@ -159,6 +190,7 @@ class ProfileViewController: UIViewController {
             target: self,
             action: #selector(cartTapped)
         )
+        
         
         let favoriteButton = UIBarButtonItem(
             image: UIImage(systemName: "gearshape"),
@@ -174,6 +206,7 @@ class ProfileViewController: UIViewController {
             } else {
                 navigationItem.rightBarButtonItems = [favoriteButton, cartButton]
             }
+        updateCartBadgeFromAPI()
     }
     
     @objc func cartTapped(){
@@ -226,15 +259,14 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     // MARK: - Orders Table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == ordersTableView {
-            return min(recentOrders.count, 4) // Max 4 orders
+            return min(recentOrders.count, 4)
         } else {
-            return min(recentFavorites.count, 4) // Max 4 favorites
+            return min(recentFavorites.count, 4)
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == ordersTableView {
-            // Orders Table
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "OrdersTableViewCell", for: indexPath) as? OrdersTableViewCell else {
                 return UITableViewCell()
             }
@@ -244,17 +276,14 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
             
         } else {
-            // Favorites Table - Simple configuration without configure function
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteTableViewCell", for: indexPath) as? FavoriteTableViewCell else {
                 return UITableViewCell()
             }
             
             let favorite = recentFavorites[indexPath.row]
             
-            // Direct configuration without configure function
             cell.itemNameLabel.text = favorite.title ?? "Unknown Product"
             
-            // Load image directly
             if let imageUrl = favorite.image, let url = URL(string: imageUrl) {
                 cell.itemImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
             } else {
@@ -313,5 +342,22 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         return dateString
+    }
+}
+extension UIBarButtonItem {
+    func showDotBadge(shouldShow: Bool) {
+        guard let view = self.value(forKey: "view") as? UIView else { return }
+
+        view.subviews.filter { $0.tag == 999 }.forEach { $0.removeFromSuperview() }
+
+        guard shouldShow else { return }
+
+        let dotSize: CGFloat = 8
+        let dotView = UIView(frame: CGRect(x: view.frame.width - dotSize / 2, y: 2, width: dotSize, height: dotSize))
+        dotView.backgroundColor = .systemRed
+        dotView.layer.cornerRadius = dotSize / 2
+        dotView.clipsToBounds = true
+        dotView.tag = 999
+        view.addSubview(dotView)
     }
 }

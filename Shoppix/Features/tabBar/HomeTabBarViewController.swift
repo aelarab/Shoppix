@@ -54,7 +54,7 @@ class HomeTabBarViewController: UITabBarController {
         UITabBar.appearance().tintColor = UIColor(named: "mainColor")
           UITabBar.appearance().unselectedItemTintColor = .gray
 
-        self.viewControllers = [homeNav, meNav, cartNav]
+        self.viewControllers = [homeNav, cartNav, meNav]
     }
 
     

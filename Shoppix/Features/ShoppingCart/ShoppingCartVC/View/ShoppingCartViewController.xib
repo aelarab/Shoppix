@@ -36,6 +36,7 @@
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyCart" translatesAutoresizingMaskIntoConstraints="NO" id="z3o-TV-ur5">
                                     <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
+                                    <color key="tintColor" name="mainColor"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>

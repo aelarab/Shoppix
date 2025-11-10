@@ -12,3 +12,6 @@ extension Notification.Name {
 extension Notification.Name {
     static let didAddNewAddress = Notification.Name("didAddNewAddress")
 }
+extension Notification.Name {
+    static let cartDidUpdate = Notification.Name("cartDidUpdate")
+}
