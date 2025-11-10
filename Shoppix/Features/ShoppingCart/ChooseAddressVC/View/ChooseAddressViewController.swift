@@ -38,6 +38,12 @@ class ChooseAddressViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+
+    }
+    
     
        //MARK: - Behaviour
     private func setupUI() {
@@ -123,18 +129,15 @@ extension ChooseAddressViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = addressesTableVIew.dequeueReusableCell(withIdentifier: "AddressTableViewCell", for: indexPath) as! AddressTableViewCell
         let address = addresses[indexPath.row]
         
-        // Configure text
         cell.countryNameLabel.text = "\(address.country) - \(address.city)"
         cell.specificAddressLabel.text = "\(address.address1) • \(address.phone ?? "No phone")"
         
-        // Selection state
         let isSelected = address.id == selectedAddress?.id
         cell.isAddressSelected = isSelected
         let iconName = isSelected ? "smallcircle.fill.circle.fill" : "circle"
         cell.selectedAddressButton.setImage(UIImage(systemName: iconName), for: .normal)
         cell.isDefaultAddressImageView.isHidden = !(address.isDefault ?? false)
         
-        // Fix button target
         cell.selectedAddressButton.removeTarget(nil, action: nil, for: .allEvents)
         cell.selectedAddressButton.tag = indexPath.row
         cell.selectedAddressButton.addTarget(self, action: #selector(selectAddress(_:)), for: .touchUpInside)
@@ -151,7 +154,6 @@ extension ChooseAddressViewController: UITableViewDelegate, UITableViewDataSourc
         addressesTableVIew.reloadData()
         continueToPaymentButton.isEnabled = true
         
-        // Print selected address for debugging
         if let selected = selectedAddress {
             print("Selected address: \(selected.address1), \(selected.city), \(selected.country)")
         }
@@ -163,7 +165,6 @@ extension ChooseAddressViewController: UITableViewDelegate, UITableViewDataSourc
         addressesTableVIew.reloadData()
         continueToPaymentButton.isEnabled = true
         
-        // Print selected address for debugging
         if let selected = selectedAddress {
             print("Selected address: \(selected.address1), \(selected.city), \(selected.country)")
         }

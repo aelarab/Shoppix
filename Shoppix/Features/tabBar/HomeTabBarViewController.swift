@@ -12,7 +12,6 @@ class HomeTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarIntiliaze ()
-        // Do any additional setup after loading the view.
     }
     
     func tabBarIntiliaze (){
@@ -42,14 +41,18 @@ class HomeTabBarViewController: UITabBarController {
            )
            let meNav = UINavigationController(rootViewController: meVC)
         
+        let shoppingCartVC = ShoppingCartViewController(nibName: "ShoppingCartViewController", bundle: nil)
+        shoppingCartVC.tabBarItem = UITabBarItem(
+            title: "Cart",
+            image: UIImage(systemName: "cart"),
+            selectedImage: UIImage(systemName: "cart.fill")
+        )
+        let cartNav = UINavigationController(rootViewController: shoppingCartVC)
         
         UITabBar.appearance().tintColor = UIColor(named: "MainColor")
           UITabBar.appearance().unselectedItemTintColor = .gray
-        
-//
-//        UITabBar.appearance().tintColor = UIColor(named: "MainColor")
-//        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "MainColor")
-        self.viewControllers = [homeNav, meNav]
+
+        self.viewControllers = [homeNav, meNav, cartNav]
     }
 
 }

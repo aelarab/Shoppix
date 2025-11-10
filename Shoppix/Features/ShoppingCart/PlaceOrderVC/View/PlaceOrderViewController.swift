@@ -68,7 +68,60 @@ class PlaceOrderViewController: UIViewController {
        //MARK: - Actions
     
     @IBAction func placeOrderTapped(_ sender: UIButton) {
-        startApplePayPayment()
+        guard let paymentMethod = selectedPaymentMethod else {
+               showError(message: "Please select a payment method before placing your order.")
+               return
+           }
+
+           if paymentMethod == "apple_pay" {
+               startApplePayPayment()
+           } else if paymentMethod == "cash_on_delivery" {
+               confirmCashOnDeliveryOrder()
+           } else {
+               showError(message: "Unsupported payment method selected.")
+           }
+       }
+
+       // MARK: - Cash on Delivery Logic
+       private func confirmCashOnDeliveryOrder() {
+           let alert = UIAlertController(
+               title: "Confirm Cash on Delivery 💵",
+               message: "Are you sure you want to place this order and pay on delivery?",
+               preferredStyle: .alert
+           )
+           alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+           alert.addAction(UIAlertAction(title: "Yes, Place Order", style: .default) { [weak self] _ in
+               guard let self = self else { return }
+               guard let totalText = self.grandTotalLabel.text?.replacingOccurrences(of: " USD", with: "") else { return }
+
+               self.viewModel.selectedPaymentMethod = "cash_on_delivery"
+               self.viewModel.totalAmountString = totalText
+
+               self.viewModel.loadCartAndPlaceOrder { result in
+                   DispatchQueue.main.async {
+                       switch result {
+                       case .success:
+                           let successAlert = UIAlertController(
+                               title: "Order Placed Successfully 🎉",
+                               message: "Your order has been confirmed and will be paid upon delivery.",
+                               preferredStyle: .alert
+                           )
+                           successAlert.addAction(UIAlertAction(title: "Go to Cart", style: .default) { _ in
+                               if let tabBar = self.tabBarController {
+                                   tabBar.selectedIndex = 2
+                                   self.navigationController?.popToRootViewController(animated: true)
+                               }
+                           })
+                           self.present(successAlert, animated: true)
+
+                       case .failure(let error):
+                           self.showError(message: error.localizedDescription)
+                       }
+                   }
+               }
+           })
+
+           present(alert, animated: true)
     }
 }
 

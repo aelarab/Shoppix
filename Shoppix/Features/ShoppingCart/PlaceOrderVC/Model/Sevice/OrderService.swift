@@ -21,7 +21,7 @@ final class OrderService {
         lineItems: [[String: Any]],
         shippingAddress: [String: Any],
         paymentMethod: String,
-        totalAmount: String, // formatted string, 2 decimals
+        totalAmount: String,
         completion: @escaping (Result<Void, Error>) -> Void
     ) {
         guard let url = URL(string: "\(baseURL)/orders.json") else { return }
@@ -30,6 +30,17 @@ final class OrderService {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue(token, forHTTPHeaderField: "X-Shopify-Access-Token")
+
+        // 🧩 Normalize gateway name
+        let gateway: String
+        switch paymentMethod.lowercased() {
+        case "apple_pay":
+            gateway = "Apple Pay"
+        case "cash_on_delivery":
+            gateway = "Cash on Delivery"
+        default:
+            gateway = paymentMethod
+        }
 
         let body: [String: Any] = [
             "order": [
@@ -42,7 +53,7 @@ final class OrderService {
                     [
                         "kind": "sale",
                         "status": "success",
-                        "gateway": paymentMethod,
+                        "gateway": gateway,
                         "amount": totalAmount
                     ]
                 ]
@@ -98,6 +109,7 @@ final class OrderService {
             }
         }.resume()
     }
+
 
     private func sendConfirmationEmail(orderId: Int, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let url = URL(string: "\(baseURL)/orders/\(orderId)/send.json") else { return }

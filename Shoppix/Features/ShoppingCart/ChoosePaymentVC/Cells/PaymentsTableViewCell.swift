@@ -14,16 +14,26 @@ class PaymentsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var paymentTitleLabel: UILabel!
     
+    var onSelect: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        selectionStyle = .none
+        paymentButton.adjustsImageWhenHighlighted = false
+    }
+    
+    
+    func configure(with title: String, isSelected: Bool) {
+        paymentTitleLabel.text = title
+        let imageName = isSelected ? "smallcircle.fill.circle.fill" : "circle"
+        paymentButton.setImage(UIImage(systemName: imageName), for: .normal)
+        
+        contentView.layer.cornerRadius = 8
+        contentView.layer.masksToBounds = true
     }
 
     @IBAction func paymentButtonTapped(_ sender: UIButton) {
-        paymentButton.isSelected = !paymentButton.isSelected
-        let imageName = paymentButton.isSelected ? "smallcircle.fill.circle.fill" : "circle"
-        paymentButton.setImage(UIImage(systemName: imageName), for: .normal)
+        onSelect?()
     }
     
 }

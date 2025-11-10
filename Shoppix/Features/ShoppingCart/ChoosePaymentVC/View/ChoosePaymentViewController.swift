@@ -23,6 +23,13 @@ class ChoosePaymentViewController: UIViewController {
         super.viewDidLoad()
 setupUI()
         setupTableView()
+        tabBarController?.tabBar.isHidden = true
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+
     }
 
    //MARK: - Behaviour
@@ -42,9 +49,18 @@ setupUI()
     
     @IBAction func continueToPaymentButtonTapped(_ sender: UIButton) {
         guard let selectedPayment = viewModel.selectedPayment else { return }
-        
+
         let placeOrderVC = PlaceOrderViewController(nibName: "PlaceOrderViewController", bundle: nil)
-        placeOrderVC.selectedPaymentMethod = selectedPayment
+
+        switch selectedPayment.lowercased() {
+        case "apple pay":
+            placeOrderVC.selectedPaymentMethod = "apple_pay"
+        case "cash on delivery":
+            placeOrderVC.selectedPaymentMethod = "cash_on_delivery"
+        default:
+            placeOrderVC.selectedPaymentMethod = selectedPayment.lowercased()
+        }
+
         navigationController?.pushViewController(placeOrderVC, animated: true)
     }
     
@@ -68,19 +84,42 @@ extension ChoosePaymentViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentsTableViewCell", for: indexPath) as! PaymentsTableViewCell
-        let paymentTitle = viewModel.paymentOptions[indexPath.section][indexPath.row]
-        cell.paymentTitleLabel.text = paymentTitle
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentsTableViewCell",
+                                                 for: indexPath) as! PaymentsTableViewCell
+        
+        let paymentName = viewModel.paymentOptions[indexPath.section][indexPath.row]
+        cell.paymentTitleLabel.text = paymentName
+        
+        let isSelected = viewModel.isSelected(at: indexPath)
+        let iconName = isSelected ? "smallcircle.fill.circle.fill" : "circle"
+        cell.paymentButton.setImage(UIImage(systemName: iconName), for: .normal)
+        
+        // Setup button tap
+        cell.paymentButton.tag = (indexPath.section * 10) + indexPath.row
+        cell.paymentButton.removeTarget(nil, action: nil, for: .allEvents)
+        cell.paymentButton.addTarget(self, action: #selector(selectPayment(_:)), for: .touchUpInside)
         
         return cell
     }
     
+    @objc private func selectPayment(_ sender: UIButton) {
+        let section = sender.tag / 10
+        let row = sender.tag % 10
+        let indexPath = IndexPath(row: row, section: section)
+        
+        viewModel.selectPayment(at: indexPath)
+        paymentsTableView.reloadData()
+        
+        continueToPaymentButton.isEnabled = viewModel.selectedPaymentName() != nil
+        continueToPaymentButton.alpha = continueToPaymentButton.isEnabled ? 1.0 : 0.5
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectPayment(at: indexPath)
-        tableView.reloadData()
+        paymentsTableView.reloadData()
         
-        continueToPaymentButton.isEnabled = viewModel.isPaymentSelected()
-        continueToPaymentButton.alpha = viewModel.isPaymentSelected() ? 1.0 : 0.5
+        continueToPaymentButton.isEnabled = viewModel.selectedPaymentName() != nil
+        continueToPaymentButton.alpha = continueToPaymentButton.isEnabled ? 1.0 : 0.5
     }
     
     func tableView(_ tableView: UITableView,
@@ -88,4 +127,3 @@ extension ChoosePaymentViewController: UITableViewDelegate, UITableViewDataSourc
         return 70
     }
 }
-

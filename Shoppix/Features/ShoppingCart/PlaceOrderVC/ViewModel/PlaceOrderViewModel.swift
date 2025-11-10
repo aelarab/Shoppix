@@ -16,7 +16,7 @@ import RxSwift
 final class PlaceOrderViewModel {
     
     var selectedPaymentMethod: String?
-    var totalAmountString: String? // <-- set from Apple Pay
+    var totalAmountString: String?
     private let orderService = OrderService.shared
     private let cartService = ShopifyCartService.shared
     private let disposeBag = DisposeBag()
