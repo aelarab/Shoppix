@@ -71,7 +71,9 @@ class ProductsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            FavoritesBadgeManager.shared.updateFavoritesBadge(for: self.favoriteButton)
+        }
         productCollectionView.reloadData()
     }
     
@@ -216,7 +218,7 @@ extension ProductsViewController:UICollectionViewDelegate,UICollectionViewDataSo
 }
 extension ProductsViewController: SendDataOnVendorDelegete {
     func sendProudctsOnVendor(product: ProductModel) {
-        print("📩 sendProudctsOnVendor called with count:", product.products.count)
+        print(" sendProudctsOnVendor called with count:", product.products.count)
         self.productList = product.products
         self.filterList = productList
         

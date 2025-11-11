@@ -9,21 +9,33 @@ import UIKit
 import SDWebImage
 
 class HomeViewController: UIViewController {
+    
        //MARK: - Properties
     var homeViewModel : HomeViewModel?
     var coupons = [Coupon]()
     var couponTimer: Timer?
     var currentCouponIndex = 0
-    @IBOutlet weak var andicator: UIActivityIndicatorView!
-    
-    
-   //MARK: - Outlets
     var vendorsList = [SmartCollection]()
     var filterdList = [SmartCollection]()
+    
+   //MARK: - Outlets
+
+    @IBOutlet weak var andicator: UIActivityIndicatorView!
     @IBOutlet weak var categoriesSearchBar: UISearchBar!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     @IBOutlet weak var couponsCollectionView: UICollectionView!
     @IBOutlet weak var couponsPageControl: UIPageControl!
+    private lazy var favoriteButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            image: UIImage(systemName: "heart"),
+            style: .done,
+            target: self,
+            action: #selector(openFavoriteScreen)
+        )
+        button.tintColor = UIColor(named: "mainColor")
+        return button
+    }()
+
     
     var searchHidden:Bool = true
        //MARK: - LifeCycle
@@ -48,12 +60,13 @@ class HomeViewController: UIViewController {
                 target: self,
                 action: #selector(didTapSearch)
             )
-        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .done, target: self, action: #selector(openFavoriteScreen))
+
         categoriesSearchBar.isHidden = searchHidden
         searchButton.tintColor = UIColor(named: "mainColor")
         navigationItem.leftItemsSupplementBackButton = true
         navigationItem.leftBarButtonItems = [searchButton]
-       navigationItem.rightBarButtonItem = favoriteButton
+        navigationItem.rightBarButtonItem = favoriteButton
+
         
         if let layout = couponsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
@@ -73,9 +86,15 @@ class HomeViewController: UIViewController {
         startCouponAutoScroll()
         categoriesCollectionView.reloadData()
         couponsCollectionView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            FavoritesBadgeManager.shared.updateFavoritesBadge(for: self.favoriteButton)
+        }
     }
 
-
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        FavoritesBadgeManager.shared.updateFavoritesBadge(for: favoriteButton)
+    }
 
        //MARK: - Behaviour
     

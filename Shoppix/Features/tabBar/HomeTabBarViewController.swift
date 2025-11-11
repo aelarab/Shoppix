@@ -51,10 +51,17 @@ class HomeTabBarViewController: UITabBarController {
         )
         let cartNav = UINavigationController(rootViewController: shoppingCartVC)
         
+        let categoriesVC = CategoryViewController(nibName: "CategoryViewController", bundle: nil)
+        categoriesVC.tabBarItem = UITabBarItem(
+            title: "Categories"
+            , image: UIImage(systemName: "square.grid.2x2")
+            , selectedImage: UIImage(systemName: "square.grid.2x2.fill"))
+        let categoriesNav = UINavigationController(rootViewController: categoriesVC)
+        
         UITabBar.appearance().tintColor = UIColor(named: "mainColor")
           UITabBar.appearance().unselectedItemTintColor = .gray
 
-        self.viewControllers = [homeNav, cartNav, meNav]
+        self.viewControllers = [homeNav, categoriesNav, cartNav, meNav]
     }
 
     

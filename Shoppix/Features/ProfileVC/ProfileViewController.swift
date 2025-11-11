@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
     private let viewModel = ProfileViewModel()
     private let disposeBag = DisposeBag()
     private var cartButton: UIBarButtonItem!
+    private var favoritesButton: UIBarButtonItem!
     private var recentOrders: [Order] = []
     private var recentFavorites: [FavoriteProduct] = []
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -192,7 +193,7 @@ class ProfileViewController: UIViewController {
         )
         
         
-        let favoriteButton = UIBarButtonItem(
+        let settingsButton = UIBarButtonItem(
             image: UIImage(systemName: "gearshape"),
             style: .plain,
             target: self,
@@ -201,10 +202,10 @@ class ProfileViewController: UIViewController {
         
         if #available(iOS 16.0, *) {
                 navigationItem.trailingItemGroups = [
-                    UIBarButtonItemGroup(barButtonItems: [cartButton, favoriteButton], representativeItem: nil)
+                    UIBarButtonItemGroup(barButtonItems: [cartButton, settingsButton], representativeItem: nil)
                 ]
             } else {
-                navigationItem.rightBarButtonItems = [favoriteButton, cartButton]
+                navigationItem.rightBarButtonItems = [settingsButton, cartButton]
             }
         updateCartBadgeFromAPI()
     }
