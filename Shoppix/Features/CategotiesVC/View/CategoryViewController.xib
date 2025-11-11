@@ -23,10 +23,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qOl-6L-Rct">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="772.33333333333337"/>
                     <subviews>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" semanticContentAttribute="playback" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HGL-4c-oAg">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="31.333333333333332"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="32"/>
                             <segments>
                                 <segment title="ALL"/>
                                 <segment title="MEN"/>
@@ -40,7 +40,7 @@
                             </connections>
                         </segmentedControl>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Aan-Ic-0oy">
-                            <rect key="frame" x="0.0" y="38.333333333333314" width="393" height="720.66666666666674"/>
+                            <rect key="frame" x="0.0" y="39" width="393" height="733.33333333333326"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WWE-9L-gf7">
                                 <size key="itemSize" width="128" height="128"/>
@@ -51,11 +51,12 @@
                         </collectionView>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="Aan-Ic-0oy" firstAttribute="height" secondItem="qOl-6L-Rct" secondAttribute="height" multiplier="0.949495" id="5eE-eI-iq6"/>
                         <constraint firstItem="HGL-4c-oAg" firstAttribute="height" secondItem="qOl-6L-Rct" secondAttribute="height" multiplier="0.04" id="zy1-6E-bjY"/>
                     </constraints>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No products found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrP-qk-eoc">
-                    <rect key="frame" x="125.33333333333333" y="428.33333333333331" width="142.66666666666669" height="20.333333333333314"/>
+                    <rect key="frame" x="125.33333333333333" y="435" width="142.66666666666669" height="20.333333333333314"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>

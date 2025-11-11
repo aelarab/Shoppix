@@ -169,6 +169,18 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         let width = (collectionView.frame.width / 2) - 12
         return CGSize(width: width, height: 220)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard checkInternetConnection() else { return }
+        
+        let selectedProduct = viewModel.filteredProducts[indexPath.item]
+        Session.productId = selectedProduct.id
+        
+        
+        let productDetailsVC = ProductDetailsViewController(nibName: "ProductDetailsViewController", bundle: nil)
+        self.navigationController?.pushViewController(productDetailsVC, animated: true)
+    }
+
 }
 
 // MARK: - Expandable Filter Button
